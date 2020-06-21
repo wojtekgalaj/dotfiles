@@ -1,12 +1,12 @@
-* Bare git repository
+# Bare git repository
 
-This setup uses a bare git repository to be able to add any file from the home folder to a git repository without the need of simlinking them afterwards.
+This home directory uses a bare git repository to be able to add any file from the home folder to a git repository without the need of simlinking them afterwards.
 
 I saw this on distrotube's channel. (Here's)[https://www.youtube.com/watch?v=tBoLDpTWVOM&t=909s] the video
 
 Here's the readme found under the video, in case that should ever go away :)
 
-** Video description. By distrotube
+## Video description. By distrotube
 
 I've been looking for a better way to manage my dotfiles.  My old method involved moving all of my dotfiles into their own directory and then symlinking each one of them back into the directory structure.  What a headache!
 
