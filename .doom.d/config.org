@@ -16,6 +16,8 @@
       org-directory "~/Library/Mobile Documents/iCloud-com-appsonthemove~beorg/Documents/org/"
       projectile-require-project-root 'nil
       projectile-indexing-method 'hybrid
+      standard-indent 2
+      js-indent 2
       )
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))

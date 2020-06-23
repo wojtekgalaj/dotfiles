@@ -18,6 +18,8 @@ map <leader>w :wa<CR>
 map <leader>e :Explore<CR>
 
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', {'do': {->fzf#install()}}
+Plug 'junegunn/fzf.vim', {'do': {->fzf#install()}}
 call plug#end()
 
 " Indentation
