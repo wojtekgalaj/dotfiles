@@ -20,6 +20,8 @@ map <leader>e :Explore<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim', {'do': {->fzf#install()}}
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Indentation

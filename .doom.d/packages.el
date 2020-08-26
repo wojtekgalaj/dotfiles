@@ -52,3 +52,4 @@
 (package! evil-terminal-cursor-changer)
 (package! prettier-js)
 (package! graphql-mode)
+(package! svelte-mode)

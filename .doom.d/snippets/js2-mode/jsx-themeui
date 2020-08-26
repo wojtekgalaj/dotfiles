@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Jsx pragma
+# key: jsxx
+# --
+
+/** @jsx jsx */
+
+import { jsx } from 'theme-ui'
+
+$0
