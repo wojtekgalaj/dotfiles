@@ -1,9 +1,9 @@
-export EDITOR=nvim
+export EDITOR=vim
 
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.local/npm-global/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
-export PATH=$HOM/Games/DwarfFortress:$PATH
+export PATH=$HOME/Games/DwarfFortress:$PATH
 
 
 export ZDOTDIR=$HOME/.config/zsh
@@ -18,3 +18,4 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
+source $HOME/.nix-profile/etc/profile.d/nix.sh
