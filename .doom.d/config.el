@@ -1,27 +1,15 @@
 (after! org
-)
-
-(setq user-full-name "Wojtek Galaj"
-      user-mail-address "wojtek.galaj@gmail.com"
-      evil-move-cursor-back nil
-      doom-font (font-spec :family "Fira Code" :size 14)
-      doom-theme 'doom-dark+
-      display-line-numbers-type nil
-      flycheck-check-syntax-automatically '(mode-enabled-save)
-      global-auto-composition-mode nil
-      projectile-require-project-root 'nil
-      projectile-indexing-method 'hybrid
-      standard-indent 2
-      js-indent 2
-      helm-mode-fuzzy-match t
-      )
-(custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+  (setq org-startup-folded t)
+  (setq org-modules '(ol-bibtex org-habit))
+  (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-agenda-files (file-expand-wildcards org-directory)
+))
 
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'web-mode-hook 'prettier-js-mode)
-(add-hook 'svelte-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode (lsp))
+(add-hook 'svelte-mode-hook 'prettier-js-mode (lsp))
 
 (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
@@ -41,3 +29,28 @@
 (add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode))
+
+(after! lsp-mode
+  (setq lsp-file-watch-treshold nil
+      lsp-enable-file-watchers nil
+      )
+)
+
+(setq user-full-name "Wojtek Galaj"
+      user-mail-address "wojtek.galaj@gmail.com"
+      evil-move-cursor-back nil
+      doom-font (font-spec :family "Fira Code" :size 14)
+      doom-theme 'doom-sourcerer
+      display-line-numbers-type nil
+      flycheck-check-syntax-automatically '(mode-enabled-save)
+      global-auto-composition-mode nil
+      projectile-require-project-root 'nil
+      projectile-indexing-method 'hybrid
+      standard-indent 2
+      js-indent 2
+      js-indent-level 2
+      typescript-indent-level 2
+      helm-mode-fuzzy-match t
+      )
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))

@@ -1,8 +1,15 @@
 * ORG Mode
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC elisp
 (after! org
-)
+  (setq org-startup-folded t)
+  (setq org-modules '(ol-bibtex org-habit))
+  (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-agenda-files (file-expand-wildcards org-directory)
+))
 #+END_SRC
+
+#+RESULTS:
 
 * Variables
 #+BEGIN_SRC emacs-lisp
@@ -10,7 +17,7 @@
       user-mail-address "wojtek.galaj@gmail.com"
       evil-move-cursor-back nil
       doom-font (font-spec :family "Fira Code" :size 14)
-      doom-theme 'doom-dark+
+      doom-theme 'doom-sourcerer
       display-line-numbers-type nil
       flycheck-check-syntax-automatically '(mode-enabled-save)
       global-auto-composition-mode nil
@@ -18,18 +25,22 @@
       projectile-indexing-method 'hybrid
       standard-indent 2
       js-indent 2
+      js-indent-level 2
+      typescript-indent-level 2
       helm-mode-fuzzy-match t
       )
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 #+END_SRC
 
+#+RESULTS:
+
 * Hooks
 #+BEGIN_SRC elisp
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'web-mode-hook 'prettier-js-mode)
-(add-hook 'svelte-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode (lsp))
+(add-hook 'svelte-mode-hook 'prettier-js-mode (lsp))
 #+END_SRC
 
 * Terminal cursor changer
@@ -61,4 +72,16 @@
 (add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode))
+#+END_SRC
+
+* TODO LSP
+** TODO It would be nice to make it a bit faster.
+** TODO I keep getting an error about there being a lot of files in the project and how that can make LSP slower.
+For now I will just disable the message.
+#+BEGIN_SRC elisp
+(after! lsp-mode
+  (setq lsp-file-watch-treshold nil
+      lsp-enable-file-watchers nil
+      )
+)
 #+END_SRC
