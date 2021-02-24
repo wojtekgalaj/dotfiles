@@ -8,6 +8,12 @@
   home.homeDirectory = "/Users/wojtek";
 
   home.packages = with pkgs; [
+    gitAndTools.diff-so-fancy
+    ranger
+    fzf
+    lf
+    fd
+    htop
   ];
 
   home.stateVersion = "21.03";
