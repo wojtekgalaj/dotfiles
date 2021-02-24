@@ -23,6 +23,6 @@ alias edoom="emacs --with-profile doom"
 alias doomcli="~/doom-emacs/bin/doom"
 alias doomdoctor="~/doom-emacs/bin/doom-doctor"
 alias myemacs="emacs --with-profile vanilla"
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
 alias npmlsg='npm list -g --depth=0'
 
