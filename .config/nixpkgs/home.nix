@@ -14,6 +14,7 @@
     lf
     fd
     htop
+    starship
   ];
 
   home.stateVersion = "21.03";
