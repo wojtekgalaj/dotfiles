@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     gitAndTools.diff-so-fancy
+    nodePackages.pnpm
     ranger
     fzf
     lf
@@ -27,6 +28,7 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    extraConfig = builtins.readFile ~/.config/viminit.vim;
     plugins = with pkgs.vimPlugins; [
       vim-nix
       coc-nvim
