@@ -39,7 +39,7 @@
 (setq user-full-name "Wojtek Galaj"
       user-mail-address "wojtek.galaj@gmail.com"
       evil-move-cursor-back nil
-      doom-font (font-spec :family "Fira Code" :size 14)
+      doom-font (font-spec :family "Iosevka" :weight 'regular :size 16)
       doom-theme 'doom-sourcerer
       display-line-numbers-type nil
       flycheck-check-syntax-automatically '(mode-enabled-save)
