@@ -15,6 +15,10 @@
     fd
     htop
     starship
+    emacs
+    ripgrep
+    direnv
+    tree
   ];
 
   home.stateVersion = "21.03";
