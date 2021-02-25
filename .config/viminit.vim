@@ -28,6 +28,8 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+colorscheme gruvbox
+
 " Use system clipboard
 set clipboard=unnamed
 

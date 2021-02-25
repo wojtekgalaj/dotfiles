@@ -35,6 +35,7 @@
       typescript-vim
       vim-jsx-typescript
       vim-javascript
+      gruvbox
     ];
   };
   
