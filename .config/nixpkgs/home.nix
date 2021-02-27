@@ -20,6 +20,7 @@
     ripgrep
     direnv
     tree
+    cmake
   ];
 
   home.stateVersion = "21.03";
