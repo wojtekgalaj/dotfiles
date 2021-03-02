@@ -21,6 +21,7 @@
     direnv
     tree
     cmake
+    tmux
   ];
 
   home.stateVersion = "21.03";
