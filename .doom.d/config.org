@@ -64,6 +64,17 @@
 (global-set-key (kbd "C-l") 'evil-window-right)
 #+END_SRC
 
+#+RESULTS:
+: evil-window-right
+* Move between visual lines
+#+begin_src emacs-lisp
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(setq-default evil-cross-lines t)
+#+end_src
+
 * Assign mode by extension
 #+BEGIN_SRC elisp
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
