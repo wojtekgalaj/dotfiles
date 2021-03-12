@@ -19,6 +19,7 @@
     ripgrep
     direnv
     tree
+    nodePackages_latest.typescript-language-server
   ];
 
   home.stateVersion = "21.03";
