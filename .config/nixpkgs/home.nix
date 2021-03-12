@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     gitAndTools.diff-so-fancy
+    nodePackages.pnpm
     ranger
     fzf
     lf
@@ -20,6 +21,8 @@
     direnv
     tree
     nodePackages_latest.typescript-language-server
+    cmake
+    tmux
   ];
 
   home.stateVersion = "21.03";
@@ -28,12 +31,14 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    extraConfig = builtins.readFile ~/.config/viminit.vim;
     plugins = with pkgs.vimPlugins; [
       vim-nix
       coc-nvim
       typescript-vim
       vim-jsx-typescript
       vim-javascript
+      gruvbox
     ];
   };
   

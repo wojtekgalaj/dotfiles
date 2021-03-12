@@ -2,13 +2,11 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-NEWLINE=$'\n'
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b${NEWLINE}${NEWLINE}=> "
 
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=$HOME/.cache/zsh/history
 
 # Basic auto/tab complete:
 autoload -U compinit

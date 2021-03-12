@@ -21,13 +21,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim', {'do': {->fzf#install()}}
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Indentation
 set expandtab
 set tabstop=2
 set shiftwidth=2
+
+colorscheme gruvbox
 
 " Use system clipboard
 set clipboard=unnamed

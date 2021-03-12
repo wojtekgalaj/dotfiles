@@ -39,7 +39,7 @@
 (setq user-full-name "Wojtek Galaj"
       user-mail-address "wojtek.galaj@gmail.com"
       evil-move-cursor-back nil
-      doom-font (font-spec :family "Fira Code" :size 14)
+      doom-font (font-spec :family "Iosevka" :weight 'regular :size 16)
       doom-theme 'doom-sourcerer
       display-line-numbers-type nil
       flycheck-check-syntax-automatically '(mode-enabled-save)
@@ -54,3 +54,9 @@
       )
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(setq-default evil-cross-lines t)
