@@ -4,6 +4,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.local/npm-global/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/Games/DwarfFortress:$PATH
+export PATH=/usr/local/Cellar/emacs-plus@28/28.0.50/bin:$PATH
 
 
 export ZDOTDIR=$HOME/.config/zsh

@@ -16,13 +16,16 @@
     fd
     htop
     starship
-    emacs
     ripgrep
     direnv
     tree
     nodePackages_latest.typescript-language-server
     cmake
     tmux
+    amfora
+    deno
+    ripgrep
+    coreutils
   ];
 
   home.stateVersion = "21.03";
@@ -39,6 +42,7 @@
       vim-jsx-typescript
       vim-javascript
       gruvbox
+      vim-plug
     ];
   };
   
