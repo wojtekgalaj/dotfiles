@@ -49,7 +49,4 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! evil-terminal-cursor-changer)
 (package! prettier-js)
-(package! graphql-mode)
-(package! svelte-mode)
