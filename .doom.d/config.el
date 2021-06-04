@@ -18,9 +18,11 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+(add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
+
 (add-hook 'web-mode-hook 'prettier-js-mode (lsp))
 
-
+(use-package! lsp-tailwindcss)
 
 (map! :leader
       :desc "Just save everything" "j" #'evil-write-all)

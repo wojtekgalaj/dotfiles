@@ -65,13 +65,18 @@ This next bit is commented out as I'm mostly using GUI. Don't want to forget thi
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 #+end_src
 
-* Mode Settings
+* Mode Extension links
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
+#+end_src
 * Hooks
 #+begin_src emacs-lisp
 (add-hook 'web-mode-hook 'prettier-js-mode (lsp))
 #+end_src
 * LSP
+** Add tailwind support
 #+begin_src emacs-lisp
+(use-package! lsp-tailwindcss)
 #+end_src
 * What the key
 #+begin_src emacs-lisp

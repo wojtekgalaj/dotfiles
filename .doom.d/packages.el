@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! prettier-js)
+(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))

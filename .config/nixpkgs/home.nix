@@ -19,13 +19,14 @@
     ripgrep
     direnv
     tree
-    nodePackages_latest.typescript-language-server
     cmake
     tmux
     amfora
     deno
     ripgrep
     coreutils
+    yarn
+    pass
   ];
 
   home.stateVersion = "21.03";
