@@ -27,6 +27,10 @@
     coreutils
     yarn
     pass
+    aws
+    cheat
+    tldr
+    bottom
   ];
 
   home.stateVersion = "21.03";
