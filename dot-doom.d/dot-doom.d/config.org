@@ -1,0 +1,192 @@
+:PROPERTIES:
+:header-args: :results none
+:END:
+* Apperance
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Iosevka" :weight 'regular :size 18)
+      doom-theme 'doom-gruvbox)
+#+end_src
+
+* Indentation
+#+begin_src emacs-lisp
+(setq  standard-indent 2)
+#+end_src
+
+* Cursor behaviour and movement
+Don't move cursor back when exiting insert mode.
+I am going to comment this to try and not rely on it. 
+I think it's probably better to get used to this default behaviour and not be
+bummed out with evey new implememtation of vim.
+#+begin_src emacs-lisp
+;;(setq evil-move-cursor-back nil)
+#+end_src
+
+* Line numbers, fringe indicators, etc...
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type nil
+      scroll-margin 8
+      )
+#+end_src
+
+* ORG Mode
+** Setup main variables
+#+BEGIN_SRC elisp
+(after! org
+  (setq org-startup-folded t
+   org-modules '(ol-bibtex org-habit)
+   org-agenda-files (file-expand-wildcards org-directory)
+   )
+)
+#+END_SRC
+
+** Org capture
+I want to capture more then use scratch so I'll put the latter on modified key.
+#+begin_src elisp
+(map! :leader
+      :desc "Org Capture"           "x" #'org-capture
+      :desc "Pop up scratch buffer" "X" #'doom/open-scratch-buffer)
+#+end_src
+
+Setup capture templates
+
+Organisation right now:
+
+#+begin_src elisp
+(after! org
+  (setq org-capture-templates
+        '(("t" "Personal todo" entry
+           (file+headline +org-capture-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("n" "Personal notes" entry
+           (file+headline +org-capture-notes-file "Inbox")
+           "* %u %?\n%i\n%a" :prepend t)
+          ("j" "Journal" entry
+           (file+olp+datetree +org-capture-journal-file)
+           "* %U %?\n%i\n%a" :prepend t)
+          ("p" "Templates for projects")
+          ("pt" "Project-local todo" entry
+           (file+headline +org-capture-project-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("pn" "Project-local notes" entry
+           (file+headline +org-capture-project-notes-file "Inbox")
+           "* %U %?\n%i\n%a" :prepend t)
+          ("pc" "Project-local changelog" entry
+           (file+headline +org-capture-project-changelog-file "Unreleased")
+           "* %U %?\n%i\n%a" :prepend t)
+          ("o" "Centralized templates for projects")
+          ("ot" "Project todo" entry #'+org-capture-central-project-todo-file "* TODO %?\n %i\n %a" :heading "Tasks" :prepend nil)
+          ("on" "Project notes" entry #'+org-capture-central-project-notes-file "* %U %?\n %i\n %a" :heading "Notes" :prepend t)
+          ("oc" "Project changelog" entry #'+org-capture-central-project-changelog-file "* %U %?\n %i\n %a" :heading "Changelog" :prepend t))))
+
+#+end_src
+
+* Move between windows
+#+BEGIN_SRC elisp
+(global-set-key (kbd "C-h") 'evil-window-left)
+(global-set-key (kbd "C-j") 'evil-window-down)
+(global-set-key (kbd "C-k") 'evil-window-up)
+(global-set-key (kbd "C-l") 'evil-window-right)
+#+END_SRC
+
+* Move between visual lines
+#+begin_src emacs-lisp
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(setq-default evil-cross-lines t)
+#+end_src
+
+* Start with the window maximised
+#+begin_src emacs-lisp
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+#+end_src
+
+* Mode Extension links
+#+begin_src emacs-lisp :results none
+(add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
+(add-to-list 'auto-mode-alist '("\\.postcss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+#+end_src
+
+
+* Hooks
+#+begin_src emacs-lisp
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'rjsx-mode-hook 'prettier-js-mode)
+#+end_src
+* LSP
+* DAP
+#+begin_src emacs-lisp :results none
+(require 'dap-node )
+#+end_src
+* What the key
+#+begin_src emacs-lisp
+(map! :leader
+      :desc "Now save everything" "j" #'evil-write-all)
+#+end_src
+
+* JSDoc
+#+begin_src emacs-lisp
+(require 'js-doc)
+#+end_src
+
+* Flycheck
+#+begin_src emacs-lisp
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
+#+end_src
+
+* Copilot
+Copilot is now a paid service at 10/month or 100/year USD.
+I'm leaving this here, maybe it'll be free again at some point or I decide the price is worth it.
+Right now it's in my way half of the time I feel like.
+#+begin_src emacs-lisp
+;; (use-package! copilot
+;;   :config
+;;   (customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
+;;   (global-set-key (kbd "C-c c") 'copilot-accept-completion)
+;;   )
+
+;; (add-hook 'web-mode-hook 'copilot-mode)
+#+end_src
+
+* Multiple Major Modes
+This section tries to solve the problem of having multiple major modes in a single file. I am going to start working with Lit so I'll have a whole lot of tagged template literals to play with. I'll try to sove it here in a couple different ways.
+** Polymode
+This is almost working now. I am commenting this out mostly because lsp seems to be leaking into the submodes.
+#+begin_src emacs-lisp
+;; (use-package polymode
+;;   :ensure t
+;;   :mode ("\.ts$" . poly-typescript-lit-mode)
+;;   :config
+;;   (define-hostmode poly-lit-hostmode :mode 'typescript-mode)
+;;   (define-innermode poly-lit-html-innermode
+;;     :mode 'web-mode
+;;     :head-matcher "\html`"
+;;     :tail-matcher "`$"
+;;     :head-mode 'host
+;;     :tail-mode 'host
+;;   )
+;;   (define-innermode poly-lit-css-innermode
+;;     :mode 'web-mode
+;;     :head-matcher "\css`"
+;;     :tail-matcher "`$"
+;;     :head-mode 'host
+;;     :tail-mode 'host
+;;   )
+;;   (define-polymode poly-typescript-lit-mode
+;;     :hostmode 'poly-lit-hostmode
+;;     :innermodes '(poly-lit-html-innermode))
+
+;; )
+#+end_src
+
+** Tree Sitter
+There is a module in doom that enables tree sitter. I think it's not quite as powerful as the one in neovim but it might just be enough.
+#+begin_src emacs-lisp
+;;(setq +tree-sitter-hl-enabled-modes '(web-mode svelte-mode typescript-mode typescript-tsx-mode))
+#+end_src

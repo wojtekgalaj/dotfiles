@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Svelte Component Scaffold
+# key: scs         
+# --
+<script>
+
+</script>
+
+<div class="wrapper">
+$0
+</div>
+
