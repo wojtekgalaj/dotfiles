@@ -1,0 +1,32 @@
+alias ll='ls -ltr'
+alias la='ls -ltar'
+alias lh='ls -ltarph'
+alias lg='la | grep '
+alias peg='ps -ef | grep -v grep | grep'
+alias cc='clear'
+alias xx='exit'
+alias v='lvim'
+alias vim='lvim'
+alias diff='git difftool'
+alias merge='git mergetool'
+alias s='git s'
+alias gc='git commit'
+alias server="python -m SimpleHTTPServer"
+alias vimrc='v ~/.config/nvim/'
+alias cleanup='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
+alias docker='nocorrect docker'
+alias mosh='nocorrect mosh'
+alias chrome-i="open -a \"/Applications/Google Chrome.app\" --args --disable-web-security  --user-data-dir"
+alias undomerge="git reset --hard ORIG_HEAD"
+alias weather="curl -s http://wttr.in"
+alias edoom="emacs --with-profile doom"
+alias doomcli="~/doom-emacs/bin/doom"
+alias doomdoctor="~/doom-emacs/bin/doom-doctor"
+alias myemacs="emacs --with-profile vanilla -t"
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
+alias npmlsg='npm list -g --depth=0'
+alias demon='emacs --bg-daemon=MAIN'
+alias killdemon="emacsclient --eval '(save-buffers-kill-emacs)' --socket-name MAIN"
+alias aaa="aws --cli-auto-prompt --profile serverless_stg"
+alias e="emacsclient -c &"
