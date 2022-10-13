@@ -1,0 +1,10 @@
+window:
+  padding:
+    x: 20
+    y: 20
+  startup_mode: Fullscreen
+font:
+  normal:
+    family: "Iosevka Nerd Font Mono"
+    style: Regular
+  size: 16.0
