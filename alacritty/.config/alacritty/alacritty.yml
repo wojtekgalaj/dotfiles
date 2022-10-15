@@ -2,9 +2,10 @@ window:
   padding:
     x: 20
     y: 20
-  startup_mode: Fullscreen
+  startup_mode: Maximized
+  decorations: buttonless
 font:
   normal:
-    family: "Iosevka Nerd Font Mono"
+    family: "SFMono Nerd Font"
     style: Regular
-  size: 18.0
+  size: 16.0
