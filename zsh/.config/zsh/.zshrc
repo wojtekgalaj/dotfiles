@@ -9,7 +9,7 @@ SAVEHIST=10000
 HISTFILE=$HOME/.cache/zsh/history
 
 # AWS environment variables
-AWS_PROFILE=serverless_stg
+AWS_PROFILE=deloitte-lightning-dev
 
 # Basic auto/tab complete:
 autoload -U compinit
