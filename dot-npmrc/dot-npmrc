@@ -1,4 +1,0 @@
-prefix=$HOME/.local/npm-global
-@elements:registry=https://api.elements.dev/v1/pkgs/show/
-//api.elements.dev/pkgs/show/:_authToken=1ddaede9-e01b-44ff-a368-d71f3e23f964
-//api.elements.dev/pkgs/install/:_authToken=1ddaede9-e01b-44ff-a368-d71f3e23f964
