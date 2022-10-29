@@ -14,15 +14,9 @@ export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export N_PREFIX=$HOME/.local
 export PATH=$N_PREFIX/bin:$PATH
 
+export PATH=/opt/homebrew/bin:$PATH
+
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
-source $HOME/.nix-profile/etc/profile.d/nix.sh
-source $HOME/.cargo/env
-
-
-# Setting PATH for Python 3.10
-# The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
-export PATH
