@@ -2,11 +2,11 @@ window:
   padding:
     x: 10
     y: 10
-  startup_mode: Maximized
-  decorations: buttonless
+  startup_mode: Fullscreen
+  decorations: full
 font:
   normal:
-    family: "Iosevka Term Light"
+    family: "Iosevka Nerd Font Mono"
   size: 18.0
   offset:
     x: 0
