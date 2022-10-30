@@ -30,3 +30,4 @@ alias demon='emacs --bg-daemon=MAIN'
 alias killdemon="emacsclient --eval '(save-buffers-kill-emacs)' --socket-name MAIN"
 alias aaa="aws --cli-auto-prompt --profile serverless_stg"
 alias e="emacsclient -c &"
+alias pip=pip3
