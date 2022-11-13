@@ -69,14 +69,6 @@ bindkey '^e' edit-command-line
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
- if [ $( ps -ef | grep -v grep | grep bg-daemon | wc -l) -le 0 ]
- then
-  # emacs --daemon
-   echo "Not starting the emacs deamon, I have to understand it better"
- else 
-   echo "Emacs daemon already running"
- fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
@@ -93,3 +85,5 @@ eval "$(starship init zsh)"
 export PNPM_HOME="/Users/wgalaj/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+#
+source ~/.zprofile
