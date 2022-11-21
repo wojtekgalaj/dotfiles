@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(initial-frame-alist '((fullscreen . maximized)))
- '(package-selected-packages '(polymode dap-mode))
+ '(package-selected-packages '(po-mode polymode dap-mode))
  '(warning-suppress-log-types
    '((doom-first-buffer-hook)
      (doom-first-buffer-hook)
