@@ -109,10 +109,10 @@ Organisation right now:
 (add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
 (add-to-list 'auto-mode-alist '("\\.postcss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 #+end_src
-
 
 * Hooks
 #+begin_src emacs-lisp
@@ -190,3 +190,8 @@ There is a module in doom that enables tree sitter. I think it's not quite as po
 #+begin_src emacs-lisp
 ;;(setq +tree-sitter-hl-enabled-modes '(web-mode svelte-mode typescript-mode typescript-tsx-mode))
 #+end_src
+
+* Projectile
+There is a problem with my projectile setup where it's pretty common to have it list too many files. Currently it goes all the way up to my home folder.
+* Zen Mode
+** TODO Figure out how to configure zen mode to look just the way you like.

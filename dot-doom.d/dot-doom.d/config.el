@@ -63,6 +63,7 @@
 (add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
 (add-to-list 'auto-mode-alist '("\\.postcss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
