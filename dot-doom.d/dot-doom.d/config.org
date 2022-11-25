@@ -118,6 +118,7 @@ Organisation right now:
 #+begin_src emacs-lisp
 (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+(add-hook 'typescript-mode-hook 'prettier-js-mode)
 #+end_src
 * LSP
 * DAP
