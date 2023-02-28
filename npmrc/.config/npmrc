@@ -10,6 +10,7 @@
 ; to the registry host specified.
 
 prefix=/Users/wojtek/.local/npm-global
+; registry=https://bin.source.tui/artifactory/api/npm/tui-npm/
 
 ;;;;
 ; all available options shown below with default values
@@ -124,7 +125,6 @@ prefix=/Users/wojtek/.local/npm-global
 ; proxy=null
 ; read-only=false
 ; rebuild-bundle=true
-; registry=https://registry.npmjs.org/
 ; replace-registry-host=npmjs
 ; save=true
 ; save-bundle=false
