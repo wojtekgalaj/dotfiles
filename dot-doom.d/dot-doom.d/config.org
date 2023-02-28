@@ -3,13 +3,14 @@
 :END:
 * Apperance
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Iosevka" :weight 'regular :size 18)
+(setq doom-font (font-spec :family "Iosevka" :weight 'regular :size 16)
       doom-theme 'doom-gruvbox)
 #+end_src
 
 * Indentation
 #+begin_src emacs-lisp
 (setq  standard-indent 2)
+(setq  typescript-indent-level 2)
 #+end_src
 
 * Cursor behaviour and movement
@@ -110,6 +111,7 @@ Organisation right now:
 (add-to-list 'auto-mode-alist '("\\.postcss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.webc\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 #+end_src
@@ -119,8 +121,12 @@ Organisation right now:
 (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'rjsx-mode-hook 'prettier-js-mode)
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
+(add-hook 'scss-mode-hook 'prettier-js-mode)
 #+end_src
 * LSP
+#+begin_src emacs-lisp
+(setq lsp-warn-no-matched-clients nil)
+#+end_src
 * DAP
 #+begin_src emacs-lisp :results none
 (require 'dap-node )
@@ -153,43 +159,6 @@ Right now it's in my way half of the time I feel like.
 ;;   )
 
 ;; (add-hook 'web-mode-hook 'copilot-mode)
-#+end_src
-
-* Multiple Major Modes
-This section tries to solve the problem of having multiple major modes in a single file. I am going to start working with Lit so I'll have a whole lot of tagged template literals to play with. I'll try to sove it here in a couple different ways.
-** Polymode
-This is almost working now. I am commenting this out mostly because lsp seems to be leaking into the submodes.
-#+begin_src emacs-lisp
-;; (use-package polymode
-;;   :ensure t
-;;   :mode ("\.ts$" . poly-typescript-lit-mode)
-;;   :config
-;;   (define-hostmode poly-lit-hostmode :mode 'typescript-mode)
-;;   (define-innermode poly-lit-html-innermode
-;;     :mode 'web-mode
-;;     :head-matcher "\html`"
-;;     :tail-matcher "`$"
-;;     :head-mode 'host
-;;     :tail-mode 'host
-;;   )
-;;   (define-innermode poly-lit-css-innermode
-;;     :mode 'web-mode
-;;     :head-matcher "\css`"
-;;     :tail-matcher "`$"
-;;     :head-mode 'host
-;;     :tail-mode 'host
-;;   )
-;;   (define-polymode poly-typescript-lit-mode
-;;     :hostmode 'poly-lit-hostmode
-;;     :innermodes '(poly-lit-html-innermode))
-
-;; )
-#+end_src
-
-** Tree Sitter
-There is a module in doom that enables tree sitter. I think it's not quite as powerful as the one in neovim but it might just be enough.
-#+begin_src emacs-lisp
-;;(setq +tree-sitter-hl-enabled-modes '(web-mode svelte-mode typescript-mode typescript-tsx-mode))
 #+end_src
 
 * Projectile
