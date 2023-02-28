@@ -9,7 +9,7 @@ SAVEHIST=10000
 HISTFILE=$HOME/.cache/zsh/history
 
 # AWS environment variables
-AWS_PROFILE=deloitte-lightning-dev
+export AWS_PROFILE=dev-ao
 
 # Basic auto/tab complete:
 autoload -U compinit
