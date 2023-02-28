@@ -1,7 +1,8 @@
-(setq doom-font (font-spec :family "Iosevka" :weight 'regular :size 18)
+(setq doom-font (font-spec :family "Iosevka" :weight 'regular :size 16)
       doom-theme 'doom-gruvbox)
 
 (setq  standard-indent 2)
+(setq  typescript-indent-level 2)
 
 ;;(setq evil-move-cursor-back nil)
 
@@ -64,6 +65,7 @@
 (add-to-list 'auto-mode-alist '("\\.postcss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.webc\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
@@ -71,6 +73,8 @@
 (add-hook 'rjsx-mode-hook 'prettier-js-mode)
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
 (add-hook 'scss-mode-hook 'prettier-js-mode)
+
+(setq lsp-warn-no-matched-clients nil)
 
 (require 'dap-node )
 
@@ -88,30 +92,3 @@
 ;;   )
 
 ;; (add-hook 'web-mode-hook 'copilot-mode)
-
-;; (use-package polymode
-;;   :ensure t
-;;   :mode ("\.ts$" . poly-typescript-lit-mode)
-;;   :config
-;;   (define-hostmode poly-lit-hostmode :mode 'typescript-mode)
-;;   (define-innermode poly-lit-html-innermode
-;;     :mode 'web-mode
-;;     :head-matcher "\html`"
-;;     :tail-matcher "`$"
-;;     :head-mode 'host
-;;     :tail-mode 'host
-;;   )
-;;   (define-innermode poly-lit-css-innermode
-;;     :mode 'web-mode
-;;     :head-matcher "\css`"
-;;     :tail-matcher "`$"
-;;     :head-mode 'host
-;;     :tail-mode 'host
-;;   )
-;;   (define-polymode poly-typescript-lit-mode
-;;     :hostmode 'poly-lit-hostmode
-;;     :innermodes '(poly-lit-html-innermode))
-
-;; )
-
-;;(setq +tree-sitter-hl-enabled-modes '(web-mode svelte-mode typescript-mode typescript-tsx-mode))
