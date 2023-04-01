@@ -50,6 +50,18 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
+  -- Project management plugins
+  use 'preservim/nerdtree'
+
+  -- Little helper plugins
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  -- AI Plugins
+  use 'github/copilot.vim'
+
   use {
     'glacambre/firenvim',
     run = function() vim.fn['firenvim#install'](0) end
@@ -142,6 +154,9 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('n', '<leader>w', '<cmd>wa<cr>', {silent = true})
+
+vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeToggle<cr>', {silent = true})
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

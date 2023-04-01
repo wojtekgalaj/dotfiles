@@ -14,7 +14,6 @@ alias cleanup='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
 alias docker='nocorrect docker'
 alias mosh='nocorrect mosh'
-alias chrome_i="open -a \"/Applications/Google Chrome.app\" --args --disable-web-security  --user-data-dir"
 alias undomerge="git reset --hard ORIG_HEAD"
 alias weather="curl -s http://wttr.in"
 alias pip=pip3
@@ -24,7 +23,7 @@ alias cdss="cd ~/dev/one_selling_platform/acco_only/static_sites/"
 alias cdc="cd ~/dev/one_selling_platform/acco_only/components/"
 alias cdp="cd ~/dev/one_selling_platform/acco_only/packages/"
 alias cde="cd ~/dev/one_selling_platform/tech_enablers/"
-alias vimrc="nvim ~/dotfiles/nvim/.config/init.lua"	
+alias vimrc="nvim ~/dotfiles/nvim/.config/nvim/init.lua"	
 alias docked='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli'
 alias rails='docked rails'
 alias rails-dev='docked bin/dev'
@@ -33,3 +32,16 @@ alias ryarn='docked yarn'
 alias rake='docked rake'
 alias gem='docked gem'
 alias awsmfa='~/.aws/mfa-login.sh'
+
+/* NR Hybris Related aliases */
+alias hybd1="sshpass -p 'FDsa@123' ssh hybd1" # ok
+alias hybd2="sshpass -p '123@AWsd' ssh hybd2" # ok
+alias hybd3="sshpass -p 'ASdf@123' ssh hybd3"
+alias hybd4="sshpass -p 'QAsa@123' ssh hybd4" # ok
+alias hybd5="sshpass -p 'AZxc@123' ssh hybd5" # ok
+alias hybd6="sshpass -p 'ASdf@123' ssh hybd6"
+alias hybd7="sshpass -p 'ASdf@123' ssh hybd7"
+alias hybd8="sshpass -p 'ASdf@123' ssh hybd8"
+alias hybd10="sshpass -p 'yap270' ssh hybd10" #ok
+alias devbr="sshpass -p 'ASdf@123' ssh devbr"
+/* ENDNR Hybris Related aliases */
