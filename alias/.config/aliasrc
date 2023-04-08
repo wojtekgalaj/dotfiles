@@ -33,7 +33,6 @@ alias rake='docked rake'
 alias gem='docked gem'
 alias awsmfa='~/.aws/mfa-login.sh'
 
-/* NR Hybris Related aliases */
 alias hybd1="sshpass -p 'FDsa@123' ssh hybd1" # ok
 alias hybd2="sshpass -p '123@AWsd' ssh hybd2" # ok
 alias hybd3="sshpass -p 'ASdf@123' ssh hybd3"
@@ -44,4 +43,3 @@ alias hybd7="sshpass -p 'ASdf@123' ssh hybd7"
 alias hybd8="sshpass -p 'ASdf@123' ssh hybd8"
 alias hybd10="sshpass -p 'yap270' ssh hybd10" #ok
 alias devbr="sshpass -p 'ASdf@123' ssh devbr"
-/* ENDNR Hybris Related aliases */
