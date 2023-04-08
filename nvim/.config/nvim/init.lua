@@ -59,6 +59,27 @@ require('packer').startup(function(use)
     config = function() require("nvim-autopairs").setup {} end
   }
 
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+
+  -- Prettier and styling plugins
+  use 'sbdchd/neoformat'
+  use 'Glench/Vim-Jinja2-Syntax'
+  vim.cmd([[
+    autocmd BufWritePre * Neoformat prettier
+  ]])
+
   -- AI Plugins
   use 'github/copilot.vim'
 
@@ -72,6 +93,50 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  -- Debugger stuff
+  use {
+    "mfussenegger/nvim-dap",
+    requires = {
+      "mfussenegger/nvim-dap-ui"
+    },
+  }
+
+  use {
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+  }
+
+  -- Require nvim-dap
+  local dap = require('dap')
+
+  -- Configure the node2 debugger
+  dap.adapters.node2 = {
+    type = 'executable',
+    command = 'node',
+    args = {os.getenv('HOME') .. '/.npm-packages/bin/node_modules/vscode-node-debug2/out/src/nodeDebug.js'},
+  }
+
+  -- Set the configuration for the debug session
+  dap.configurations.javascript = {
+    {
+      type = 'node2',
+      request = 'launch',
+      program = '${file}',
+      cwd = vim.fn.getcwd(),
+      sourceMaps = true,
+      protocol = 'inspector',
+      console = 'integratedTerminal',
+    },
+  }
+
+  -- Start debugging
+  vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua require("dap").continue()<CR>', { noremap = true, silent = true })
+  -- Stop debugging
+  vim.api.nvim_set_keymap('n', '<leader>ds', '<cmd>lua require("dap").disconnect()<CR>', { noremap = true, silent = true })
+  -- Toggle breakpoint
+  vim.api.nvim_set_keymap('n', '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>', { noremap = true, silent = true })
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -233,7 +298,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'ninja' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },

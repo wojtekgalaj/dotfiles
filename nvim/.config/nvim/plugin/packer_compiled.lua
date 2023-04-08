@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["Vim-Jinja2-Syntax"] = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/Vim-Jinja2-Syntax",
+    url = "https://github.com/Glench/Vim-Jinja2-Syntax"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -129,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neoformat = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
+  },
   nerdtree = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/nerdtree",
@@ -144,6 +154,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/mfussenegger/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -204,6 +224,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
+  },
+  ["vscode-js-debug"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/opt/vscode-js-debug",
+    url = "https://github.com/microsoft/vscode-js-debug"
+  },
+  ["which-key.nvim"] = {
+    config = { "\27LJ\2\nt\0\0\3\0\a\0\0156\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0)\1,\1=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\15timeoutlen\ftimeout\6o\bvim\0" },
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
@@ -212,6 +244,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\nt\0\0\3\0\a\0\0156\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0)\1,\1=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\15timeoutlen\ftimeout\6o\bvim\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
