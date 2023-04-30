@@ -85,10 +85,15 @@
 
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
 
-;; (use-package! copilot
-;;   :config
-;;   (customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
-;;   (global-set-key (kbd "C-c c") 'copilot-accept-completion)
-;;   )
+(use-package! copilot
+  :config
+  (customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
+  (global-set-key (kbd "C-c c") 'copilot-accept-completion)
+  )
 
-;; (add-hook 'web-mode-hook 'copilot-mode)
+(add-hook 'web-mode-hook 'copilot-mode)
+
+(require 'prettier-js)
+(add-hook 'prettier-js-mode-hook
+          (lambda ()
+            (setq prettier-js-command (concat (projectile-project-root) "node_modules/.bin/prettier"))))

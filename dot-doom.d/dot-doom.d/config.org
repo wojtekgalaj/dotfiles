@@ -152,16 +152,24 @@ Copilot is now a paid service at 10/month or 100/year USD.
 I'm leaving this here, maybe it'll be free again at some point or I decide the price is worth it.
 Right now it's in my way half of the time I feel like.
 #+begin_src emacs-lisp
-;; (use-package! copilot
-;;   :config
-;;   (customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
-;;   (global-set-key (kbd "C-c c") 'copilot-accept-completion)
-;;   )
+(use-package! copilot
+  :config
+  (customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
+  (global-set-key (kbd "C-c c") 'copilot-accept-completion)
+  )
 
-;; (add-hook 'web-mode-hook 'copilot-mode)
+(add-hook 'web-mode-hook 'copilot-mode)
 #+end_src
 
 * Projectile
 There is a problem with my projectile setup where it's pretty common to have it list too many files. Currently it goes all the way up to my home folder.
 * Zen Mode
 ** TODO Figure out how to configure zen mode to look just the way you like.
+* Prettier Mode
+#+begin_src emacs-lisp
+(require 'prettier-js)
+(add-hook 'prettier-js-mode-hook
+          (lambda ()
+            (setq prettier-js-command (concat (projectile-project-root) "node_modules/.bin/prettier"))))
+
+#+end_src
