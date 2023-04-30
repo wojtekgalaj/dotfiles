@@ -92,6 +92,7 @@ require("packer").startup(function(use)
     autocmd BufWritePre *.ts Neoformat prettier
     autocmd BufWritePre *.tsx Neoformat prettier
     autocmd BufWritePre *.lua Neoformat stylua
+    autocmd BufWritePre *.svelte Neoformat prettier
   ]])
 	-- AI Plugins
 	use("github/copilot.vim")
@@ -191,6 +192,10 @@ require("packer").startup(function(use)
 		{ noremap = true, silent = true }
 	)
 
+	use("othree/html5.vim")
+	use("pangloss/vim-javascript")
+	use("evanleck/vim-svelte")
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -278,6 +283,12 @@ vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>n", "<cmd>NERDTreeToggle<cr>", { silent = true })
 
+-- Use Ctrl + hjkl to navigate splits
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -352,7 +363,7 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help", "ninja" },
+	ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help", "ninja", "svelte" },
 
 	highlight = { enable = true },
 	indent = { enable = true, disable = { "python" } },
@@ -471,7 +482,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "sumneko_lua", "gopls" }
+local servers = { "sumneko_lua", "gopls", "svelte" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
