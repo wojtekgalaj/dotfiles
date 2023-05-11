@@ -170,6 +170,13 @@ There is a problem with my projectile setup where it's pretty common to have it 
 * Prettier Mode
 #+begin_src emacs-lisp
 (require 'prettier-js)
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string= (file-name-extension buffer-file-name) "webc")
+              (prettier-js-mode)
+              (setq-local prettier-js-args '("--parser" "html")))))
+
 (add-hook 'prettier-js-mode-hook
           (lambda ()
             (setq prettier-js-command (concat (projectile-project-root) "node_modules/.bin/prettier"))))
