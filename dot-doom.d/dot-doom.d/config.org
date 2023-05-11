@@ -39,6 +39,8 @@ bummed out with evey new implememtation of vim.
    org-agenda-files (file-expand-wildcards org-directory)
    )
 )
+(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 #+END_SRC
 
 ** Org capture
