@@ -24,6 +24,7 @@ alias cdss="cd ~/dev/one_selling_platform/acco_only/static_sites/"
 alias cdc="cd ~/dev/one_selling_platform/acco_only/components/"
 alias cdp="cd ~/dev/one_selling_platform/acco_only/packages/"
 alias cde="cd ~/dev/one_selling_platform/tech_enablers/"
+alias cdsm="cd ~/dev/one_selling_platform/search/mfe/"
 alias vimrc="nvim ~/dotfiles/nvim/.config/nvim/init.lua"	
 alias docked='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli'
 alias rails='docked rails'
