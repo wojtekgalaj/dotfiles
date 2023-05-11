@@ -53,5 +53,6 @@
 (package! xref :pin "a82f459b37b31546bf274388baf8aca79e9c30d9")
 (package! js-doc)
 (package! prisma-mode :recipe (:host github :repo "pimeys/emacs-prisma-mode" :branch "main"))
+(package! graphql-mode :recipe (:host github :repo "davazp/graphql-mode" :branch "master"))
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
