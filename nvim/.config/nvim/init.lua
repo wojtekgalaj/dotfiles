@@ -94,6 +94,15 @@ require("packer").startup(function(use)
     autocmd BufWritePre *.lua Neoformat stylua
     autocmd BufWritePre *.svelte Neoformat prettier
   ]])
+
+	-- Use HTML syntax highlighting for webc files
+	vim.cmd([[
+    augroup webc_ft
+      au!
+      autocmd BufNewFile,BufRead *.webc   set syntax=html
+    augroup END
+  ]])
+
 	-- AI Plugins
 	use("github/copilot.vim")
 
@@ -234,8 +243,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
-vim.wo.number = true
+-- Make line numbers relative
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
