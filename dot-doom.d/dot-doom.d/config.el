@@ -16,6 +16,8 @@
    org-agenda-files (file-expand-wildcards org-directory)
    )
 )
+(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 (map! :leader
       :desc "Org Capture"           "x" #'org-capture
@@ -94,6 +96,13 @@
 (add-hook 'web-mode-hook 'copilot-mode)
 
 (require 'prettier-js)
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string= (file-name-extension buffer-file-name) "webc")
+              (prettier-js-mode)
+              (setq-local prettier-js-args '("--parser" "html")))))
+
 (add-hook 'prettier-js-mode-hook
           (lambda ()
             (setq prettier-js-command (concat (projectile-project-root) "node_modules/.bin/prettier"))))
