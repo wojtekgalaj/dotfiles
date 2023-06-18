@@ -71,13 +71,13 @@ bindkey '^e' edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-
 export PATH="/usr/local/go/bin:$PATH"
-
-export GOPATH=/$HOME/golib
 export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+export PATH=$HOME/dev/scripts/bin/:$PATH
+
 export ANDROID_SDK=$HOME/Library/Android/sdk
+export GOPATH=/$HOME/golib
 
 eval "$(starship init zsh)"
 
@@ -95,4 +95,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Source cargo env
 . "$HOME/.cargo/env"
 
-
+eval "$(zoxide init zsh)"
