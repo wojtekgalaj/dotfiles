@@ -161,6 +161,7 @@ Right now it's in my way half of the time I feel like.
   )
 
 (add-hook 'web-mode-hook 'copilot-mode)
+(add-hook 'rjsx-mode-hook 'copilot-mode)
 #+end_src
 
 * Projectile
