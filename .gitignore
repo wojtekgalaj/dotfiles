@@ -2,3 +2,4 @@
 .DS_Store
 .zsh_sessions/
 .zsh_history
+packer_compiled.lua
