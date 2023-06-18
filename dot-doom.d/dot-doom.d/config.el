@@ -85,7 +85,7 @@
 
 (require 'js-doc)
 
-(setq flycheck-check-syntax-automatically '(mode-enabled save))
+;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
 
 (use-package! copilot
   :config
