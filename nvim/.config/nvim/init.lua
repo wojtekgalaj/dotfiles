@@ -61,6 +61,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- Which key. I need to work on this setup.
 	use({
 		"folke/which-key.nvim",
 		config = function()
@@ -291,6 +292,7 @@ vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>n", "<cmd>NERDTreeToggle<cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>Explore<cr>", { silent = true })
 
 -- Use Ctrl + hjkl to navigate splits
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
