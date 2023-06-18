@@ -146,7 +146,7 @@ Organisation right now:
 
 * Flycheck
 #+begin_src emacs-lisp
-(setq flycheck-check-syntax-automatically '(mode-enabled save))
+;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
 #+end_src
 
 * Copilot
