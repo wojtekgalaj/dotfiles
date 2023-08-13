@@ -17,9 +17,6 @@ require("packer").startup(function(use)
 			-- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-
-			-- Useful status updates for LSP
-			"j-hui/fidget.nvim",
 		},
 	})
 
@@ -43,9 +40,12 @@ require("packer").startup(function(use)
 	-- Git related plugins
 	use("tpope/vim-fugitive")
 	use("tpope/vim-rhubarb")
-	use("lewis6991/gitsigns.nvim")
 
-	use("navarasu/onedark.nvim") -- Theme inspired by Atom
+	use({ "NeogitOrg/neogit", requires = "nvim-lua/plenary.nvim" })
+	local neogit = require("neogit")
+	neogit.setup({})
+
+	use("EdenEast/nightfox.nvim")
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
@@ -54,12 +54,15 @@ require("packer").startup(function(use)
 	use("preservim/nerdtree")
 
 	-- Little helper plugins
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	-- use({
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup({})
+	-- 	end,
+	-- })
+	--
+
+	use("mattn/emmet-vim")
 
 	-- Which key. I need to work on this setup.
 	use({
@@ -75,13 +78,23 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	local wk = require("which-key")
+	-- Context plugin
+	use("nvim-treesitter/nvim-treesitter-context")
 
-	wk.register({
-		v = {
-			name = "versioning",
-			s = { "<cmd>G<cr>" },
-		},
+	-- The defaults, here if I want to change them up
+	require("treesitter-context").setup({
+		enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+		max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+		min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+		line_numbers = true,
+		multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+		trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+		mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+		-- Separator between context and content. Should be a single character string, like '-'.
+		-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+		separator = nil,
+		zindex = 20, -- The Z-index of the context window
+		on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 	})
 
 	-- Prettier and styling plugins
@@ -95,6 +108,8 @@ require("packer").startup(function(use)
     autocmd BufWritePre *.lua Neoformat stylua
     autocmd BufWritePre *.svelte Neoformat prettier
   ]])
+	-- Better movement plugins
+	use("ggandor/lightspeed.nvim")
 
 	-- Use HTML syntax highlighting for webc files
 	vim.cmd([[
@@ -105,12 +120,23 @@ require("packer").startup(function(use)
   ]])
 
 	-- AI Plugins
+
 	use("github/copilot.vim")
 
 	use({
-		"glacambre/firenvim",
-		run = function()
-			vim.fn["firenvim#install"](0)
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup()
+		end,
+	})
+
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
 		end,
 	})
 
@@ -126,12 +152,6 @@ require("packer").startup(function(use)
 		requires = {
 			"mfussenegger/nvim-dap-ui",
 		},
-	})
-
-	use({
-		"microsoft/vscode-js-debug",
-		opt = true,
-		run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 	})
 
 	-- Require nvim-dap
@@ -202,9 +222,11 @@ require("packer").startup(function(use)
 		{ noremap = true, silent = true }
 	)
 
+	-- Syntax
 	use("othree/html5.vim")
 	use("pangloss/vim-javascript")
 	use("evanleck/vim-svelte")
+	use("mustache/vim-mustache-handlebars")
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
@@ -245,10 +267,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 vim.o.hlsearch = false
 
 -- Make line numbers relative
-vim.wo.relativenumber = true
+-- commenting out for now, let's use that jumpy plugin
+-- vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
+
+-- Keep some context when scrolling
+vim.o.scrolloff = 6
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -266,7 +292,7 @@ vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd([[colorscheme onedark]])
+vim.cmd([[colorscheme nightfox]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -290,9 +316,13 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
+-- I'll add j as save all, this is what I have been using for years now in emacs.
+vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>n", "<cmd>NERDTreeToggle<cr>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>Explore<cr>", { silent = true })
+
+vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true })
 
 -- Use Ctrl + hjkl to navigate splits
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
@@ -324,18 +354,6 @@ require("lualine").setup({
 
 -- Enable Comment.nvim
 require("Comment").setup()
-
--- Gitsigns
--- See `:help gitsigns.txt`
-require("gitsigns").setup({
-	signs = {
-		add = { text = "+" },
-		change = { text = "~" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~" },
-	},
-})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -374,7 +392,20 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help", "ninja", "svelte" },
+	ensure_installed = {
+		"c",
+		"cpp",
+		"go",
+		"lua",
+		"python",
+		"rust",
+		"typescript",
+		"help",
+		"ninja",
+		"svelte",
+		"html",
+		"json",
+	},
 
 	highlight = { enable = true },
 	indent = { enable = true, disable = { "python" } },
@@ -493,7 +524,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "sumneko_lua", "gopls", "svelte" }
+local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
@@ -512,7 +543,6 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Turn on lsp status information
-require("fidget").setup()
 
 -- Example custom configuration for lua
 --
@@ -521,7 +551,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {

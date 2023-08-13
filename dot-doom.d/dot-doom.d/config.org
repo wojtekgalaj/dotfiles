@@ -39,9 +39,19 @@ bummed out with evey new implememtation of vim.
    org-agenda-files (file-expand-wildcards org-directory)
    )
 )
-(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 #+END_SRC
+
+*** Limit line length
+
+I wanted to make the text not span all the width of the screen as it makes it
+difficult to follow. This sort of does it but it does it by inserting a line
+break in the text so it's awkward to copy or even when chaning font size. Thus,
+I am commenting it out at least for now.
+
+#+begin_src elisp
+;; (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+#+end_src
 
 ** Org capture
 I want to capture more then use scratch so I'll put the latter on modified key.
@@ -82,6 +92,10 @@ Organisation right now:
           ("on" "Project notes" entry #'+org-capture-central-project-notes-file "* %U %?\n %i\n %a" :heading "Notes" :prepend t)
           ("oc" "Project changelog" entry #'+org-capture-central-project-changelog-file "* %U %?\n %i\n %a" :heading "Changelog" :prepend t))))
 
+#+end_src
+* MarkDown
+#+begin_src emacs-lisp
+(add-hook 'markdown-mode-hook '(lambda () (setq fill-column 80)))
 #+end_src
 
 * Move between windows
@@ -162,6 +176,7 @@ Right now it's in my way half of the time I feel like.
 
 (add-hook 'web-mode-hook 'copilot-mode)
 (add-hook 'rjsx-mode-hook 'copilot-mode)
+(add-hook 'typescript-mode-hook 'copilot-mode)
 #+end_src
 
 * Projectile

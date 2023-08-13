@@ -16,8 +16,9 @@
    org-agenda-files (file-expand-wildcards org-directory)
    )
 )
-(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+;; (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 
 (map! :leader
       :desc "Org Capture"           "x" #'org-capture
@@ -48,6 +49,8 @@
           ("ot" "Project todo" entry #'+org-capture-central-project-todo-file "* TODO %?\n %i\n %a" :heading "Tasks" :prepend nil)
           ("on" "Project notes" entry #'+org-capture-central-project-notes-file "* %U %?\n %i\n %a" :heading "Notes" :prepend t)
           ("oc" "Project changelog" entry #'+org-capture-central-project-changelog-file "* %U %?\n %i\n %a" :heading "Changelog" :prepend t))))
+
+(add-hook 'markdown-mode-hook '(lambda () (setq fill-column 80)))
 
 (global-set-key (kbd "C-h") 'evil-window-left)
 (global-set-key (kbd "C-j") 'evil-window-down)
@@ -94,6 +97,8 @@
   )
 
 (add-hook 'web-mode-hook 'copilot-mode)
+(add-hook 'rjsx-mode-hook 'copilot-mode)
+(add-hook 'typescript-mode-hook 'copilot-mode)
 
 (require 'prettier-js)
 
