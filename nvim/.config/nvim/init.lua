@@ -63,6 +63,7 @@ require("packer").startup(function(use)
 	--
 
 	use("mattn/emmet-vim")
+	use("christoomey/vim-tmux-navigator")
 
 	-- Which key. I need to work on this setup.
 	use({
@@ -121,7 +122,7 @@ require("packer").startup(function(use)
 
 	-- AI Plugins
 
-	use("github/copilot.vim")
+	-- use("github/copilot.vim")
 
 	use({
 		"zbirenbaum/copilot.lua",
@@ -227,6 +228,7 @@ require("packer").startup(function(use)
 	use("pangloss/vim-javascript")
 	use("evanleck/vim-svelte")
 	use("mustache/vim-mustache-handlebars")
+	use("jparise/vim-graphql")
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
@@ -618,5 +620,13 @@ cmp.setup({
 	},
 })
 
+-- Fold code using treesitter
+local vim = vim
+local opt = vim.opt
+
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.api.nvim_command([[autocmd BufReadPost,FileReadPost * normal zR]])
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
