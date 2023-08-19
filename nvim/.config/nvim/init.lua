@@ -624,9 +624,9 @@ cmp.setup({
 local vim = vim
 local opt = vim.opt
 
-opt.foldmethod = "expr"
+opt.foldmethod = "indent"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
 
-vim.api.nvim_command([[autocmd BufReadPost,FileReadPost * normal zR]])
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
