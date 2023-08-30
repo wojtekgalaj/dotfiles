@@ -11,7 +11,8 @@ require("packer").startup(function(use)
 	-- Package manager
 	use("wbthomason/packer.nvim")
 
-	use({ -- LSP Configuration & Plugins
+	-- LSP Configuration & Plugins
+	use({
 		"neovim/nvim-lspconfig",
 		requires = {
 			-- Automatically install LSPs to stdpath for neovim
@@ -20,19 +21,22 @@ require("packer").startup(function(use)
 		},
 	})
 
-	use({ -- Autocompletion
+	-- Autocompletion
+	use({
 		"hrsh7th/nvim-cmp",
 		requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
 	})
 
-	use({ -- Highlight, edit, and navigate code
+	-- Highlight, edit, and navigate code
+	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
 	})
 
-	use({ -- Additional text objects via treesitter
+	-- Additional text objects via treesitter
+	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})
@@ -52,15 +56,6 @@ require("packer").startup(function(use)
 
 	-- Project management plugins
 	use("preservim/nerdtree")
-
-	-- Little helper plugins
-	-- use({
-	-- 	"windwp/nvim-autopairs",
-	-- 	config = function()
-	-- 		require("nvim-autopairs").setup({})
-	-- 	end,
-	-- })
-	--
 
 	use("mattn/emmet-vim")
 	use("christoomey/vim-tmux-navigator")
@@ -109,6 +104,7 @@ require("packer").startup(function(use)
     autocmd BufWritePre *.lua Neoformat stylua
     autocmd BufWritePre *.svelte Neoformat prettier
   ]])
+
 	-- Better movement plugins
 	use("ggandor/lightspeed.nvim")
 
