@@ -81,6 +81,11 @@ export GOPATH=/$HOME/golib
 
 eval "$(starship init zsh)"
 
+# bun
+export BUN_HOME="$HOME/.bun/bin/"
+export PATH="$BUN_HOME:$PATH"
+# bun end
+
 # pnpm
 export PNPM_HOME="/Users/wgalaj/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -96,3 +101,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 . "$HOME/.cargo/env"
 
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/Users/wojtek/.bun/_bun" ] && source "/Users/wojtek/.bun/_bun"
