@@ -53,16 +53,10 @@ require("packer").startup(function(use)
 	use("EdenEast/nightfox.nvim")
 
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
-	require("lualine").setup({
-		options = {
-			icons_enabled = true,
-			theme = "onedark",
-			component_separators = "|",
-			section_separators = "",
-		},
-	})
 
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
+	require("Comment").setup()
+
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
 	use("mattn/emmet-vim")

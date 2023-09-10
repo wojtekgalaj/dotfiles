@@ -1,5 +1,4 @@
--- Set lualine as statusline
--- See `:help lualine.txt`
+print("lua line loaded in the after folder")
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
