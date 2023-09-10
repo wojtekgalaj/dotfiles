@@ -1,4 +1,3 @@
-print("lua line loaded in the after folder")
 require("lualine").setup({
 	options = {
 		icons_enabled = true,

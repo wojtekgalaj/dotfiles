@@ -47,15 +47,12 @@ require("packer").startup(function(use)
 	use("tpope/vim-rhubarb")
 
 	use({ "NeogitOrg/neogit", requires = "nvim-lua/plenary.nvim" })
-	local neogit = require("neogit")
-	neogit.setup({})
 
 	use("EdenEast/nightfox.nvim")
 
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-	require("Comment").setup()
 
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
@@ -68,11 +65,6 @@ require("packer").startup(function(use)
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-			require("which-key").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
 		end,
 	})
 
