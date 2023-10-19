@@ -91,13 +91,13 @@ require("packer").startup(function(use)
 	use("sbdchd/neoformat")
 	use("Glench/Vim-Jinja2-Syntax")
 	vim.cmd([[
-    autocmd BufWritePre *.js Neoformat prettier
-    autocmd BufWritePre *.jsx Neoformat prettier
-    autocmd BufWritePre *.ts Neoformat prettier
-    autocmd BufWritePre *.tsx Neoformat prettier
-    autocmd BufWritePre *.lua Neoformat stylua
-    autocmd BufWritePre *.svelte Neoformat prettier
-  ]])
+	    autocmd BufWritePre *.js Neoformat prettier
+	    autocmd BufWritePre *.jsx Neoformat prettier
+	    autocmd BufWritePre *.ts Neoformat prettier
+	    autocmd BufWritePre *.tsx Neoformat prettier
+	    autocmd BufWritePre *.lua Neoformat stylua
+	    autocmd BufWritePre *.svelte Neoformat prettier
+	  ]])
 
 	-- Better movement plugins
 	use("ggandor/lightspeed.nvim")

@@ -27,8 +27,15 @@ vim.keymap.set("n", "<leader>x", "<cmd>Explore<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true })
 
+vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>", { silent = true, noremap = true })
+
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { silent = true, noremap = true })
+
 -- Use Ctrl + hjkl to navigate splits
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)

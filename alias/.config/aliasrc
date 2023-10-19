@@ -9,7 +9,7 @@ alias v='nvim'
 alias vim='nvim'
 alias diff='git difftool'
 alias merge='git mergetool'
-alias server="python -m SimpleHTTPServer"
+alias server="python3 -m SimpleHTTPServer"
 alias cleanup='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias cleanup_origin='git branch -r --merged | grep -v "(^\*|master|main)" | cut -d/ -f2- | xargs -n 1 git push --delete origin'
 alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
@@ -45,3 +45,5 @@ alias hybd7="sshpass -p 'ASdf@123' ssh hybd7"
 alias hybd8="sshpass -p 'ASdf@123' ssh hybd8"
 alias hybd10="sshpass -p 'yap270' ssh hybd10" #ok
 alias devbr="sshpass -p 'ASdf@123' ssh devbr"
+alias gla="git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\""
+

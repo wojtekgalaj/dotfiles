@@ -31,9 +31,13 @@ vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd([[colorscheme nightfox]])
+vim.cmd([[colorscheme dayfox]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
 vim.o.clipboard = "unnamedplus"
+
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
