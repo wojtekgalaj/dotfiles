@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
 -- I'll add j as save all, this is what I have been using for years now in emacs.
 vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true })
 
-vim.keymap.set("n", "<leader>x", "<cmd>Explore<cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>Ex<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true })
 

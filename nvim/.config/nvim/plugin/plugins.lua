@@ -25,7 +25,12 @@ require("packer").startup(function(use)
 	-- Autocompletion
 	use({
 		"hrsh7th/nvim-cmp",
-		requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
+		requires = {
+			"hrsh7th/cmp-nvim-lsp",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"zbirenbaum/copilot-cmp",
+		},
 	})
 
 	-- Highlight, edit, and navigate code
@@ -104,22 +109,20 @@ require("packer").startup(function(use)
 
 	-- Use HTML syntax highlighting for webc files
 	vim.cmd([[
-    augroup webc_ft
-      au!
-      autocmd BufNewFile,BufRead *.webc   set syntax=html
-    augroup END
-  ]])
+	    augroup webc_ft
+	      au!
+	      autocmd BufNewFile,BufRead *.webc   set syntax=html
+	    augroup END
+	  ]])
 
 	-- AI Plugins
-
-	-- use("github/copilot.vim")
 
 	use({
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require("copilot").setup({ suggestion = { auto_trigger = true } })
+			require("copilot").setup()
 		end,
 	})
 
@@ -219,6 +222,9 @@ require("packer").startup(function(use)
 	use("evanleck/vim-svelte")
 	use("mustache/vim-mustache-handlebars")
 	use("jparise/vim-graphql")
+
+	-- Pico8
+	use("bakudankun/pico-8.vim")
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
