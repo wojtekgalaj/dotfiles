@@ -12,6 +12,9 @@ require("packer").startup(function(use)
 	-- Package manager
 	use("wbthomason/packer.nvim")
 
+	-- Jump around, jump around, jump up, jump up and get down
+	use("justinmk/vim-sneak") -- Sneak around with s and S
+
 	-- LSP Configuration & Plugins
 	use({
 		"neovim/nvim-lspconfig",
@@ -55,13 +58,14 @@ require("packer").startup(function(use)
 
 	use("EdenEast/nightfox.nvim")
 
+	use("mattn/emmet-vim") -- Emmet support
+
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
-	use("mattn/emmet-vim")
 	use("christoomey/vim-tmux-navigator")
 
 	-- Which key. I need to work on this setup.
@@ -71,25 +75,6 @@ require("packer").startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-	})
-
-	-- Context plugin
-	use("nvim-treesitter/nvim-treesitter-context")
-
-	-- The defaults, here if I want to change them up
-	require("treesitter-context").setup({
-		enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-		max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-		min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-		line_numbers = true,
-		multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-		trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-		mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-		-- Separator between context and content. Should be a single character string, like '-'.
-		-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-		separator = nil,
-		zindex = 20, -- The Z-index of the context window
-		on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 	})
 
 	-- Prettier and styling plugins
@@ -103,9 +88,6 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.lua Neoformat stylua
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
-
-	-- Better movement plugins
-	use("ggandor/lightspeed.nvim")
 
 	-- Use HTML syntax highlighting for webc files
 	vim.cmd([[
@@ -133,6 +115,8 @@ require("packer").startup(function(use)
 			require("copilot_cmp").setup()
 		end,
 	})
+
+	-- Quick navigation in the buffer
 
 	-- Fuzzy Finder (files, lsp, etc)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
@@ -183,6 +167,18 @@ require("packer").startup(function(use)
 
 	-- Set the configuration for the debug session
 	dap.configurations.javascript = {
+		{
+			type = "node2",
+			request = "launch",
+			program = "${file}",
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
+			protocol = "inspector",
+			console = "integratedTerminal",
+		},
+	}
+
+	dap.configurations.typescript = {
 		{
 			type = "node2",
 			request = "launch",

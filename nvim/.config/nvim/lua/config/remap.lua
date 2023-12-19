@@ -20,16 +20,17 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
+
 -- I'll add j as save all, this is what I have been using for years now in emacs.
-vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true })
+vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true, desc = "[J]ust save all" })
 
-vim.keymap.set("n", "<leader>x", "<cmd>Ex<cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>Ex<cr>", { silent = true, desc = "[E]xplorer" })
 
-vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true, desc = "[D]elete buffer" })
 
-vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>v", "<cmd>Neogit<cr>", { silent = true, noremap = true, desc = "[V]ersion control" })
 
-vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { silent = true, noremap = true, desc = "[Q]uit" })
 
 -- Use Ctrl + hjkl to navigate splits
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
@@ -38,4 +39,9 @@ vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { silent = true, noremap = true, desc = "[E]rrors" })
+
+vim.keymap.set("n", "<leader>f", "<cmd>cclose<cr>", { silent = true, noremap = true, desc = "Close Quick[F]ix" })
+
+-- Clear highlight with ESC
+vim.api.nvim_set_keymap("n", "<esc>", ":noh<return><esc>", { noremap = true, silent = true, desc = "Clear highlight" })

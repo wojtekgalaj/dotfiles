@@ -41,7 +41,7 @@ local on_attach = function(_, bufnr)
 
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+	nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
@@ -64,7 +64,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver" }
+local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver", "eslint", "yamlls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
@@ -81,6 +81,13 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	signs = true,
+	underline = false,
+	update_in_insert = false,
+	virtual_text = false,
+	severity_sort = false,
+})
 
 -- Turn on lsp status information
 
