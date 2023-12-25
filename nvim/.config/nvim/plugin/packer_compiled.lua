@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/opt/copilot.lua",
     url = "https://github.com/zbirenbaum/copilot.lua"
   },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
   ["html5.vim"] = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/html5.vim",
@@ -213,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["twoslash-queries.nvim"] = {
+    loaded = true,
+    path = "/Users/wojtek/.local/share/nvim/site/pack/packer/start/twoslash-queries.nvim",
+    url = "https://github.com/marilari88/twoslash-queries.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,

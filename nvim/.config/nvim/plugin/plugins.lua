@@ -222,6 +222,9 @@ require("packer").startup(function(use)
 	-- Pico8
 	use("bakudankun/pico-8.vim")
 
+	-- Typescript helpers
+	use("marilari88/twoslash-queries.nvim")
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
