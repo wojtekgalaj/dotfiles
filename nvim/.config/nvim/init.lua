@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
 	end
 
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	nmap("<leader>lca", vim.lsp.buf.code_action, "[L]sp [C]ode [A]ction")
 
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -44,7 +44,7 @@ local on_attach = function(client, bufnr)
 
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+	nmap("<C-K>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -60,6 +60,8 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
+--
+-- Disabling eslint because it's not working properly, maybe
 local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver", "eslint", "yamlls" }
 
 -- Ensure the servers above are installed

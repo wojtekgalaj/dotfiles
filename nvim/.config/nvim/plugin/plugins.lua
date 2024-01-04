@@ -32,7 +32,6 @@ require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
-			"zbirenbaum/copilot-cmp",
 		},
 	})
 
@@ -99,22 +98,7 @@ require("packer").startup(function(use)
 
 	-- AI Plugins
 
-	use({
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup()
-		end,
-	})
-
-	use({
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	})
+	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua" })
 
 	-- Quick navigation in the buffer
 

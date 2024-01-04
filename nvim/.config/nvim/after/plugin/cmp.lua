@@ -18,10 +18,10 @@ cmp.setup({
 		}),
 	}),
 	sources = {
-		{ name = "copilot.lua", group_index = 1 },
-		{ name = "eslint", group_index = 1 },
-		{ name = "nvim_lsp", group_index = 1 },
-		{ name = "luasnip", group_index = 1 },
-		{ name = "emmet_vim", group_index = 1 },
+		{ name = "cody" },
+		{ name = "nvim_lsp" },
+		{ name = "eslint" },
+		{ name = "luasnip" },
+		{ name = "emmet_vim" },
 	},
 })
