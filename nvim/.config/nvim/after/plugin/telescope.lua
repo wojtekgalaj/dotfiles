@@ -41,3 +41,4 @@ vim.keymap.set(
 	{ desc = "[S]earch [Q]uickfix history" }
 )
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume last" })
+vim.keymap.set("n", "<leader>sj", require("telescope.builtin").jumplist, { desc = "[S]earch [J]umplist" })
