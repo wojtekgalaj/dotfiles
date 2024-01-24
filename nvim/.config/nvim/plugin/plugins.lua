@@ -15,6 +15,8 @@ require("packer").startup(function(use)
 	-- Jump around, jump around, jump up, jump up and get down
 	use("justinmk/vim-sneak") -- Sneak around with s and S
 
+	use("nvim-treesitter/nvim-treesitter-context")
+
 	-- LSP Configuration & Plugins
 	use({
 		"neovim/nvim-lspconfig",
@@ -76,6 +78,21 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"folke/noice.nvim",
+		requires = { "MunifTanjim/nui.nvim" },
+	})
+
+	require("noice").setup({
+		icons = {
+			error = "",
+			warning = "",
+			info = "",
+			hint = "",
+			ok = "",
+		},
+	})
+
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
 	use("Glench/Vim-Jinja2-Syntax")
@@ -88,6 +105,15 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
 
+	use("nvimdev/indentmini.nvim")
+	require("indentmini").setup({
+		char = "|",
+		exclude = {
+			"typescript",
+			"javascript",
+		},
+	})
+	vim.cmd.highlight("default link IndentLine Comment")
 	-- Use HTML syntax highlighting for webc files
 	vim.cmd([[
 	    augroup webc_ft
@@ -99,7 +125,19 @@ require("packer").startup(function(use)
 	-- AI Plugins
 
 	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua" })
-
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({
+				api_key_command = "echo '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'",
+			})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 	-- Quick navigation in the buffer
 
 	-- Fuzzy Finder (files, lsp, etc)
