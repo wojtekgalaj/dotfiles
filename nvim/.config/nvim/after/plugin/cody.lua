@@ -1,10 +1,4 @@
-require("sg").setup({
-	ui = {
-		chat = {
-			width = 120,
-		},
-	},
-})
+require("sg").setup({})
 
 local function get_visual_range()
 	local _, line_start = unpack(vim.fn.getpos("v"))
