@@ -28,3 +28,6 @@ alias gem='docked gem'
 alias awsmfa='~/.aws/mfa-login.sh'
 alias gla="git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\""
 alias vault="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/wojteks_vault"
+alias awsl=awslocal
+alias cpl=copilotlocal
+alias cdkl=cdklocal
