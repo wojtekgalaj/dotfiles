@@ -40,6 +40,7 @@ end
 
 local wk = require("which-key")
 
+-- visual mode
 wk.register({
 	["<leader>"] = {
 		c = {
@@ -48,8 +49,17 @@ wk.register({
 				cody_ask_range,
 				"Ask Range",
 			},
-			a = { cody_ask, "Ask Anything" },
 			t = { cody_task, "Ask to do a Task" },
 		},
 	},
 }, { mode = "v", silent = true, noremap = true })
+
+-- normal mode
+wk.register({
+	["<leader>"] = {
+		c = {
+			name = "Cody",
+			a = { cody_ask, "Ask Anything" },
+		},
+	},
+}, { mode = "n", silent = true, noremap = true })
