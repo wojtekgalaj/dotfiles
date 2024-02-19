@@ -31,3 +31,4 @@ alias vault="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/wojteks
 alias awsl=awslocal
 alias cpl=copilotlocal
 alias cdkl=cdklocal
+alias cd=z
