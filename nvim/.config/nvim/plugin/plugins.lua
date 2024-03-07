@@ -97,8 +97,11 @@ require("packer").startup(function(use)
 
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
-	use("Glench/Vim-Jinja2-Syntax")
-	vim.cmd([[
+
+	local prettier_config_exists = io.open(vim.fn.findfile(".prettierrc", ".;")) ~= nil
+
+	if prettier_config_exists then
+		vim.cmd([[
 	    autocmd BufWritePre *.js Neoformat prettier
 	    autocmd BufWritePre *.jsx Neoformat prettier
 	    autocmd BufWritePre *.ts Neoformat prettier
@@ -106,16 +109,26 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.lua Neoformat stylua
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
+	end
 
-	use("nvimdev/indentmini.nvim")
-	require("indentmini").setup({
-		char = "|",
-		exclude = {
-			"typescript",
-			"javascript",
-		},
-	})
-	vim.cmd.highlight("default link IndentLine Comment")
+	-- This one is used in kickstart. I should have a look at it sometime.
+	-- For now though, Neoformat is fine.
+	--
+	-- require("packer").startup(function()
+	-- 	use({
+	-- 		"stevearc/conform.nvim",
+	-- 		config = function()
+	-- 			require("conform").setup({
+	-- 				javascript = {
+	-- 					{ "prettierd", "prettier" },
+	-- 				},
+	-- 			})
+	-- 		end,
+	-- 	})
+	-- end)
+
+	use("Glench/Vim-Jinja2-Syntax")
+
 	-- Use HTML syntax highlighting for webc files
 	vim.cmd([[
 	    augroup webc_ft
@@ -127,19 +140,19 @@ require("packer").startup(function(use)
 	-- AI Plugins
 
 	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua" })
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				api_key_command = "",
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	})
+	-- use({
+	-- 	"jackMort/ChatGPT.nvim",
+	-- 	config = function()
+	-- 		require("chatgpt").setup({
+	-- 			api_key_command = "",
+	-- 		})
+	-- 	end,
+	-- 	requires = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- })
 	-- Quick navigation in the buffer
 
 	-- Fuzzy Finder (files, lsp, etc)
