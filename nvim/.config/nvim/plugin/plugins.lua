@@ -98,7 +98,7 @@ require("packer").startup(function(use)
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
 
-	local prettier_config_exists = io.open(vim.fn.findfile(".prettierrc", ".;")) ~= nil
+	local prettier_config_exists = io.open(vim.fn.findfile(".prettierrc", ".;"))
 
 	if prettier_config_exists then
 		vim.cmd([[
