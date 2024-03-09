@@ -1,8 +1,8 @@
 local dap_ok, dap = pcall(require, "dap")
 
 if not (dap_ok) then
-	print("dap not found, please install it")
-	return
+  print("dap not found, please install it")
+  return
 end
 
 require('dap').set_log_level('INFO')
@@ -24,27 +24,18 @@ dap.configurations = {
       sourceMaps = true;
       protocol = 'inspector';
       console = 'integratedTerminal';
-    },
-    {
-      type = 'node2';
-      name = 'Attach';
-      request = 'attach';
-      program = '${file}';
-      cwd = vim.fn.getcwd();
-      sourceMaps = true;
-      protocol = 'inspector';
-      console = 'integratedTerminal';
     }
-  }
+  },
 }
 
-
+local dap_ok, dap = pcall(require, "dap")
 local dap_ui_ok, ui = pcall(require, "dapui")
+ 
 if not (dap_ok and dap_ui_ok) then
-  require("notify")("dap-ui not installed!", "warning")
+  require("notify")("nvim-dap or dap-ui not installed!", "warning") -- nvim-notify is a separate plugin, I recommend it too!
   return
 end
- 
+
 ui.setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -87,13 +78,6 @@ ui.setup({
 })
 
 -- bindings for both plugins
-local dap_ok, dap = pcall(require, "dap")
-local dap_ui_ok, ui = pcall(require, "dapui")
- 
-if not (dap_ok and dap_ui_ok) then
-  require("notify")("nvim-dap or dap-ui not installed!", "warning") -- nvim-notify is a separate plugin, I recommend it too!
-  return
-end
  
 vim.fn.sign_define('DapBreakpoint', { text = '🐞' })
  

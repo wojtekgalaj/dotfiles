@@ -9,6 +9,7 @@ require("telescope").setup({
 				["<C-d>"] = false,
 			},
 		},
+		extensions = {},
 	},
 })
 
@@ -42,3 +43,4 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume last" })
 vim.keymap.set("n", "<leader>sj", require("telescope.builtin").jumplist, { desc = "[S]earch [J]umplist" })
+vim.keymap.set("n", "<leader>sn", require("telescope").extensions.notify.notify, { desc = "[S]earch [N]otifications" })

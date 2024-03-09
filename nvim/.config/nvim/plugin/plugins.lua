@@ -95,6 +95,8 @@ require("packer").startup(function(use)
 		},
 	})
 
+	use("rcarriga/nvim-notify")
+
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
 
@@ -106,11 +108,12 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.jsx Neoformat prettier
 	    autocmd BufWritePre *.ts Neoformat prettier
 	    autocmd BufWritePre *.tsx Neoformat prettier
-	    autocmd BufWritePre *.lua Neoformat stylua
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
 	end
-
+		vim.cmd([[
+	    autocmd BufWritePre *.lua Neoformat stylua
+	  ]])
 	-- This one is used in kickstart. I should have a look at it sometime.
 	-- For now though, Neoformat is fine.
 	--
