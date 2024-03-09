@@ -79,7 +79,7 @@ vim.keymap.set("n", "<leader>ds", function()
 	dap.continue()
 	ui.toggle({})
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false) -- Spaces buffers evenly
-end)
+end, { silent = true, desc = "[D]ap [S]tart debugging}" })
 
 -- Set breakpoints, get variable values, step into/out of functions, etc.
 vim.keymap.set("n", "<leader>dl", require("dap.ui.widgets").hover, { silent = true, desc = "[D]ap hove[l]}" })
@@ -100,4 +100,4 @@ vim.keymap.set("n", "<leader>de", function()
 	dap.terminate()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
 	require("notify")("Debugger session ended", "warn")
-end)
+end, { silent = true, desc = "[D]ap [E]nd" })

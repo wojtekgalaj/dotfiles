@@ -26,7 +26,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true, desc = "[J]ust 
 
 vim.keymap.set("n", "<leader>x", "<cmd>Ex<cr>", { silent = true, desc = "[E]xplorer" })
 
-vim.keymap.set("n", "<leader>d", "<cmd>bdel<cr>", { silent = true, noremap = true, desc = "[D]elete buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bdel<cr>", { silent = true, noremap = true, desc = "[B]uffer [D]elete" })
 
 vim.keymap.set("n", "<leader>v", "<cmd>Neogit<cr>", { silent = true, noremap = true, desc = "[V]ersion control" })
 
