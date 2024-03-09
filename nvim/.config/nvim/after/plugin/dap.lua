@@ -1,12 +1,12 @@
 local dap_ok, dap = pcall(require, "dap")
-local dap_ui_ok, ui = pcall(require, "dapui")
+local dap_ui_ok, dap_ui = pcall(require, "dapui")
 
 if not (dap_ok and dap_ui_ok) then
-	require("notify")("nvim-dap or dap-ui not installed!", "warning") -- nvim-notify is a separate plugin, I recommend it too!
+	require("notify")("nvim-dap or dap-ui not installed!", "warning")
 	return
 end
 
-require("dap").set_log_level("INFO")
+require("dap").set_log_level("DEBUG")
 
 dap.adapters.node2 = {
 	type = "executable",
@@ -27,17 +27,22 @@ dap.configurations = {
 			console = "integratedTerminal",
 		},
 	},
+	typescript = {
+		{
+			type = "node2",
+			name = "Launch",
+			request = "launch",
+			program = "${file}",
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
+			protocol = "inspector",
+			console = "integratedTerminal",
+		},
+	},
 }
 
-ui.setup({
+dap_ui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
-	mappings = {
-		open = "o",
-		remove = "d",
-		edit = "e",
-		repl = "r",
-		toggle = "t",
-	},
 	expand_lines = vim.fn.has("nvim-0.7"),
 	layouts = {
 		{
@@ -72,13 +77,11 @@ ui.setup({
 
 -- bindings for both plugins
 
-vim.fn.sign_define("DapBreakpoint", { text = "🐞" })
+vim.fn.sign_define("DapBreakpoint", { text = "💡" })
 
 -- Start debugging session
 vim.keymap.set("n", "<leader>ds", function()
 	dap.continue()
-	ui.toggle({})
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false) -- Spaces buffers evenly
 end, { silent = true, desc = "[D]ap [S]tart debugging}" })
 
 -- Set breakpoints, get variable values, step into/out of functions, etc.
@@ -96,7 +99,6 @@ end, { silent = true, desc = "[D]ap [R]eset" })
 -- Close debugger and clear breakpoints
 vim.keymap.set("n", "<leader>de", function()
 	dap.clear_breakpoints()
-	ui.toggle({})
 	dap.terminate()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
 	require("notify")("Debugger session ended", "warn")
