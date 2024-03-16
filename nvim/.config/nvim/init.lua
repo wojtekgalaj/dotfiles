@@ -63,7 +63,7 @@ require("mason").setup()
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
 --
 -- Disabling eslint because it's not working properly, maybe
-local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver", "eslint", "yamlls" }
+local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver", "eslint", "yamlls", "cssls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
