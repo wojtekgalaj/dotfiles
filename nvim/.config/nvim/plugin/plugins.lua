@@ -12,6 +12,8 @@ require("packer").startup(function(use)
 	-- Package manager
 	use("wbthomason/packer.nvim")
 
+	use("nvim-lua/plenary.nvim")
+
 	-- Jump around, jump around, jump up, jump up and get down
 	use("justinmk/vim-sneak") -- Sneak around with s and S
 
@@ -57,7 +59,9 @@ require("packer").startup(function(use)
 
 	use({ "NeogitOrg/neogit", requires = "nvim-lua/plenary.nvim" })
 
+	-- Colorschemes
 	use("EdenEast/nightfox.nvim")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	use("mattn/emmet-vim") -- Emmet support
 
@@ -111,7 +115,7 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
 	end
-		vim.cmd([[
+	vim.cmd([[
 	    autocmd BufWritePre *.lua Neoformat stylua
 	  ]])
 	-- This one is used in kickstart. I should have a look at it sometime.
@@ -186,6 +190,20 @@ require("packer").startup(function(use)
 
 	-- REST Client
 	use({ "rest-nvim/rest.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
+	use({
+		"epwalsh/obsidian.nvim",
+		tag = "*", -- recommended, use latest release instead of latest commit
+		requires = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("obsidian").setup({
+				dir = "~/Library/Mobile\x20Documents/iCloud~md~obsidian/Documents/wojteks_vault",
+			})
+		end,
+	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
