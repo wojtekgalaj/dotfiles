@@ -118,7 +118,9 @@ require("packer").startup(function(use)
 	end
 	vim.cmd([[
 	    autocmd BufWritePre *.lua Neoformat stylua
+	    autocmd BufWritePre *.go Neoformat gofmt
 	  ]])
+
 	-- This one is used in kickstart. I should have a look at it sometime.
 	-- For now though, Neoformat is fine.
 	--
@@ -169,9 +171,11 @@ require("packer").startup(function(use)
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
 
+	-- Debugger stuff
 	use({
 		"mfussenegger/nvim-dap",
 		requires = {
+			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap-ui",
 		},
 	})
