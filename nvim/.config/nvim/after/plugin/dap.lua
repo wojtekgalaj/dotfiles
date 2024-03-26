@@ -1,12 +1,13 @@
 local dap_ok, dap = pcall(require, "dap")
 local dap_ui_ok, dap_ui = pcall(require, "dapui")
+local dap_go_ok, dap_go = pcall(require, "dap-go")
 
-if not (dap_ok and dap_ui_ok) then
-	require("notify")("nvim-dap or dap-ui not installed!", "warning")
+if not (dap_ok and dap_ui_ok and dap_go_ok) then
+	require("notify")("nvim-dap or nvim-dap-ui or nvim-dap-go not installed!", "warning")
 	return
 end
 
-require("dap").set_log_level("DEBUG")
+dap.set_log_level("DEBUG")
 
 dap.adapters.node2 = {
 	type = "executable",
@@ -40,6 +41,8 @@ dap.configurations = {
 		},
 	},
 }
+
+dap_go.setup()
 
 dap_ui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
