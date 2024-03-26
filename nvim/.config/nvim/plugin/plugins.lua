@@ -104,9 +104,10 @@ require("packer").startup(function(use)
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
 
-	local prettier_config_exists = io.open(vim.fn.findfile(".prettierrc", ".;"))
+	local prettierrc_exists = io.open(vim.fn.findfile(".prettierrc", ".;"))
+	local prettierrc_json_exists = io.open(vim.fn.findfile(".prettierrc.json", ".;"))
 
-	if prettier_config_exists then
+	if prettierrc_exists or prettierrc_json_exists then
 		vim.cmd([[
 	    autocmd BufWritePre *.js Neoformat prettier
 	    autocmd BufWritePre *.jsx Neoformat prettier
