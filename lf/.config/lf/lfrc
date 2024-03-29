@@ -1,1 +1,57 @@
-set hidden false
+set hidden true
+set scrolloff 10
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# custom functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd trash ${{
+	files=$(printf "$fx" | tr '\n' ';')
+		printf "Trash files: $files \n"
+	 while [ "$files" ]; do
+			file_name=${files%%;*}
+			printf "Trash file: $file_name \n"
+			if [[ -d $file_name ]]; then
+				printf "Trash directory: $file_name \n"
+				rm -rf $file_name
+			else
+				printf "Trash file: $file_name \n"
+				rm $file_name
+			fi
+			if [ "$files" = "$file_name" ]; then
+				files=''
+			else
+				files="${files#*;}"
+			fi
+	done
+}}
+
+
+# keymaps
+map d
+map m
+
+map . set hidden! 
+map ` !true
+map dd trash
+map md mkdir
+map mf mkfile
+map p paste
+map y copy
+
