@@ -205,7 +205,11 @@ require("packer").startup(function(use)
 		},
 		config = function()
 			require("obsidian").setup({
-				dir = "~/Library/Mobile\x20Documents/iCloud~md~obsidian/Documents/wojteks_vault",
+				dir = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/wojteks_vault",
+				completion = {
+					nvim_cmp = true,
+					min_chars = 2,
+				},
 			})
 		end,
 	})
