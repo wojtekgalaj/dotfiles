@@ -44,7 +44,7 @@ local wk = require("which-key")
 wk.register({
 	["<leader>"] = {
 		c = {
-			name = "Cody",
+			name = "[C]ody",
 			r = {
 				cody_ask_range,
 				"Ask Range",
@@ -58,7 +58,7 @@ wk.register({
 wk.register({
 	["<leader>"] = {
 		c = {
-			name = "Cody",
+			name = "[C]ody",
 			a = { cody_ask, "Ask Anything" },
 		},
 	},
