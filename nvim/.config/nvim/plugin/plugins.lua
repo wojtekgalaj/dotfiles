@@ -203,15 +203,6 @@ require("packer").startup(function(use)
 			-- Required.
 			"nvim-lua/plenary.nvim",
 		},
-		config = function()
-			require("obsidian").setup({
-				dir = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/wojteks_vault",
-				completion = {
-					nvim_cmp = true,
-					min_chars = 2,
-				},
-			})
-		end,
 	})
 	-- install without yarn or npm
 	use({
