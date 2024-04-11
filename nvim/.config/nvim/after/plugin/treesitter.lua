@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
 		"svelte",
 		"html",
 		"json",
+		"markdown",
 	},
 
 	highlight = { enable = true },
@@ -20,6 +21,7 @@ require("nvim-treesitter.configs").setup({
 	incremental_selection = {
 		enable = true,
 	},
+	modules = {},
 	textobjects = {
 		select = {
 			enable = true,
