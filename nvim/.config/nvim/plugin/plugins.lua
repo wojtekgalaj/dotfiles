@@ -211,6 +211,10 @@ require("packer").startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+	use({
+		"stevearc/oil.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
