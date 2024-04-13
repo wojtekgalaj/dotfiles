@@ -17,7 +17,9 @@ local function cody_ask_range()
 	local commands = require("sg.cody.commands")
 	local msg = vim.fn.input("Ask cody about the selection: ") or "Explain this code: "
 
-	commands.ask_range(bufnr, line_start, line_end, msg)
+	commands.ask_range(bufnr, line_start, line_end, msg, {
+		window_type = "float",
+	})
 end
 
 local function cody_ask()
