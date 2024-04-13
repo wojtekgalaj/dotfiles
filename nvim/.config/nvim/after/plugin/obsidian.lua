@@ -16,9 +16,11 @@ wk.register({
 		o = {
 			name = "[O]bsidian",
 			s = { "<cmd>ObsidianSearch<cr>", "[S]earch" },
+			o = { "<cmd>ObsidianQuickSwitch<cr>", "[O]pen" },
 			c = { "<cmd>ObsidianCheck<cr>", "[C]heck" },
 			d = { "<cmd>ObsidianDailies<cr>", "[D]ailies" },
 			n = { "<cmd>ObsidianNew<cr>", "[N]ew" },
+			t = { "<cmd>ObsidianTags<cr>", "[T]ags" },
 			l = {
 				name = "[L]ink",
 				l = { "<cmd>ObsidianFollowLink<cr>", "Follow [L]ink" },
