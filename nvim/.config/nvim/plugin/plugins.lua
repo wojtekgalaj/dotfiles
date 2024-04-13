@@ -17,8 +17,6 @@ require("packer").startup(function(use)
 	-- Jump around, jump around, jump up, jump up and get down
 	use("justinmk/vim-sneak") -- Sneak around with s and S
 
-	use("nvim-treesitter/nvim-treesitter-context")
-
 	-- LSP Configuration & Plugins
 	use({
 		"neovim/nvim-lspconfig",
