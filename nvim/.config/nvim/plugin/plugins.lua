@@ -87,6 +87,8 @@ require("packer").startup(function(use)
 		requires = { "MunifTanjim/nui.nvim" },
 	})
 
+	use("folke/neodev.nvim")
+
 	require("noice").setup({
 		icons = {
 			error = "",
