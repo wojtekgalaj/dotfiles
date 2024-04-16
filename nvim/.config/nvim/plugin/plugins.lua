@@ -165,6 +165,10 @@ require("packer").startup(function(use)
 	-- })
 	-- Quick navigation in the buffer
 
+	-- GO stuff
+	use("ray-x/go.nvim")
+	use("ray-x/guihua.lua") -- recommended if need floating window support
+
 	-- Fuzzy Finder (files, lsp, etc)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
 
