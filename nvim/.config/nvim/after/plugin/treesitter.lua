@@ -17,6 +17,10 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 	},
 
+	sync_install = true,
+	ignore_install = { "javascript" },
+	auto_install = true,
+
 	highlight = { enable = true },
 	indent = { enable = true, disable = { "python" } },
 	incremental_selection = {
