@@ -198,7 +198,7 @@ require("packer").startup(function(use)
 	use("marilari88/twoslash-queries.nvim")
 
 	-- REST Client
-	use({ "rest-nvim/rest.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	-- use({ "rest-nvim/rest.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
 	use({
 		"epwalsh/obsidian.nvim",
