@@ -43,3 +43,42 @@ vim.keymap.set("n", "<leader>f", "<cmd>cclose<cr>", { silent = true, noremap = t
 
 -- Clear highlight with ESC
 vim.api.nvim_set_keymap("n", "<esc>", ":noh<return><esc>", { noremap = true, silent = true, desc = "Clear highlight" })
+
+local wk = require("which-key")
+
+wk.register({
+	["<leader>"] = {
+		b = {
+			name = "[B]uffer",
+			d = {
+				name = "[D]elete",
+				"<cmd>bdel<cr>",
+			},
+		},
+		l = {
+			name = "[L]SP",
+			w = {
+				name = "[W]orkspace",
+				a = {
+					vim.lsp.buf.add_workspace_folder,
+					"[A]dd folder",
+				},
+				r = {
+					vim.lsp.buf.remove_workspace_folder,
+					"[R]emove folder",
+				},
+				l = {
+					vim.lsp.buf.list_workspace_folders,
+					"[L]ist folders",
+				},
+			},
+			h = {
+				name = "[H]elp",
+				d = {
+					vim.lsp.buf.signature_help,
+					"Signature [D]ocumentation",
+				},
+			},
+		},
+	},
+}, { mode = "n", silent = true, noremap = true })
