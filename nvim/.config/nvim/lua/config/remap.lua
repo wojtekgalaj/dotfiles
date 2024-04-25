@@ -10,25 +10,12 @@ vim.g.netrw_banner = 0
 vim.g.netrw_cursor = 0
 vim.g.netrw_dirhistmax = 0
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- For when I don't have my keyboard. ESC is so dang far away.
 vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("n", "<leader>w", "<cmd>wa<cr>", { silent = true })
-
--- I'll add j as save all, this is what I have been using for years now in emacs.
-vim.keymap.set("n", "<leader>j", "<cmd>wa<cr>", { silent = true, desc = "[J]ust save all" })
-
-vim.keymap.set("n", "<leader>bd", "<cmd>bdel<cr>", { silent = true, noremap = true, desc = "[B]uffer [D]elete" })
-
-vim.keymap.set("n", "<leader>v", "<cmd>Neogit<cr>", { silent = true, noremap = true, desc = "[V]ersion control" })
-
-vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { silent = true, noremap = true, desc = "[Q]uit" })
 
 -- Use Ctrl + hjkl to navigate splits
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
@@ -36,18 +23,36 @@ vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
 
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { silent = true, noremap = true, desc = "[E]rrors" })
+local which_key = require("which-key")
+local builtin = require("telescope.builtin")
+local notify = require("telescope").extensions.notify
 
-vim.keymap.set("n", "<leader>f", "<cmd>cclose<cr>", { silent = true, noremap = true, desc = "Close Quick[F]ix" })
-
--- Clear highlight with ESC
-vim.api.nvim_set_keymap("n", "<esc>", ":noh<return><esc>", { noremap = true, silent = true, desc = "Clear highlight" })
-
-local wk = require("which-key")
-
-wk.register({
+which_key.register({
 	["<leader>"] = {
+		["<space>"] = {
+			builtin.find_files,
+			"[SPACE] List files in project",
+		},
+		["/"] = {
+			builtin.current_buffer_fuzzy_find,
+			"[/] Fuzzily search in current buffer]",
+		},
+		["<esc>"] = {
+			":noh<return><esc>",
+			"Clear highlight",
+		},
+		j = {
+			"<cmd>wa<cr>",
+			"[J]ust save all",
+		},
+		f = {
+			"<cmd>cclose<cr>",
+			"Close Quick[F]ix",
+		},
+		q = {
+			"<cmd>q<cr>",
+			"[Q]uit",
+		},
 		b = {
 			name = "[B]uffer",
 			d = {
@@ -55,8 +60,71 @@ wk.register({
 				"<cmd>bdel<cr>",
 			},
 		},
+		g = {
+			name = "[G]it",
+			v = {
+				"<cmd>Neogit<cr>",
+				"[V]ersion control",
+			},
+			b = {
+				"<cmd>Git blame<cr>",
+				"[B]lame",
+			},
+		},
 		l = {
 			name = "[L]SP",
+			c = {
+				name = "[C]ode",
+				a = {
+					vim.lsp.buf.code_action,
+					"[A]ctions",
+				},
+			},
+			r = {
+				vim.lsp.buf.rename,
+				"[R]ename",
+			},
+			g = {
+				name = "[G]o to...",
+				d = {
+					vim.lsp.buf.definition,
+					"[D]efinition",
+				},
+				k = {
+					vim.lsp.buf.declaration,
+					"de[K]laration",
+				},
+				r = {
+					builtin.lsp_references,
+					"[R]eferences",
+				},
+				i = {
+					vim.lsp.buf.implementation,
+					"[I]mplementation",
+				},
+				t = {
+					vim.lsp.buf.type_definition,
+					"[T]ype definition",
+				},
+				s = {
+					name = "[S]ymbols...",
+					d = {
+						builtin.lsp_document_symbols,
+						"[D]ocument symbols",
+					},
+					w = {
+						builtin.lsp_dynamic_workspace_symbols,
+						"[W]orkspace symbols",
+					},
+				},
+			},
+			h = {
+				name = "[H]elp",
+				d = {
+					vim.lsp.buf.signature_help,
+					"Signature [D]ocumentation",
+				},
+			},
 			w = {
 				name = "[W]orkspace",
 				a = {
@@ -72,12 +140,52 @@ wk.register({
 					"[L]ist folders",
 				},
 			},
+		},
+		s = {
+			name = "[S]earch",
+			a = {
+				builtin.git_commits,
+				"[A]ll commits",
+			},
+			c = {
+				builtin.git_bcommits,
+				"buffer [C]ommits",
+			},
+			d = {
+				builtin.diagnostics,
+				"[D]iagnostics",
+			},
+			g = {
+				builtin.live_grep,
+				"[G]rep in project",
+			},
 			h = {
-				name = "[H]elp",
-				d = {
-					vim.lsp.buf.signature_help,
-					"Signature [D]ocumentation",
-				},
+				builtin.help_tags,
+				"[H]elp tags",
+			},
+			j = {
+				builtin.jumplist,
+				"[J]umplist",
+			},
+			n = {
+				notify.notify,
+				"[N]otifications",
+			},
+			r = {
+				builtin.resume,
+				"[R]esume last search",
+			},
+			s = {
+				builtin.buffers,
+				"buffer[S]",
+			},
+			u = {
+				builtin.grep_string,
+				"grep whats [U]nder cursor",
+			},
+			q = {
+				builtin.quickfixhistory,
+				"[Q]uickfix history",
 			},
 		},
 	},

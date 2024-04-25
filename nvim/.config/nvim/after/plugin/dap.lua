@@ -82,27 +82,42 @@ dap_ui.setup({
 
 vim.fn.sign_define("DapBreakpoint", { text = "💡" })
 
--- Start debugging session
-vim.keymap.set("n", "<leader>ds", function()
-	dap.continue()
-end, { silent = true, desc = "[D]ap [S]tart debugging}" })
+local which_key = require("which-key")
+local widgets = require("dap.ui.widgets")
+
+which_key.register({
+	["<leader>"] = {
+		d = {
+			name = "[D]ebugger",
+			s = {
+				function()
+					dap.continue()
+				end,
+				"[S]tart debugging",
+			},
+			l = {
+				widgets.hover,
+				"Hove[l]",
+			},
+		},
+	},
+}, { mode = "n", silent = true, noremap = true })
 
 -- Set breakpoints, get variable values, step into/out of functions, etc.
-vim.keymap.set("n", "<leader>dl", require("dap.ui.widgets").hover, { silent = true, desc = "[D]ap hove[l]}" })
-vim.keymap.set("n", "<leader>dc", dap.continue, { silent = true, desc = "[D]ap [C]ontinue}" })
-vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "[D]ap [B]reakpoint}" })
-vim.keymap.set("n", "<leader>dn", dap.step_over, { silent = true, desc = "[D]ap step [N]ext}" })
-vim.keymap.set("n", "<leader>di", dap.step_into, { silent = true, desc = "[D]ap step [I]n}" })
-vim.keymap.set("n", "<leader>do", dap.step_out, { silent = true, desc = "[D]ap step [O]ut}" })
-vim.keymap.set("n", "<leader>dr", function()
-	dap.clear_breakpoints()
-	require("notify")("Breakpoints cleared", "warn")
-end, { silent = true, desc = "[D]ap [R]eset" })
-
--- Close debugger and clear breakpoints
-vim.keymap.set("n", "<leader>de", function()
-	dap.clear_breakpoints()
-	dap.terminate()
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
-	require("notify")("Debugger session ended", "warn")
-end, { silent = true, desc = "[D]ap [E]nd" })
+-- vim.keymap.set("n", "<leader>dc", dap.continue, { silent = true, desc = "[D]ap [C]ontinue}" })
+-- vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "[D]ap [B]reakpoint}" })
+-- vim.keymap.set("n", "<leader>dn", dap.step_over, { silent = true, desc = "[D]ap step [N]ext}" })
+-- vim.keymap.set("n", "<leader>di", dap.step_into, { silent = true, desc = "[D]ap step [I]n}" })
+-- vim.keymap.set("n", "<leader>do", dap.step_out, { silent = true, desc = "[D]ap step [O]ut}" })
+-- vim.keymap.set("n", "<leader>dr", function()
+-- 	dap.clear_breakpoints()
+-- 	require("notify")("Breakpoints cleared", "warn")
+-- end, { silent = true, desc = "[D]ap [R]eset" })
+--
+-- -- Close debugger and clear breakpoints
+-- vim.keymap.set("n", "<leader>de", function()
+-- 	dap.clear_breakpoints()
+-- 	dap.terminate()
+-- 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
+-- 	require("notify")("Debugger session ended", "warn")
+-- end, { silent = true, desc = "[D]ap [E]nd" })

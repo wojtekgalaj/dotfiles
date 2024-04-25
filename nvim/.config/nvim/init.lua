@@ -33,22 +33,8 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>lca", vim.lsp.buf.code_action, "[L]sp [C]ode [A]ction")
-
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-	nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>gtd", vim.lsp.buf.type_definition, "[G]o to [T]ype [D]efinition")
-	nmap("<leader>gds", require("telescope.builtin").lsp_document_symbols, "[G]o to [D]ocument [S]ymbols")
-	nmap("<leader>gws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[G]o to [W]orkspace [S]ymbols")
-
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<leader>hd", vim.lsp.buf.signature_help, "Signature Documentation")
-
-	-- Lesser used LSP functionality
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 end
 
 -- Setup mason so it can manage external tooling
@@ -56,8 +42,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
---
--- Disabling eslint because it's not working properly, maybe
+
 local servers = { "lua_ls", "gopls", "svelte", "tailwindcss", "tsserver", "eslint", "yamlls", "cssls" }
 
 -- Ensure the servers above are installed
@@ -75,12 +60,12 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	signs = true,
 	underline = false,
 	update_in_insert = false,
 	virtual_text = false,
-	severity_sort = false,
 })
 
 -- Turn on lsp status information
