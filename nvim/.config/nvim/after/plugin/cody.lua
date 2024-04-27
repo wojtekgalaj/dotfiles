@@ -26,7 +26,8 @@ local function cody_ask()
 	local commands = require("sg.cody.commands")
 	local msg = vim.fn.input("Ask cody anything: ")
 
-	commands.ask(msg)
+	local msgs = vim.split(msg, "\n")
+	commands.ask(msgs)
 end
 
 local function cody_task()
