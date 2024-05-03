@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
 	require("twoslash-queries").attach(client, bufnr)
+	require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
 	local nmap = function(keys, func, desc)
 		if desc then
