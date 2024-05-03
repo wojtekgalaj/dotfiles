@@ -41,6 +41,13 @@ which_key.register({
 			":noh<return><esc>",
 			"Clear highlight",
 		},
+		b = {
+			name = "[B]uffer",
+			d = {
+				name = "[D]elete",
+				"<cmd>bdel<cr>",
+			},
+		},
 		j = {
 			"<cmd>wa<cr>",
 			"[J]ust save all",
@@ -53,11 +60,20 @@ which_key.register({
 			"<cmd>q<cr>",
 			"[Q]uit",
 		},
-		b = {
-			name = "[B]uffer",
-			d = {
-				name = "[D]elete",
-				"<cmd>bdel<cr>",
+		e = {
+			vim.diagnostic.open_float,
+			"[E]rrors",
+		},
+
+		w = {
+			name = "[W]indow",
+			["s"] = {
+				"<cmd>vertical resize -50<cr>",
+				"make window [S]maller",
+			},
+			["l"] = {
+				"<cmd>vertical resize +50<cr>",
+				"make window [L]arger",
 			},
 		},
 		g = {

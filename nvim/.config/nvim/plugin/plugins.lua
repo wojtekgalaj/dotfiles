@@ -104,8 +104,8 @@ require("packer").startup(function(use)
 	-- Prettier and styling plugins
 	use("sbdchd/neoformat")
 
-	local prettierrc_exists = io.open(vim.fn.findfile(".prettierrc", ".;"))
-	local prettierrc_json_exists = io.open(vim.fn.findfile(".prettierrc.json", ".;"))
+	local prettierrc_exists = vim.fn.findfile(".prettierrc", ".;")
+	local prettierrc_json_exists = vim.fn.findfile(".prettierrc.json", ".;")
 
 	if prettierrc_exists or prettierrc_json_exists then
 		vim.cmd([[
@@ -115,10 +115,13 @@ require("packer").startup(function(use)
 	    autocmd BufWritePre *.tsx Neoformat prettier
 	    autocmd BufWritePre *.svelte Neoformat prettier
 	  ]])
+	else
+		print("No prettier config file found, prettier is not enabled!!!")
 	end
 	vim.cmd([[
 	    autocmd BufWritePre *.lua Neoformat stylua
 	    autocmd BufWritePre *.go Neoformat gofmt
+	    autocmd BufWritePre *.yaml Neoformat prettier
 	  ]])
 
 	-- This one is used in kickstart. I should have a look at it sometime.
@@ -219,6 +222,7 @@ require("packer").startup(function(use)
 		"stevearc/oil.nvim",
 		requires = "nvim-tree/nvim-web-devicons",
 	})
+	use({ "artemave/workspace-diagnostics.nvim" })
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
