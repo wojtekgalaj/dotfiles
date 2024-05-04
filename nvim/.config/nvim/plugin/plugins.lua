@@ -63,6 +63,8 @@ require("packer").startup(function(use)
 
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
+	use("olrtg/nvim-emmet") -- emmet support
+
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
@@ -221,6 +223,16 @@ require("packer").startup(function(use)
 		requires = "nvim-tree/nvim-web-devicons",
 	})
 	use({ "artemave/workspace-diagnostics.nvim" })
+
+	use({
+		"S1M0N38/love2d.nvim",
+		cmd = "LoveRun",
+		config = function()
+			-- vim.keymap.set("n", "<leader>v", ":LoveRun<CR>", { desc = "LÖVE" })
+			-- vim.keymap.set("n", "<leader>vv", ":LoveRun<CR>", { desc = "Run LÖVE" })
+			-- vim.keymap.set("n", "<leader>vs", ":LoveStop<CR>", { desc = "Stop LÖVE" })
+		end,
+	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
