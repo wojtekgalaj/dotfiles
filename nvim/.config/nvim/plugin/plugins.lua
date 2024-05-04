@@ -61,8 +61,6 @@ require("packer").startup(function(use)
 	use("EdenEast/nightfox.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
 
-	use("mattn/emmet-vim") -- Emmet support
-
 	use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines

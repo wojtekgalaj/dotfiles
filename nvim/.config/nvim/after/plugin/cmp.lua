@@ -14,6 +14,5 @@ cmp.setup({
 	sources = {
 		{ name = "cody" },
 		{ name = "nvim_lsp" },
-		{ name = "emmet_vim" },
 	},
 })
