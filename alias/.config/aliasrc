@@ -10,7 +10,6 @@ alias diff='git difftool'
 alias merge='git mergetool'
 alias server="python3 -m SimpleHTTPServer"
 alias cleanup='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-alias cleanup_origin='git branch -r --merged | grep -v "(^\*|master|main)" | cut -d/ -f2- | xargs -n 1 git push --delete origin'
 alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
 alias docker='nocorrect docker'
 alias mosh='nocorrect mosh'
