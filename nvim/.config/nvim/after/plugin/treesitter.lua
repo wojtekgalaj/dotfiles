@@ -15,6 +15,7 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"json",
 		"markdown",
+		"hurl",
 	},
 
 	sync_install = true,
