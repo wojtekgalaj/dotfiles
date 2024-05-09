@@ -4,8 +4,6 @@ alias lg='la | grep '
 alias peg='ps -ef | grep -v grep | grep'
 alias cc='clear'
 alias xx='exit'
-alias v='nvim'
-alias vim='nvim'
 alias diff='git difftool'
 alias merge='git mergetool'
 alias server="python3 -m SimpleHTTPServer"
@@ -31,3 +29,6 @@ alias awsl=awslocal
 alias cpl=copilotlocal
 alias cdkl=cdklocal
 alias cd=z
+alias v='nvim'
+alias vim='nvim'
+alias k='NVIM_APPNAME="kvim" nvim'
