@@ -13,6 +13,8 @@ vim.g.netrw_dirhistmax = 0
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- Clear highlights
+vim.keymap.set("n", "<esc>", "<cmd>:noh<cr>", { noremap = true })
 
 -- For when I don't have my keyboard. ESC is so dang far away.
 vim.keymap.set("i", "jk", "<Esc>")
@@ -28,6 +30,40 @@ local builtin = require("telescope.builtin")
 local notify = require("telescope").extensions.notify
 
 which_key.register({
+	g = {
+		name = "[G]o to...",
+		d = {
+			vim.lsp.buf.definition,
+			"[D]efinition",
+		},
+		k = {
+			vim.lsp.buf.declaration,
+			"de[K]laration",
+		},
+		r = {
+			builtin.lsp_references,
+			"[R]eferences",
+		},
+		i = {
+			vim.lsp.buf.implementation,
+			"[I]mplementation",
+		},
+		t = {
+			vim.lsp.buf.type_definition,
+			"[T]ype definition",
+		},
+		s = {
+			name = "[S]ymbols...",
+			d = {
+				builtin.lsp_document_symbols,
+				"[D]ocument symbols",
+			},
+			w = {
+				builtin.lsp_dynamic_workspace_symbols,
+				"[W]orkspace symbols",
+			},
+		},
+	},
 	["<leader>"] = {
 		["<space>"] = {
 			builtin.find_files,
@@ -36,10 +72,6 @@ which_key.register({
 		["/"] = {
 			builtin.current_buffer_fuzzy_find,
 			"[/] Fuzzily search in current buffer]",
-		},
-		["<esc>"] = {
-			":noh<return><esc>",
-			"Clear highlight",
 		},
 		b = {
 			name = "[B]uffer",
@@ -99,40 +131,6 @@ which_key.register({
 			r = {
 				vim.lsp.buf.rename,
 				"[R]ename",
-			},
-			g = {
-				name = "[G]o to...",
-				d = {
-					vim.lsp.buf.definition,
-					"[D]efinition",
-				},
-				k = {
-					vim.lsp.buf.declaration,
-					"de[K]laration",
-				},
-				r = {
-					builtin.lsp_references,
-					"[R]eferences",
-				},
-				i = {
-					vim.lsp.buf.implementation,
-					"[I]mplementation",
-				},
-				t = {
-					vim.lsp.buf.type_definition,
-					"[T]ype definition",
-				},
-				s = {
-					name = "[S]ymbols...",
-					d = {
-						builtin.lsp_document_symbols,
-						"[D]ocument symbols",
-					},
-					w = {
-						builtin.lsp_dynamic_workspace_symbols,
-						"[W]orkspace symbols",
-					},
-				},
 			},
 			h = {
 				name = "[H]elp",

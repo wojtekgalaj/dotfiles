@@ -82,12 +82,12 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use("folke/neodev.nvim")
+
 	use({
 		"folke/noice.nvim",
 		requires = { "MunifTanjim/nui.nvim" },
 	})
-
-	use("folke/neodev.nvim")
 
 	require("noice").setup({
 		icons = {

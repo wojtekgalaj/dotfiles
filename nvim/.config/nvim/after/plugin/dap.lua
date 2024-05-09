@@ -90,10 +90,16 @@ which_key.register({
 		d = {
 			name = "[D]ebugger",
 			s = {
-				function()
-					dap.continue()
-				end,
+				dap.continue,
 				"[S]tart debugging",
+			},
+			b = {
+				dap.toggle_breakpoint,
+				"toggle [B]reakpoint",
+			},
+			n = {
+				dap.step_over,
+				"step [N]ext",
 			},
 			l = {
 				widgets.hover,
