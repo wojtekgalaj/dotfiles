@@ -194,9 +194,6 @@ require("packer").startup(function(use)
 	use("mustache/vim-mustache-handlebars")
 	use("jparise/vim-graphql")
 
-	-- Pico8
-	use("bakudankun/pico-8.vim")
-
 	-- Typescript helpers
 	use("marilari88/twoslash-queries.nvim")
 
@@ -232,6 +229,45 @@ require("packer").startup(function(use)
 			-- vim.keymap.set("n", "<leader>vv", ":LoveRun<CR>", { desc = "Run LÖVE" })
 			-- vim.keymap.set("n", "<leader>vs", ":LoveStop<CR>", { desc = "Stop LÖVE" })
 		end,
+	})
+
+	use({
+		"jellydn/hurl.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		ft = "hurl",
+		config = function()
+			require("hurl").setup({
+				-- Show debugging info
+				debug = false,
+				-- Show notification on run
+				show_notification = false,
+				-- Show response in popup or split
+				mode = "split",
+				-- Default formatter
+				formatters = {
+					json = { "jq" }, -- Make sure you have install jq in your system, e.g: brew install jq
+					html = {
+						"prettier", -- Make sure you have install prettier in your system, e.g: npm install -g prettier
+						"--parser",
+						"html",
+					},
+				},
+			})
+		end,
+		keys = {
+			-- Run API request
+			{ "<leader>A", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
+			{ "<leader>a", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+			{ "<leader>te", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
+			{ "<leader>tm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+			{ "<leader>tv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
+			-- Run Hurl request in visual mode
+			{ "<leader>h", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
+		},
 	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
