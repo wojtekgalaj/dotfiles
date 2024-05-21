@@ -6,8 +6,26 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
--- For example, changing the color scheme:
-config.color_scheme = "AdventureTime"
+config.color_scheme = "catppuccin-mocha"
+-- afterglow
+-- Batman
+--
+
+config.font = wezterm.font("Iosevka Nerd Font Mono")
+config.font_size = 20
+config.enable_tab_bar = false
+
+-- Start tmux when wezterm starts
+config.default_prog = { "/opt/homebrew/bin/tmux" }
+
+-- Start maximized
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function(cmd)
+	-- local tab, pane, window = mux.spawn_window(cmd or {})
+	local _, _, window = mux.spawn_window(cmd or {})
+	window:gui_window():toggle_fullscreen()
+end)
 
 -- and finally, return the configuration to wezterm
 return config
