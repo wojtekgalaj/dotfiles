@@ -15,8 +15,11 @@ config.font = wezterm.font("Iosevka Nerd Font Mono")
 config.font_size = 20
 config.enable_tab_bar = false
 
+-- ------------------------------------------------------
 -- Start tmux when wezterm starts
-config.default_prog = { "/opt/homebrew/bin/tmux" }
+-- TODO: This breaks tmux plugin manager. See why.
+-- config.default_prog = { "/opt/homebrew/bin/tmux" }
+-- ------------------------------------------------------
 
 -- Start maximized
 local mux = wezterm.mux
