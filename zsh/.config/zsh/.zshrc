@@ -93,10 +93,6 @@ export PATH="$PNPM_HOME:$PATH"
 #
 source ~/.zprofile
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 # Source cargo env
 . "$HOME/.cargo/env"
 
@@ -104,3 +100,7 @@ eval "$(zoxide init zsh)"
 
 # bun completions
 [ -s "/Users/wojtek/.bun/_bun" ] && source "/Users/wojtek/.bun/_bun"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
