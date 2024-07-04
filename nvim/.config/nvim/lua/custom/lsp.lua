@@ -12,6 +12,8 @@ local servers = {
   "emmet_language_server",
   "graphql",
   "gitlab_ci_ls",
+  "jsonls",
+  "yamlls",
 }
 
 require("mason-tool-installer").setup {
@@ -73,4 +75,29 @@ config.lua_ls.setup {
 }
 
 config.gitlab_ci_ls.setup {}
+
 config.pyright.setup {}
+
+config.jsonls.setup {
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
+config.yamlls.setup {
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      schemas = require("schemastore").yaml.schemas(),
+    },
+  },
+}
