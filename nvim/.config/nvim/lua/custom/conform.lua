@@ -1,4 +1,4 @@
-local conform = require("conform")
+local conform = require "conform"
 
 -- This method checks for if a config file for your formatter exists before
 -- returning the formatters table or nil
@@ -17,8 +17,7 @@ local use_these_if_prettierrc_found = function(formatters)
   end
 end
 
-
-conform.setup({
+conform.setup {
   formatters_by_ft = {
     lua = { "stylua" },
     typescript = use_these_if_prettierrc_found(),
@@ -27,6 +26,7 @@ conform.setup({
     json = use_these_if_prettierrc_found(),
   },
   format_on_save = {
-    lsp_fallback=nil
-  }
-})
+    lsp_format = "fallback",
+    quiet = true,
+  },
+}
