@@ -1,4 +1,4 @@
-local opt = vim.opt
+local opt = vim.o
 
 ----- Interesting Options -----
 
@@ -11,8 +11,6 @@ opt.ignorecase = true
 
 opt.clipboard = "unnamedplus"
 
-opt.scrolloff = 10
-
 -- Case insensitive searching UNLESS /C or capital in search
 opt.ignorecase = true
 opt.smartcase = true
@@ -23,3 +21,5 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.conceallevel = 2
+
+opt.scrolloff = 6
