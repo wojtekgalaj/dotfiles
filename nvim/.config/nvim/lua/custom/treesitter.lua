@@ -8,6 +8,7 @@ c.setup {
     "lua",
     "luadoc",
     "javascript",
+    "sql",
     "typescript",
     "ninja",
     "svelte",
