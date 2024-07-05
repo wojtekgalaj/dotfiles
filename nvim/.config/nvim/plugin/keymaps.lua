@@ -216,7 +216,7 @@ which_key.register({
         "buffer [C]ommits",
       },
       d = {
-        builtin.diagnostics,
+        "<cmd>Trouble diagnostics toggle<cr>",
         "[D]iagnostics",
       },
       g = {
