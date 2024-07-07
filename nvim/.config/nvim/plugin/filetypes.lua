@@ -25,7 +25,7 @@ end
 --- @param path string The file path to check
 --- @return string|nil The filetype to set
 ---
-function find_filetype_for_pattern(path)
+local function find_filetype_for_pattern(path)
   for _, entry in ipairs(pattern_type_table) do
     if match_pattern(path, entry.pattern) then
       return entry.filetype
