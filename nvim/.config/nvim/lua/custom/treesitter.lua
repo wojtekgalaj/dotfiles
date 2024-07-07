@@ -26,12 +26,11 @@ c.setup {
   sync_install = true,
   ignore_install = { "javascript" },
   auto_install = true,
-
   highlight = { enable = true },
   indent = { enable = true, disable = { "python" } },
+  tree_docs = { enable = true },
   incremental_selection = {
     enable = true,
-    additional_vim_regex_highlighting = false,
   },
   modules = {},
   textobjects = {
