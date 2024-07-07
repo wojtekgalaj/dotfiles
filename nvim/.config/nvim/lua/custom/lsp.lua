@@ -101,3 +101,5 @@ config.yamlls.setup {
     },
   },
 }
+
+config.gopls.setup {}
