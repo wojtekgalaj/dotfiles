@@ -10,6 +10,7 @@ local servers = {
   "yamlls",
   "cssls",
   "emmet_language_server",
+  "custom_elements_ls",
   "graphql",
   "gitlab_ci_ls",
   "jsonls",
@@ -23,7 +24,7 @@ require("mason-tool-installer").setup {
 -- Setup for diagnostics UI. I don't like virtual text or the underlines.
 -- A mark in the gutter is cleaner and quite sufficient.
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  signs = true,
+  signs = false,
   underline = false,
   update_in_insert = false,
   virtual_text = false,
@@ -103,3 +104,6 @@ config.yamlls.setup {
 }
 
 config.gopls.setup {}
+config.cssls.setup {}
+config.custom_elements_ls.setup {}
+config.tailwindcss.setup {}

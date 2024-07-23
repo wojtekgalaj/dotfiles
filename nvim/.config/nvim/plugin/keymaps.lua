@@ -274,25 +274,6 @@ which_key.register({
         "<cmd>Trouble qflist toggle<cr>",
         "Quick[F]ix",
       },
-      t = {
-        "[T]imer",
-        {
-          "<cmd>TimerStart 40min<cr>",
-          "Start [T]imer",
-        },
-        {
-          "<cmd>TimerStop<cr>",
-          "St[O]p timer",
-        },
-        {
-          "<cmd>TimerHide<cr>",
-          "[H]ide timer",
-        },
-        {
-          "<cmd>TimerPause<cr>",
-          "[P]ause timer",
-        },
-      },
     },
     d = {
       name = "[D]ebugger",
@@ -318,6 +299,17 @@ which_key.register({
       i = {
         "<cmd>PasteImage<cr>",
         "[I]mage",
+      },
+    },
+    p = {
+      name = "Better [P]ostman",
+      A = {
+        "<cmd>HurlRunner<cr>",
+        "[uppercase A]ll the requests",
+      },
+      a = {
+        "<cmd>HurlRunner<cr>",
+        "Run [A]pi request",
       },
     },
   },

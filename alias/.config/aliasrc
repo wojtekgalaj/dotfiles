@@ -9,7 +9,6 @@ alias merge='git mergetool'
 alias server="python3 -m SimpleHTTPServer"
 alias cleanup='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
-alias docker='nocorrect docker'
 alias mosh='nocorrect mosh'
 alias undomerge="git reset --hard ORIG_HEAD"
 alias weather="curl -s http://wttr.in"

@@ -3,14 +3,6 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=$HOME/.cache/zsh/history
-
-# AWS environment variables
-export AWS_PROFILE=dev-ao
-
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -101,9 +93,6 @@ eval "$(zoxide init zsh)"
 # bun completions
 [ -s "/Users/wojtek/.bun/_bun" ] && source "/Users/wojtek/.bun/_bun"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -120,3 +109,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
