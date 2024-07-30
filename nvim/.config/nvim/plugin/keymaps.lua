@@ -14,10 +14,17 @@ set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- Esc when I don't have my keyboard
 set("i", "jk", "<Esc>")
 
+set("n", "<esc>", "<cmd>noh<cr>")
+
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
+
+vim.api.nvim_set_keymap("i", "<C-h>", "<C-\\><C-N><C-w>h", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-j>", "<C-\\><C-N><C-w>j", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-k>", "<C-\\><C-N><C-w>k", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-l>", "<C-\\><C-N><C-w>l", { noremap = true })
 
 -- TODO: This is not the right place for this. Find a better one.
 local nvim_tmux_nav = require "nvim-tmux-navigation"
@@ -310,6 +317,21 @@ which_key.register({
       a = {
         "<cmd>HurlRunner<cr>",
         "Run [A]pi request",
+      },
+    },
+    u = {
+      name = "[U]nit test",
+      r = {
+        "<cmd>Neotest run<cr>",
+        "[R]un",
+      },
+      p = {
+        "<cmd>Neotest output-panel<cr>",
+        "Output [P]anel",
+      },
+      s = {
+        "<cmd>Neotest summary<cr>",
+        "[S]ummary",
       },
     },
   },

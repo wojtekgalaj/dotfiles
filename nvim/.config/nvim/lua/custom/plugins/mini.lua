@@ -21,7 +21,6 @@ return {
         },
       }
       require("mini.statusline").setup {}
-      require("mini.pairs").setup {}
     end,
   },
 }

@@ -23,6 +23,7 @@ conform.setup {
     typescript = use_these_if_prettierrc_found(),
     typescriptreact = use_these_if_prettierrc_found(),
     javascript = use_these_if_prettierrc_found(),
+    svelte = use_these_if_prettierrc_found(),
     json = use_these_if_prettierrc_found(),
   },
   format_on_save = {
