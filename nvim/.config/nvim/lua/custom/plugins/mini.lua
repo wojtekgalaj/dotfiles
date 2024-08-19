@@ -5,6 +5,12 @@ return {
       require("mini.ai").setup {}
       require("mini.surround").setup {}
       require("mini.jump2d").setup()
+      require("mini.indentscope").setup {
+        lazy = true,
+        options = {
+          indent_at_cursor = false,
+        },
+      }
       require("mini.comment").setup {
         options = {
           custom_commentstring = function()
