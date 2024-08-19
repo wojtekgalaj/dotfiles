@@ -11,8 +11,10 @@ config.color_scheme = "catppuccin-mocha"
 -- Batman
 --
 
+--- TODO: I would like for the font to get adjusted depending on screen realestate.
+---       I would need to get the screen resolution on decide based on that
 config.font = wezterm.font("Iosevka Nerd Font Mono")
-config.font_size = 21
+config.font_size = 18
 config.enable_tab_bar = false
 
 -- ------------------------------------------------------
