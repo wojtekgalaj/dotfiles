@@ -39,7 +39,12 @@ local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local notify = require("telescope").extensions.notify
 
-which_key.register({
+vim.g.miniindentscope_disable = true
+local toggle_indentscope_for_buffer = function()
+  vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
+end
+
+which_key.setup({
   g = {
     name = "[G]o to...",
     d = {
@@ -74,14 +79,21 @@ which_key.register({
       },
     },
   },
+  t = {
+    name = "[T]oggle",
+    i = {
+      toggle_indentscope_for_buffer,
+      "mini[I]ndent for buffer",
+    },
+  },
   ["<leader>"] = {
     ["<space>"] = {
       builtin.find_files,
       "[SPACE] List files in project",
     },
-    ["/"] = {
-      builtin.current_buffer_fuzzy_find,
-      "[/] Fuzzily search in current buffer]",
+    z = {
+      "<cmd>:tabnew %<cr>",
+      "[Z]oom current buffer",
     },
     x = {
       name = "E[X]ecute",
@@ -229,6 +241,10 @@ which_key.register({
       g = {
         builtin.live_grep,
         "[G]rep in project",
+      },
+      s = {
+        builtin.grep_string,
+        "grep [S]tring",
       },
       h = {
         builtin.help_tags,
