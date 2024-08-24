@@ -16,6 +16,7 @@ config.color_scheme = "catppuccin-mocha"
 config.font = wezterm.font("Iosevka Nerd Font Mono")
 config.font_size = 18
 config.enable_tab_bar = false
+config.window_decorations = "RESIZE"
 
 -- ------------------------------------------------------
 -- Start tmux when wezterm starts
@@ -27,9 +28,8 @@ config.enable_tab_bar = false
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function(cmd)
-	-- local tab, pane, window = mux.spawn_window(cmd or {})
 	local _, _, window = mux.spawn_window(cmd or {})
-	window:gui_window():toggle_fullscreen()
+	window:gui_window():maximize()
 end)
 
 -- and finally, return the configuration to wezterm
