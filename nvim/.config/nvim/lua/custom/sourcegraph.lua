@@ -45,26 +45,16 @@ local wk = require "which-key"
 local cmd = require "sg.cody.commands"
 
 -- normal mode
-wk.register({
-  ["<leader>"] = {
-    c = {
-      name = "[C]ody",
-      a = { cody_ask, "[A]sk Anything" },
-      l = { cmd.chat(false), "Open [L]ast Chat" },
-    },
-  },
-}, { mode = "n", silent = true, noremap = true })
+wk.add {
+  mode = "n",
+  { "<leader>c", group = "[C]ody" },
+  { "<leader>ca", cody_ask, desc = "[A]sk" },
+  { "<leader>cl", cmd.chat(false, {}), desc = "[L]ast" },
+}
 
--- visual mode
-wk.register({
-  ["<leader>"] = {
-    c = {
-      name = "[C]ody",
-      r = {
-        cody_ask_range,
-        "Ask Range",
-      },
-      t = { cody_task, "Ask to do a Task" },
-    },
-  },
-}, { mode = "v", silent = true, noremap = true })
+wk.add {
+  mode = "v",
+  { "<leader>c", group = "[C]ody" },
+  { "<leader>cr", cody_ask_range, desc = "ask [R]ange" },
+  { "<leader>ct", cody_task, desc = "[T]ask" },
+}

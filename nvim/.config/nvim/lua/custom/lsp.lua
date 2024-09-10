@@ -30,6 +30,7 @@ end
 local servers = {
   pyright = true,
   bashls = true,
+  taplo = true,
   gopls = {
     settings = {
       gopls = {
@@ -60,7 +61,6 @@ local servers = {
       },
     },
   },
-
   yamlls = {
     settings = {
       yaml = {
@@ -68,15 +68,32 @@ local servers = {
           enable = false,
           url = "",
         },
-        -- schemas = require("schemastore").yaml.schemas(),
+        schemas = require("schemastore").yaml.schemas(),
       },
     },
   },
-  svelte = true,
+  svelte = {
+    settings = {
+      svelte = {
+        enableTsPlugin = true,
+      },
+    },
+  },
   tailwindcss = true,
   eslint = true,
   cssls = true,
-  emmet_language_server = true,
+  emmet_language_server = {
+    filetypes = {
+      "html",
+      "css",
+      "scss",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "svelte",
+    },
+  },
   graphql = true,
   gitlab_ci_ls = true,
 }

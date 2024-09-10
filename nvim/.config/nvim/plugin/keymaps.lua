@@ -1,6 +1,4 @@
 local set = vim.keymap.set
-local dap = require "dap"
-local widgets = require "dap.ui.widgets"
 
 set("n", "<Left>", "<c-w>5<")
 set("n", "<Right>", "<c-w>5>")
@@ -44,311 +42,68 @@ local toggle_indentscope_for_buffer = function()
   vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
 end
 
-which_key.setup({
-  g = {
-    name = "[G]o to...",
-    d = {
-      vim.lsp.buf.definition,
-      "[D]efinition",
-    },
-    k = {
-      vim.lsp.buf.declaration,
-      "de[K]laration",
-    },
-    r = {
-      builtin.lsp_references,
-      "[R]eferences",
-    },
-    i = {
-      vim.lsp.buf.implementation,
-      "[I]mplementation",
-    },
-    t = {
-      vim.lsp.buf.type_definition,
-      "[T]ype definition",
-    },
-    s = {
-      name = "[S]ymbols...",
-      d = {
-        builtin.lsp_document_symbols,
-        "[D]ocument symbols",
-      },
-      w = {
-        builtin.lsp_dynamic_workspace_symbols,
-        "[W]orkspace symbols",
-      },
-    },
-  },
-  t = {
-    name = "[T]oggle",
-    i = {
-      toggle_indentscope_for_buffer,
-      "mini[I]ndent for buffer",
-    },
-  },
-  ["<leader>"] = {
-    ["<space>"] = {
-      builtin.find_files,
-      "[SPACE] List files in project",
-    },
-    z = {
-      "<cmd>:tabnew %<cr>",
-      "[Z]oom current buffer",
-    },
-    x = {
-      name = "E[X]ecute",
-      l = {
-        "<cmd>.lua<cr>",
-        "[L]ine",
-      },
-      f = {
-        "<cmd>source %<cr>",
-        "[F]ile",
-      },
-    },
-    b = {
-      name = "[B]uffer",
-      d = {
-        name = "[D]elete",
-        "<cmd>bdel<cr>",
-      },
-      c = {
-        "<cmd>VenterToggle<cr>",
-        "[C]enter",
-      },
-    },
-    j = {
-      "<cmd>wa<cr>",
-      "[J]ust save all",
-    },
-    f = {
-      "<cmd>cclose<cr>",
-      "Close Quick[F]ix",
-    },
-    q = {
-      "<cmd>q<cr>",
-      "[Q]uit",
-    },
-    e = {
-      vim.diagnostic.open_float,
-      "[E]rrors",
-    },
-    w = {
-      name = "[W]indow",
-      ["s"] = {
-        "<cmd>vertical resize -50<cr>",
-        "make window [S]maller",
-      },
-      ["l"] = {
-        "<cmd>vertical resize +50<cr>",
-        "make window [L]arger",
-      },
-    },
-    g = {
-      name = "[G]it",
-      v = {
-        "<cmd>Neogit<cr>",
-        "[V]ersion control",
-      },
-      q = {
-        "<cmd>DiffviewClose<cr>",
-        "[Q]uit",
-      },
-      r = {
-        "<cmd>NeogitResetState<cr>",
-        "[R]eset",
-      },
-      b = {
-        "<cmd>BlameToggle<cr>",
-        "[B]lame",
-      },
-      h = {
-        name = "[H]istory",
-        {
-          e = {
-            "<cmd>DiffviewFileHistory<cr>",
-            "[E]verything",
-          },
-          c = {
-            "<cmd>DiffviewFileHistory %<cr>",
-            "[C]urrent",
-          },
-        },
-      },
-    },
-    l = {
-      name = "[L]SP",
-      o = {
-        "<cmd>LspStop<cr>",
-        "Turn [O]ff",
-      },
-      s = {
-        "<cmd>LspStart<cr>",
-        "[S]tart",
-      },
-      e = {
-        "<cmd>LspRestart<cr>",
-        "R[E]start",
-      },
-      c = {
-        name = "[C]ode",
-        a = {
-          vim.lsp.buf.code_action,
-          "[A]ctions",
-        },
-      },
-      r = {
-        vim.lsp.buf.rename,
-        "[R]ename",
-      },
-      h = {
-        name = "[H]elp",
-        d = {
-          vim.lsp.buf.signature_help,
-          "Signature [D]ocumentation",
-        },
-      },
-      w = {
-        name = "[W]orkspace",
-        a = {
-          vim.lsp.buf.add_workspace_folder,
-          "[A]dd folder",
-        },
-        r = {
-          vim.lsp.buf.remove_workspace_folder,
-          "[R]emove folder",
-        },
-        l = {
-          vim.lsp.buf.list_workspace_folders,
-          "[L]ist folders",
-        },
-      },
-    },
-    s = {
-      name = "[S]earch",
-      a = {
-        builtin.git_commits,
-        "[A]ll commits",
-      },
-      c = {
-        builtin.git_bcommits,
-        "buffer [C]ommits",
-      },
-      d = {
-        "<cmd>Trouble diagnostics toggle<cr>",
-        "[D]iagnostics",
-      },
-      g = {
-        builtin.live_grep,
-        "[G]rep in project",
-      },
-      s = {
-        builtin.grep_string,
-        "grep [S]tring",
-      },
-      h = {
-        builtin.help_tags,
-        "[H]elp tags",
-      },
-      j = {
-        builtin.jumplist,
-        "[J]umplist",
-      },
-      n = {
-        notify.notify,
-        "[N]otifications",
-      },
-      r = {
-        builtin.resume,
-        "[R]esume last search",
-      },
-      s = {
-        builtin.buffers,
-        "buffer[S]",
-      },
-      u = {
-        builtin.grep_string,
-        "grep whats [U]nder cursor",
-      },
-      q = {
-        builtin.quickfixhistory,
-        "[Q]uickfix history",
-      },
-    },
-    t = {
-      "[T]rouble",
-      d = {
-        "<cmd>Trouble diagnostics toggle<cr>",
-        "All [D]iagnostics",
-      },
-      b = {
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        "[B]uffer diagnostics",
-      },
-      l = {
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-        "[L]sp",
-      },
-      o = {
-        "<cmd>Trouble loclist toggle<cr>",
-        "L[O]clist",
-      },
-      f = {
-        "<cmd>Trouble qflist toggle<cr>",
-        "Quick[F]ix",
-      },
-    },
-    d = {
-      name = "[D]ebugger",
-      s = {
-        dap.continue,
-        "[S]tart debugging",
-      },
-      b = {
-        dap.toggle_breakpoint,
-        "toggle [B]reakpoint",
-      },
-      n = {
-        dap.step_over,
-        "step [N]ext",
-      },
-      l = {
-        widgets.hover,
-        "Hove[l]",
-      },
-    },
-    i = {
-      name = "[I]nsert",
-      i = {
-        "<cmd>PasteImage<cr>",
-        "[I]mage",
-      },
-    },
-    p = {
-      name = "Better [P]ostman",
-      A = {
-        "<cmd>HurlRunner<cr>",
-        "[uppercase A]ll the requests",
-      },
-      a = {
-        "<cmd>HurlRunner<cr>",
-        "Run [A]pi request",
-      },
-    },
-    u = {
-      name = "[U]nit test",
-      r = {
-        "<cmd>Neotest run<cr>",
-        "[R]un",
-      },
-      p = {
-        "<cmd>Neotest output-panel<cr>",
-        "Output [P]anel",
-      },
-      s = {
-        "<cmd>Neotest summary<cr>",
-        "[S]ummary",
-      },
-    },
-  },
-}, { mode = "n", silent = true, noremap = true })
+which_key.add {
+  { "g", group = "[G]o to..." },
+  { "gd", vim.lsp.buf.definition, desc = "[D]efinition" },
+  { "gk", vim.lsp.buf.declaration, desc = "de[K]laration" },
+  { "gr", builtin.lsp_references, desc = "[R]eferences" },
+  { "gi", vim.lsp.buf.implementation, desc = "[I]mplementation" },
+  { "gt", vim.lsp.buf.type_definition, desc = "[T]ype definition" },
+  { "gs", group = "[S]ymbols..." },
+  { "gsd", builtin.lsp_document_symbols, desc = "[D]ocument symbols" },
+  { "gsw", builtin.lsp_workspace_symbols, desc = "[W]orkspace symbols" },
+  { "q", group = "[Q]uit" },
+  { "<leader>", group = "Misc" },
+  { "<leader><space>", builtin.find_files, desc = "[SPACE] List files in project" },
+  { "<leader>z", "<cmd>:tabnew %<cr>", desc = "[Z]oom current buffer" },
+  { "<leader>x", group = "[X]ecute" },
+  { "<leader>xl", "<cmd>.lua<cr>", desc = "[L]ine" },
+  { "<leader>xf", "<cmd>source %<cr>", desc = "[F]ile" },
+  { "<leader>xh", group = "[H]url" },
+  { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
+  { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+  { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
+  { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+  { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
+  -- Run Hurl request in visual mode
+  { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+  { "<leader>b", group = "[B]uffer" },
+  { "<leader>bd", "<cmd>bdel<cr>", desc = "[D]elete" },
+  { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[C]enter" },
+  { "<leader>j", "<cmd>wa<cr>", desc = "[J]ust save all" },
+  { "<leader>f", "<cmd>cclose<cr>", desc = "Close Quick[F]ix" },
+  { "<leader>q", "<cmd>q<cr>", desc = "[!]uit" },
+  { "<leader>e", vim.diagnostic.open_float, desc = "[E]rrors" },
+  { "<leader>g", group = "[G]it" },
+  { "<leader>gv", "<cmd>Neogit<cr>", desc = "[V]ersion control" },
+  { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[B]lame" },
+  { "<leader>gc", group = "[C]ommits" },
+  { "<leader>gca", builtin.git_commits, desc = "[A]ll" },
+  { "<leader>gcb", builtin.git_bcommits, desc = "[B]uffer" },
+  { "<leader>gh", group = "[H]istory" },
+  { "<leader>ghe", "<cmd>DiffviewFileHistory<cr>", desc = "[E]verything" },
+  { "<leader>ghb", "<cmd>DiffviewFileHistory %<cr>", desc = "[B]uffer" },
+  { "<leader>l", group = "[L]sp" },
+  { "<leader>lr", vim.lsp.buf.rename, desc = "[R]ename" },
+  { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[L]estart" },
+  { "<leader>lh", vim.lsp.buf.signature_help, desc = "[H]elp" },
+  { "<leader>la", vim.lsp.buf.code_action, desc = "Code [A]ction" },
+  { "<leader>s", group = "[S]earch" },
+  { "<leader>sg", builtin.live_grep, desc = "[G]rep project" },
+  { "<leader>ss", builtin.current_buffer_fuzzy_find, desc = "[S]tring in buffer" },
+  { "<leader>sj", builtin.jumplist, desc = "[J]umplist" },
+  { "<leader>sn", notify.notify, desc = "[N]otifications" },
+  { "<leader>sr", builtin.resume, desc = "[R]esume last" },
+  { "<leader>sb", builtin.buffers, desc = "[B]uffers" },
+  { "<leader>su", builtin.grep_string, desc = "thing [U]nder cursor" },
+  { "<leader>t", group = "[T]oggle" },
+  { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[T]oggle" },
+  { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[B]uffer" },
+  { "<leader>tf", "<cmd>Trouble qflist toggle<cr>", desc = "[F]ix" },
+  { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[I]ndent for buffer" },
+  { "<leader>tr", "<cmd>ReplToggle<cr>", desc = "[R]epl" },
+  { "<leader>u", group = "[U]nit Tests" },
+  { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[R]un" },
+  { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[S]ummary" },
+  { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[U]tput" },
+}
