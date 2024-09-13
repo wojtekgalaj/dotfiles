@@ -23,3 +23,5 @@ opt.softtabstop = 2
 opt.conceallevel = 2
 
 opt.scrolloff = 6
+
+opt.wrap = false
