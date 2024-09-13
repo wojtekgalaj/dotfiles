@@ -32,7 +32,6 @@ c.setup {
   incremental_selection = {
     enable = true,
   },
-  modules = {},
   textobjects = {
     enable = true,
   },
@@ -42,4 +41,4 @@ local opt = vim.opt
 
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 1
+opt.foldlevel = 4
