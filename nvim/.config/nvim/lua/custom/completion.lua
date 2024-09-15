@@ -8,7 +8,6 @@ cmp.setup {
     { name = "cody" },
     { name = "luasnip" },
     { name = "path" },
-    { name = "buffer" },
   },
   mapping = cmp.mapping.preset.insert {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),

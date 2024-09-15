@@ -59,6 +59,7 @@ which_key.add {
   { "<leader>x", group = "[X]ecute" },
   { "<leader>xl", "<cmd>.lua<cr>", desc = "[L]ine" },
   { "<leader>xf", "<cmd>source %<cr>", desc = "[F]ile" },
+  { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [S]nippets" },
   { "<leader>xh", group = "[H]url" },
   { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
   { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
@@ -74,9 +75,13 @@ which_key.add {
   { "<leader>f", "<cmd>cclose<cr>", desc = "Close Quick[F]ix" },
   { "<leader>q", "<cmd>q<cr>", desc = "[!]uit" },
   { "<leader>e", vim.diagnostic.open_float, desc = "[E]rrors" },
+
   { "<leader>g", group = "[G]it" },
   { "<leader>gv", "<cmd>Neogit<cr>", desc = "[V]ersion control" },
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[B]lame" },
+  -- More git keymaps are setup in the config of gitsigns. That way they only
+  -- attach to the buffer they will operate on.
+  { "<leader>gs", group = "[S]igns" },
   { "<leader>gc", group = "[C]ommits" },
   { "<leader>gca", builtin.git_commits, desc = "[A]ll" },
   { "<leader>gcb", builtin.git_bcommits, desc = "[B]uffer" },

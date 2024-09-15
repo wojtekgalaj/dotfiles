@@ -25,3 +25,7 @@ opt.conceallevel = 2
 opt.scrolloff = 6
 
 opt.wrap = false
+
+-- opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
+
+opt.guicursor = "n-v-c:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:block-Cursor/lCursor,a:blinkon100-Cursor/lCursor"

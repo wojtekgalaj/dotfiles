@@ -1,8 +1,8 @@
 local capabilities = nil
 local lspconfig = require "lspconfig"
 
---- Checks if a file exists in the current directory and its parents
---- @param filename string The name of the file to check. Will be expanded by `vim.fn.expand`
+---Checks if a file exists in the current directory and its parents
+---@param filename string The name of the file to check. Will be expanded by `vim.fn.expand`
 local function find_config_file(filename)
   local expand = vim.fn.expand
   local cwd = expand "%:p:h"
