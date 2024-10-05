@@ -1,5 +1,5 @@
-alias ll='ls -ltr'
-alias la='ls -ltar'
+alias ll='eza --long --git'
+alias la='eza -lar'
 alias lg='la | grep '
 alias peg='ps -ef | grep -v grep | grep'
 alias cc='clear'
