@@ -30,6 +30,9 @@ end
 local servers = {
   pyright = true,
   bashls = true,
+  html = {
+    filetypes = { "html" },
+  },
   taplo = true,
   gopls = {
     settings = {
@@ -96,6 +99,8 @@ local servers = {
   },
   graphql = true,
   gitlab_ci_ls = true,
+  terraformls = true,
+  clangd = true,
 }
 
 --- List of keys of the servers table that need to be installed manually
