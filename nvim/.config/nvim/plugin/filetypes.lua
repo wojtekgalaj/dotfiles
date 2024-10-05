@@ -1,6 +1,5 @@
 --- Holds a collection of filetype patterns and filetypes that should be set for each of them.
 --- @type table<number, {pattern: string, filetype: string}>
----
 local pattern_type_table = {
   {
     pattern = "*.gitlab-ci*.{yml,yaml}",
@@ -9,6 +8,10 @@ local pattern_type_table = {
   {
     pattern = "deno",
     filetype = "deno.typescript",
+  },
+  {
+    pattern = "rc$",
+    filetype = "bash",
   },
 }
 
