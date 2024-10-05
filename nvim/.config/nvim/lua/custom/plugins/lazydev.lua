@@ -1,17 +1,16 @@
--- This has been copied verbatim from the first example in the README.
--- I should spend some time digging into it, it's full of exmamples right now.
--- TODO
-
 return {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
+    dependencies = { "justinsgithub/wezterm-types" },
     opts = {
       library = {
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = "luvit-meta/library", words = { "vim%.uv" } },
         { "neotest" },
+        { "lazy.nvim" },
+        { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
   },
@@ -26,5 +25,5 @@ return {
       })
     end,
   },
-  -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+  { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 }
