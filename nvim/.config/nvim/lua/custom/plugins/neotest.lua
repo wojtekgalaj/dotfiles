@@ -18,6 +18,20 @@ return {
           },
         },
       }
+
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>uwr",
+        "<cmd>lua require('neotest').run.run({ vitestCommand = 'npm run unit:debug' })<cr>",
+        { desc = "Run Watch" }
+      )
+
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>uwf",
+        "<cmd>lua require('neotest').run.run({ vim.fn.expand('%'), vitestCommand = 'npm run unit' })<cr>",
+        { desc = "Run Watch File" }
+      )
     end,
   },
 }
