@@ -4,9 +4,9 @@ vim.opt.shortmess:append "c"
 local cmp = require "cmp"
 cmp.setup {
   sources = {
-    { name = "nvim_lsp" },
-    { name = "cody" },
+    { name = "codeium" },
     { name = "luasnip" },
+    { name = "nvim_lsp" },
     { name = "path" },
   },
   mapping = cmp.mapping.preset.insert {
@@ -22,6 +22,14 @@ cmp.setup {
     expand = function(args)
       require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
     end,
+  },
+  formatting = {
+    format = require("lspkind").cmp_format {
+      mode = "symbol",
+      maxwidth = 50,
+      ellipsis_char = "...",
+      symbol_map = { Codeium = "AI" },
+    },
   },
 }
 
