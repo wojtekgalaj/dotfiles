@@ -15,3 +15,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     vim.opt_local.scrolloff = 6
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "*.sh", "bash", "*.zsh", "*.fish", "*.ksh", "sketchybarrc" },
+  callback = function()
+    vim.lsp.start {
+      name = "bash-language-server",
+      cmd = { "bash-language-server", "start" },
+    }
+  end,
+})

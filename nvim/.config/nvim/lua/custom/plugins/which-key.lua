@@ -1,11 +1,8 @@
 return {
   {
     "folke/which-key.nvim",
-    opts = {
-      preset = "helix",
-      plugins = {
-        marks = false,
-      },
-    },
+    config = function()
+      require "custom.which_key"
+    end,
   },
 }

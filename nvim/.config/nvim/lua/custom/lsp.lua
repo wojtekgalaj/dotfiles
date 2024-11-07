@@ -54,6 +54,10 @@ local servers = {
       library = vim.api.nvim_get_runtime_file("", true),
       checkThirdParty = false,
     },
+    diagnostics = {
+      globals = { "vim", "require" },
+    },
+
     telemetry = { enable = false },
   },
   jsonls = {
