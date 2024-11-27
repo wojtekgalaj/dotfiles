@@ -1,3 +1,5 @@
+-- I am nolonger using sourcegraph. Still, I have chosen to leave this file here.
+-- These are custom functions and it tool a while to write them.
 require("sg").setup {}
 
 local function get_visual_range()
