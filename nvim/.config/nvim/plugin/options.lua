@@ -24,7 +24,7 @@ opt.conceallevel = 2
 
 opt.scrolloff = 6
 
-opt.wrap = false
+opt.wrap = true
 
 opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 
