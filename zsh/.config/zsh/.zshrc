@@ -1,6 +1,8 @@
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":/Users/wojtek/.config/zsh/completions:"* ]]; then export FPATH="/Users/wojtek/.config/zsh/completions:$FPATH"; fi
-# Copied from Luke's config for the Zoomer Shell
+
+#duh
+export EDITOR=nvim
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -58,6 +60,33 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=$HOME/dev/scripts/bin/:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
+export PATH=./:$PATH
+
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/.local/npm-global/bin:$PATH
+export PATH=$HOME/.emacs.d/bin:$PATH
+export PATH=$HOME/Games/DwarfFortress:$PATH
+export PATH=/usr/local/Cellar/emacs-plus@28/28.0.50/bin:$PATH
+export PATH=$HOME/.config/composer/vendor/bin:$PATH
+
+export ZDOTDIR=$HOME/.config/zsh
+
+export NPM_PACKAGES=$HOME/.local/npm-global
+export NPM_CONFIG_USERCONFIG=$HOME/.config/npmrc
+export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
+export N_PREFIX=$HOME/.local
+export PATH=$N_PREFIX/bin:$PATH
+
+
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+export PYTHON=/opt/homebrew/bin/python3
+export MANWIDTH=80
+
 
 export ANDROID_SDK=$HOME/Library/Android/sdk
 export GOPATH=/$HOME/golib
@@ -74,7 +103,6 @@ export PNPM_HOME="/Users/wgalaj/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 #
-source ~/.zprofile
 
 # Source cargo env
 . "$HOME/.cargo/env"
