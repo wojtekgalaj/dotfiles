@@ -5,8 +5,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
-
-config.color_scheme = "catppuccin-mocha"
+config.color_scheme = "Greenscreen (dark) (terminal.sexy)"
+-- config.color_scheme = "catppuccin-mocha"
 -- afterglow
 -- Batman
 --
@@ -16,21 +16,21 @@ config.color_scheme = "catppuccin-mocha"
 -- config.font = wezterm.font("Iosevka Nerd Font Mono")
 config.font = wezterm.font("JetbrainsMono Nerd Font")
 config.font_size = 16
+config.line_height = 1.2
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
-
--- ------------------------------------------------------
--- Start tmux when wezterm starts
--- TODO: This breaks tmux plugin manager. See why.
--- config.default_prog = { "/opt/homebrew/bin/tmux" }
--- ------------------------------------------------------
 
 -- Start maximized
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function(cmd)
-	local _, _, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
+wezterm.on("gui-attached", function(domain)
+	-- maximize all displayed windows on startup
+	local workspace = mux.get_active_workspace()
+	for _, window in ipairs(mux.all_windows()) do
+		if window:get_workspace() == workspace then
+			window:gui_window():maximize()
+		end
+	end
 end)
 
 -- and finally, return the configuration to wezterm
