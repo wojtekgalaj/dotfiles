@@ -52,7 +52,7 @@ local servers = {
   lua_ls = {
     workspace = {
       library = vim.api.nvim_get_runtime_file("", true),
-      checkThirdParty = false,
+      checkThirdParty = true,
     },
     diagnostics = {
       globals = { "vim", "require" },
@@ -104,6 +104,7 @@ local servers = {
   graphql = true,
   gitlab_ci_ls = true,
   terraformls = true,
+  intelephense = true,
   clangd = true,
 }
 
@@ -185,4 +186,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.diagnostic.config { virtual_text = false, update_in_insert = false, underline = false, signs = true }
+vim.diagnostic.config { update_in_insert = false, underline = false, signs = true }

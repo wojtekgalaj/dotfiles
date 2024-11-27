@@ -2,7 +2,8 @@ local blame = require "blame"
 
 blame.setup {
   date_format = "%d.%m.%Y",
-  virtual_style = "right",
+  virtual_text = false,
+  virtual_style = "right_align",
   merge_consecutive = false,
   max_summary_width = 30,
   colors = nil,

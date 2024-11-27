@@ -1,5 +1,5 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.opt.shortmess:append "c"
+-- vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- vim.opt.shortmess:append "c"
 
 local cmp = require "cmp"
 cmp.setup {
