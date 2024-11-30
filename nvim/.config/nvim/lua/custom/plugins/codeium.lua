@@ -36,6 +36,14 @@ return {
       vim.keymap.set("i", "<c-k>", function()
         return vim.fn["codeium#Clear"]()
       end, { expr = true, silent = true })
+
+      -- Setup the bindings
+      local wk = require "which-key"
+      wk.add {
+        mode = "n",
+        { "<leader>c", group = "[c]ode" },
+        { "<leader>cc", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
+      }
     end,
   },
 }
