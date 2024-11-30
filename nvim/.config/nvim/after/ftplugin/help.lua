@@ -1,4 +1,5 @@
-vim.cmd "only"
-vim.cmd "vsplit"
-vim.cmd "bprevious"
-vim.cmd "wincmd l"
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function()
+    vim.cmd "wincmd L"
+  end,
+})
