@@ -4,7 +4,6 @@
 local cmp = require "cmp"
 cmp.setup {
   sources = {
-    { name = "codeium" },
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "path" },
@@ -28,7 +27,6 @@ cmp.setup {
       mode = "symbol",
       maxwidth = 50,
       ellipsis_char = "...",
-      symbol_map = { Codeium = "AI" },
     },
   },
 }
