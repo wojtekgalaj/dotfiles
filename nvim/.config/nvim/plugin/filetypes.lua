@@ -6,7 +6,7 @@ local pattern_type_table = {
     filetype = "yaml.gitlab",
   },
   {
-    pattern = "deno",
+    pattern = "deno.json",
     filetype = "deno.typescript",
   },
   {
