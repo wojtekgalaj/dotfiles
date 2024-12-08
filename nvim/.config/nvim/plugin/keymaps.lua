@@ -85,6 +85,7 @@ which_key.add {
   { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
   { "<leader>t", group = "[t]oggle" },
   { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer Trouble" },
+  { "<leader>td", "<cmd>DBUIToggle<cr>", desc = "[d]adbod ui" },
   { "<leader>tf", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix Trouble" },
   { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
   { "<leader>tr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
