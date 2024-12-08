@@ -53,7 +53,6 @@ which_key.add {
   { "<leader><space>", builtin.find_files, desc = "[ ] List files in project" },
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
-  { "<leader>bd", "<cmd>bdel<cr>", desc = "[d]elete" },
   { "<leader>e", vim.diagnostic.open_float, desc = "show [e]rror under cursor" },
   { "<leader>f", "<cmd>cclose<cr>", desc = "Quick[f]ix" },
   { "<leader>g", group = "[g]it" },
