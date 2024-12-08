@@ -29,6 +29,10 @@ end
 -- → svelte.enable-ts-plugin                                        default: false
 local servers = {
   pyright = true,
+  dockerls = true,
+  denols = {
+    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+  },
   bashls = true,
   html = {
     filetypes = { "html" },
@@ -86,7 +90,9 @@ local servers = {
       },
     },
   },
-  tailwindcss = true,
+  tailwindcss = {
+    root_dir = lspconfig.util.root_pattern "tailwind.config.json",
+  },
   eslint = true,
   cssls = true,
   emmet_language_server = {
@@ -145,6 +151,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+-- I am pretty sure that this this repeated.
 for _, lsp in ipairs(servers) do
   require("lspconfig")[lsp].setup {
     capabilities = capabilities,
