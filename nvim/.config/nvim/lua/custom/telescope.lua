@@ -9,9 +9,15 @@ require("telescope").setup {
         ["<C-d>"] = false,
       },
     },
-    extensions = {},
+  },
+  extensions = {
+    media_files = {
+      filetypes = { "png", "webp", "jpg", "jpeg" },
+    },
   },
 }
 
 pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "media_files")
+pcall(require("telescope").load_extension, "frecency")
 vim.api.nvim_set_hl(0, "TelescopeBorder", { ctermbg = 220 })

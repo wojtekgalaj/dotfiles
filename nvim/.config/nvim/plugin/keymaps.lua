@@ -76,6 +76,7 @@ which_key.add {
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
   { "<leader>s", group = "[s]earch" },
+  { "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "files by [f]recency" },
   { "<leader>sb", builtin.buffers, desc = "[b]uffers" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
