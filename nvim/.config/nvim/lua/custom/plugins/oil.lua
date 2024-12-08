@@ -13,6 +13,7 @@ return {
           ["<C-c>"] = "actions.close",
           ["-"] = "actions.parent",
           ["g."] = "actions.toggle_hidden",
+          ["yp"] = "actions.yank_entry",
         },
         view_options = {
           show_hidden = true,

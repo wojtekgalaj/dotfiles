@@ -41,7 +41,7 @@ return {
     },
     keys = {
       {
-        "<leader>tl",
+        "<leader>xtl",
         function()
           local qt = require "quicktest"
           -- current_win_mode return currently opened panel, split or popup
@@ -53,7 +53,7 @@ return {
         desc = "[T]est Run [L]line",
       },
       {
-        "<leader>tf",
+        "<leader>xtf",
         function()
           local qt = require "quicktest"
 
@@ -62,7 +62,7 @@ return {
         desc = "[T]est Run [F]ile",
       },
       {
-        "<leader>td",
+        "<leader>xtd",
         function()
           local qt = require "quicktest"
 
@@ -71,7 +71,7 @@ return {
         desc = "[T]est Run [D]ir",
       },
       {
-        "<leader>ta",
+        "<leader>xta",
         function()
           local qt = require "quicktest"
 
@@ -80,7 +80,7 @@ return {
         desc = "[T]est Run [A]ll",
       },
       {
-        "<leader>tp",
+        "<leader>xtp",
         function()
           local qt = require "quicktest"
 
@@ -89,7 +89,7 @@ return {
         desc = "[T]est Run [P]revious",
       },
       {
-        "<leader>tt",
+        "<leader>xtt",
         function()
           local qt = require "quicktest"
 
@@ -98,7 +98,7 @@ return {
         desc = "[T]est [T]oggle Window",
       },
       {
-        "<leader>tc",
+        "<leader>xtc",
         function()
           local qt = require "quicktest"
 

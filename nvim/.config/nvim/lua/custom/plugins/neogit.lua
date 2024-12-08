@@ -10,6 +10,7 @@ return {
     config = function()
       require("neogit").setup {
         use_default_keymaps = true,
+        graph_style = "unicode",
         mappings = {
           popup = {
             ["?"] = "HelpPopup",
