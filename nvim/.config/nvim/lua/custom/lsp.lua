@@ -29,6 +29,7 @@ end
 -- → svelte.enable-ts-plugin                                        default: false
 local servers = {
   pyright = true,
+  rescriptls = true,
   dockerls = true,
   denols = {
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -91,7 +92,7 @@ local servers = {
     },
   },
   tailwindcss = {
-    root_dir = lspconfig.util.root_pattern "tailwind.config.json",
+    root_dir = lspconfig.util.root_pattern "tailwind.config.*",
   },
   eslint = true,
   cssls = true,
