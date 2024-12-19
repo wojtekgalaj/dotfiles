@@ -1,6 +1,11 @@
 local capabilities = nil
 local lspconfig = require "lspconfig"
 
+-- bail if this is obsidian insert mode
+if vim.g.obsidian then
+  return
+end
+
 ---Checks if a file exists in the current directory and its parents
 ---@param filename string The name of the file to check. Will be expanded by `vim.fn.expand`
 local function find_config_file(filename)
@@ -141,7 +146,7 @@ for name, config in pairs(servers) do
     config = {}
   end
   config = vim.tbl_deep_extend("force", {}, {
-    capabilities = capabilities,
+    -- capabilities = capabilities,
   }, config)
 
   lspconfig[name].setup(config)
@@ -155,12 +160,12 @@ table.insert(runtime_path, "lua/?/init.lua")
 -- I am pretty sure that this this repeated.
 for _, lsp in ipairs(servers) do
   require("lspconfig")[lsp].setup {
-    capabilities = capabilities,
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
   }
 end
 
 --- Disable semantic tokens for these filetypes
-local disable_semantic_tokens = {}
+local disable_semantic_tokens = { "lua" }
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -172,8 +177,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
       settings = {}
     end
 
+    local builtin = require "telescope.builtin"
+
     vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+    vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0, desc = "Go to [d]efinition" })
+    vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0, desc = "Go to [r]eferences" })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, desc = "Go to [D]eclaration" })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 }, { desc = "Go to [t]ype definition" })
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+
+    vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
+    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
+    vim.keymap.set("n", "<space>wd", builtin.lsp_document_symbols, { buffer = 0 })
 
     local filetype = vim.bo[bufnr].filetype
     if disable_semantic_tokens[filetype] then
@@ -194,4 +209,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.diagnostic.config { update_in_insert = false, underline = false, signs = true }
+require("lsp_lines").setup()
+vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+vim.keymap.set("", "<leader>l", function()
+  local config = vim.diagnostic.config() or {}
+  if config.virtual_text then
+    vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+  else
+    vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+  end
+end, { desc = "Toggle lsp_lines" })
+require("typescript-tools").setup {
+  lspconfig = {
+    capabilities = capabilities,
+  },
+  settings = {
+    tsserver_plugins = {
+      "@styled/typescript-styled-plugin",
+    },
+  },
+}

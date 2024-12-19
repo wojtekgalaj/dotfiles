@@ -36,27 +36,26 @@ vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local notify = require("telescope").extensions.notify
+local multigrep = require "private.telescope.multigrep"
 
 vim.g.miniindentscope_disable = true
 local toggle_indentscope_for_buffer = function()
   vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
 end
--- It might be nicer to split these up so the bindings for each plugin live in the same
--- file as the plubin itself.
---
--- The reason to keep it all here is that it makes it easier to see what bindings are taken
--- already. Also, the mappings are not really organised by plugin exactly.
--- Still considering both options.
--- One idea would be to have a file for each group, like "Toggle".
+
 which_key.add {
-  { "<leader>", group = "Commands" },
+  { "<leader>", group = "[ ]" },
   { "<leader><space>", builtin.find_files, desc = "[ ] List files in project" },
-  { "<leader>b", group = "[b]uffer" },
-  { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
   { "<leader>e", vim.diagnostic.open_float, desc = "show [e]rror under cursor" },
-  { "<leader>f", "<cmd>cclose<cr>", desc = "Quick[f]ix" },
+  { "<leader>j", "<cmd>wa<cr>", desc = "[j]ust save all" },
+  { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
+
+  { "<leader>a", group = "[a]i" },
+  -- AI related bindings are colocated with the plugins.
+  -- Right now, I am using Codeium so you can find these at lua/custom/plugins/codeium.lua.
+
   { "<leader>g", group = "[g]it" },
-  { "<leader>d", group = "[d]ebug" },
+  -- snacks brings a lot of bindings here. check lua/custom/plugins/snacks.lua
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },
   { "<leader>gc", group = "[c]ommits" },
   { "<leader>gca", builtin.git_commits, desc = "[a]ll" },
@@ -66,59 +65,97 @@ which_key.add {
   { "<leader>ghe", "<cmd>DiffviewFileHistory<cr>", desc = "[e]verything" },
   { "<leader>gs", group = "[s]igns" },
   { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
-  { "<leader>h", group = "[h]unk" },
-  { "<leader>j", "<cmd>wa<cr>", desc = "[j]ust save all" },
-  { "<leader>l", group = "[l]sp" },
-  { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
-  { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
-  { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
-  { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
-  { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
+
+  --
+  -- { "<leader>b", group = "[b]uffer" },
+  -- { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
+  --
+  -- { "<leader>d", group = "[d]atabase" },
+  --
+  -- { "<leader>f", group = "quick[f]ix" },
+  -- { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
+  -- { "<leader>fk", "<cmd>cprex<cr>", desc = "prev [k]ob" },
+  -- { "<leader>fc", "<cmd>cclose<cr>", desc = "[c]lose" },
+  --
+  --
+  -- -- where is this defined?
+  -- -- this is an argument for leaving all the whichkey maps in the same file
+  -- { "<leader>h", group = "[h]unk" },
+  --
+  -- { "<leader>l", group = "[l]sp" },
+  -- { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
+  -- { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
+  -- { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
+  -- { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
+  --
   { "<leader>s", group = "[s]earch" },
-  { "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "files by [f]recency" },
-  { "<leader>sb", builtin.buffers, desc = "[b]uffers" },
+  -- { "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "files by [f]recency" },
+  -- { "<leader>sb", builtin.buffers, desc = "[b]uffers" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
-  { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
-  { "<leader>sn", notify.notify, desc = "[n]otifications" },
-  { "<leader>sr", builtin.resume, desc = "[r]esume last" },
-  { "<leader>ss", builtin.current_buffer_fuzzy_find, desc = "[s]tring in buffer" },
+  -- { "<leader>sm", multigrep.search, desc = "[m]ultigrep" },
+  -- { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
+  -- { "<leader>sn", notify.notify, desc = "[n]otifications" },
+  -- { "<leader>sr", builtin.resume, desc = "[r]esume last" },
+  -- { "<leader>ss", builtin.current_buffer_fuzzy_find, desc = "[s]tring in buffer" },
   { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
-  { "<leader>t", group = "[t]oggle" },
-  { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer Trouble" },
-  { "<leader>td", "<cmd>DBUIToggle<cr>", desc = "[d]adbod ui" },
-  { "<leader>tf", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix Trouble" },
-  { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
-  { "<leader>tr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
-  { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
-  { "<leader>tw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
-  -- lorem ipsum dolorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  { "<leader>u", group = "[u]nit Tests" },
-  { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
-  { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
-  { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
-  { "<leader>x", group = "[x]ecute" },
-  { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
-  { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
-  { "<leader>xh", group = "[h]url" },
-  { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
-  { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
-  { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
-  { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
-  { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
-  { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
-  { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
-  { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
-  { "<leader>z", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
-  { "g", group = "[g]o to..." },
-  { "gd", vim.lsp.buf.definition, desc = "[d]efinition" },
-  { "gi", vim.lsp.buf.implementation, desc = "[i]mplementation" },
-  { "gk", vim.lsp.buf.declaration, desc = "de[k]laration" },
-  { "gr", builtin.lsp_references, desc = "[r]eferences" },
-  { "gs", group = "[s]ymbols..." },
-  { "gsd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
-  { "gsw", builtin.lsp_workspace_symbols, desc = "[w]orkspace symbols" },
-  { "gt", vim.lsp.buf.type_definition, desc = "[t]ype definition" },
-  -- These are here just to add a label to a group which actual keybindings are
-  -- set up in different files.
-  { "<leader>r", group = "[r]epl" },
+  {
+    "<leader>sp",
+    function()
+      builtin.find_files {
+        cwd = vim.fs.joinpath(vim.fn.stdpath "data", "lazy"),
+      }
+    end,
+    desc = "[p]ackages",
+  },
+  {
+    "<leader>sc",
+    function()
+      builtin.find_files {
+        cwd = vim.fn.stdpath "config",
+      }
+    end,
+    desc = "[c]onfig",
+  },
+  { "<leader>so", "<cmd>Telescope node_modules list<cr>", desc = "n[o]de modules" },
+  { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "[h]elp tags" },
+  { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "[k]eymaps" },
+
+  -- { "<leader>t", group = "[t]oggle" },
+  -- { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer Trouble" },
+  -- { "<leader>tf", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix Trouble" },
+  -- { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
+  -- { "<leader>tr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
+  -- { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
+  -- { "<leader>tw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
+  --
+  -- { "<leader>u", group = "[u]nit Tests" },
+  -- { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
+  -- { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
+  -- { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
+  --
+  -- { "<leader>x", group = "[x]ecute" },
+  -- { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
+  -- { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
+  -- { "<leader>xh", group = "[h]url" },
+  -- { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
+  -- { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
+  -- { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
+  -- { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
+  -- { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
+  -- { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+  -- { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
+  -- { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
+  -- { "<leader>z", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
+  -- { "g", group = "[g]o to..." },
+  -- { "gd", vim.lsp.buf.definition, desc = "[d]efinition" },
+  -- { "gi", vim.lsp.buf.implementation, desc = "[i]mplementation" },
+  -- { "gk", vim.lsp.buf.declaration, desc = "de[k]laration" },
+  -- { "gr", builtin.lsp_references, desc = "[r]eferences" },
+  -- { "gs", group = "[s]ymbols..." },
+  -- { "gsd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
+  -- { "gsw", builtin.lsp_workspace_symbols, desc = "[w]orkspace symbols" },
+  -- { "gt", vim.lsp.buf.type_definition, desc = "[t]ype definition" },
+  -- -- These are here just to add a label to a group which actual keybindings are
+  -- -- set up in different files.
+  -- { "<leader>r", group = "[r]epl" },
 }

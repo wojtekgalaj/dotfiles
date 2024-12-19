@@ -31,3 +31,4 @@ opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20
 --- This is an attempt at a nicer normal mode cursor. One that would not get in the way of the text under it.
 --- Here I'm trying a thin underscore like cursor. It is difficult to spot though so I need a better option.
 -- opt.guicursor = "n-v-c:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:block-Cursor/lCursor,a:blinkon100-Cursor/lCursor"
+vim.g.doge_enable_mappings = 0

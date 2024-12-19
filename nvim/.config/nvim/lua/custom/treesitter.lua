@@ -28,7 +28,6 @@ c.setup {
   auto_install = true,
   highlight = { enable = true },
   indent = { enable = true, disable = { "python" } },
-  tree_docs = { enable = true },
   incremental_selection = {
     enable = true,
   },

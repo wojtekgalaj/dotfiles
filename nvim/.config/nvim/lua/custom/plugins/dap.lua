@@ -6,17 +6,8 @@ return {
       local dap = require "dap"
       local dapui = require "dapui"
       dapui.setup()
-      local Config = require "lazyvim.config"
 
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-
-      for name, sign in pairs(Config.icons.dap) do
-        sign = type(sign) == "table" and sign or { sign }
-        vim.fn.sign_define(
-          "Dap" .. name,
-          { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-        )
-      end
 
       for _, language in ipairs(ecma_script_ftps) do
         dap.configurations[language] = {
@@ -72,37 +63,25 @@ return {
         }
       end
     end,
-    keys = {
-      {
-        "<leader>dO",
-        function()
-          require("dap").step_out()
-        end,
-        desc = "Step Out",
-      },
-      {
-        "<leader>do",
-        function()
-          require("dap").step_over()
-        end,
-        desc = "Step Over",
-      },
-      {
-        "<leader>da",
-        function()
-          if vim.fn.filereadable ".vscode/launch.json" then
-            local dap_vscode = require "dap.ext.vscode"
-            dap_vscode.load_launchjs(nil, {
-              ["pwa-node"] = ecma_script_ftps,
-              ["chrome"] = ecma_script_ftps,
-              ["pwa-chrome"] = ecma_script_ftps,
-            })
-          end
-          require("dap").continue()
-        end,
-        desc = "Run with Args",
-      },
-    },
+    -- keys = {
+    --   {
+    --   },
+    --   {
+    --     "<leader>da",
+    --     function()
+    --       if vim.fn.filereadable ".vscode/launch.json" then
+    --         local dap_vscode = require "dap.ext.vscode"
+    --         dap_vscode.load_launchjs(nil, {
+    --           ["pwa-node"] = ecma_script_ftps,
+    --           ["chrome"] = ecma_script_ftps,
+    --           ["pwa-chrome"] = ecma_script_ftps,
+    --         })
+    --       end
+    --       require("dap").continue()
+    --     end,
+    --     desc = "Run with Args",
+    --   },
+    -- },
     dependencies = {
       "leoluz/nvim-dap-go",
       "rcarriga/nvim-dap-ui",

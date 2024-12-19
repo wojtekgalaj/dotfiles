@@ -8,7 +8,8 @@ return {
       dashboard = { enabled = true },
       notifier = {
         enabled = true,
-        timeout = 3000,
+        timeout = 2000,
+        top_down = false,
       },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },

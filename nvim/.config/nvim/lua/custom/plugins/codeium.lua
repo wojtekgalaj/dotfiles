@@ -20,9 +20,10 @@ return {
       local wk = require "which-key"
       wk.add {
         mode = "n",
-        { "<leader>c", group = "[c]ode" },
-        { "<leader>cc", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
-        { "<leader>ct", "<cmd>Codeium Toggle<cr>", desc = "Codeium [t]oggle" },
+        -- 'a' group is defined in plugin/keymaps.lua
+        { "<leader>aa", "<cmd>Codeium Auth<cr>", desc = "Codeium [a]uth" },
+        { "<leader>ac", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
+        { "<leader>ct", "<cmd>Codeium Toggle<cr>", desc = "Codeium [t]oggle, enable/disable" },
       }
       vim.g.codeium_filetypes = {
         oil = false,
