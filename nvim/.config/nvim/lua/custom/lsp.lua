@@ -5,26 +5,6 @@ if vim.g.obsidian then
   return
 end
 
----Checks if a file exists in the current directory and its parents
----@param filename string The name of the file to check. Will be expanded by `vim.fn.expand`
-local function find_config_file(filename)
-  local expand = vim.fn.expand
-  local cwd = expand "%:p:h"
-  local root = vim.fn.getcwd()
-
-  while cwd ~= root do
-    local path = cwd .. "/" .. filename
-    if vim.fn.filereadable(expand(path)) == 1 then
-      return true
-    end
-    cwd = vim.fn.fnamemodify(cwd, ":h")
-  end
-
-  -- Check the project root as well
-  local root_path = root .. "/" .. filename
-  return vim.fn.filereadable(root_path) == 1
-end
-
 -- → svelte.ask-to-enable-ts-plugin                                 default: true
 -- → svelte.enable-ts-plugin                                        default: false
 local servers = {
@@ -205,7 +185,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 require("lsp_lines").setup()
-vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+vim.diagnostic.config { virtual_text = true, virtual_lines = false }
 vim.keymap.set("", "<leader>le", function()
   local config = vim.diagnostic.config() or {}
   if config.virtual_text then
