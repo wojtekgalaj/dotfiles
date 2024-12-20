@@ -39,6 +39,10 @@ return {
         documentation = {
           auto_show = true,
         },
+        list = {
+          selection = "manual",
+          max_items = 50,
+        },
       },
 
       -- experimental signature help support

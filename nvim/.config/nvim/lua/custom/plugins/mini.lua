@@ -27,7 +27,7 @@ return {
           end,
         },
       }
-      require("mini.statusline").setup {}
+      require("custom.statusline").setup {}
     end,
   },
 }

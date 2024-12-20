@@ -7,9 +7,5 @@ return {
         svelte = "node",
       }
     end,
-    keys = {
-      { "<leader>rt", "<cmd>ReplToggle<cr>", desc = "Toggle nvim-repl" },
-      { "<leader>rc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl run cell" },
-    },
   },
 }

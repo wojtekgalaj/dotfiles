@@ -1,4 +1,3 @@
-local capabilities = nil
 local lspconfig = require "lspconfig"
 
 -- bail if this is obsidian insert mode
@@ -24,10 +23,6 @@ local function find_config_file(filename)
   -- Check the project root as well
   local root_path = root .. "/" .. filename
   return vim.fn.filereadable(root_path) == 1
-end
-
-if pcall(require, "cmp_nvim_lsp") then
-  capabilities = require("cmp_nvim_lsp").default_capabilities()
 end
 
 -- → svelte.ask-to-enable-ts-plugin                                 default: true
@@ -211,7 +206,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require("lsp_lines").setup()
 vim.diagnostic.config { virtual_text = false, virtual_lines = true }
-vim.keymap.set("", "<leader>l", function()
+vim.keymap.set("", "<leader>le", function()
   local config = vim.diagnostic.config() or {}
   if config.virtual_text then
     vim.diagnostic.config { virtual_text = false, virtual_lines = true }

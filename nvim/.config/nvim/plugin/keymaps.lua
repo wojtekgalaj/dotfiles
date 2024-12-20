@@ -51,26 +51,39 @@ which_key.add {
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
 
   { "<leader>a", group = "[a]i" },
-  -- AI related bindings are colocated with the plugins.
-  -- Right now, I am using Codeium so you can find these at lua/custom/plugins/codeium.lua.
+  { "<leader>aa", "<cmd>Codeium Auth<cr>", desc = "Codeium [a]uth" },
+  { "<leader>ac", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
+  { "<leader>at", "<cmd>Codeium Toggle<cr>", desc = "Codeium [t]oggle, enable/disable" },
+
+  --
+  { "<leader>b", group = "[b]uffer" },
+  { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
+  { "<leader>dw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
+  { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
+  --
 
   { "<leader>g", group = "[g]it" },
-  -- snacks brings a lot of bindings here. check lua/custom/plugins/snacks.lua
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },
+  { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
   { "<leader>gc", group = "[c]ommits" },
   { "<leader>gca", builtin.git_commits, desc = "[a]ll" },
   { "<leader>gcb", builtin.git_bcommits, desc = "[b]uffer" },
   { "<leader>gh", group = "[h]istory" },
   { "<leader>ghb", "<cmd>DiffviewFileHistory %<cr>", desc = "[b]uffer" },
   { "<leader>ghe", "<cmd>DiffviewFileHistory<cr>", desc = "[e]verything" },
-  { "<leader>gs", group = "[s]igns" },
-  { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
 
-  --
-  -- { "<leader>b", group = "[b]uffer" },
-  -- { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
-  --
-  -- { "<leader>d", group = "[d]atabase" },
+  { "<leader>d", group = "[d]iagnostics" },
+  { "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer toggle" },
+  { "<leader>df", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix toggle" },
+  { "<leader>dr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
+  { "<leader>dt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
+  {
+    "<leader>dT",
+    function()
+      vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    end,
+    desc = "[T]oggle on/off",
+  },
   --
   -- { "<leader>f", group = "quick[f]ix" },
   -- { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
@@ -82,11 +95,11 @@ which_key.add {
   -- -- this is an argument for leaving all the whichkey maps in the same file
   -- { "<leader>h", group = "[h]unk" },
   --
-  -- { "<leader>l", group = "[l]sp" },
-  -- { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
-  -- { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
-  -- { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
-  -- { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
+  { "<leader>l", group = "[l]sp" },
+  { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
+  { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
+  { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
+  { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
   { "<leader>s", group = "[s]earch" },
   -- { "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "files by [f]recency" },
@@ -119,14 +132,8 @@ which_key.add {
   { "<leader>so", "<cmd>Telescope node_modules list<cr>", desc = "n[o]de modules" },
   { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "[h]elp tags" },
   { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "[k]eymaps" },
+  { "<leader>ss", "<cmd>Telescope buffers<cr>", desc = "[s]ee buffers" },
 
-  -- { "<leader>t", group = "[t]oggle" },
-  -- { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer Trouble" },
-  -- { "<leader>tf", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix Trouble" },
-  -- { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
-  -- { "<leader>tr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
-  -- { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
-  -- { "<leader>tw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
   --
   -- { "<leader>u", group = "[u]nit Tests" },
   -- { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },

@@ -1,21 +1,4 @@
 return {
-  -- START CATPPUCCIN
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   integrations = {
-  --     telescope = {
-  --       enabled = true,
-  --       style = "nvchad",
-  --     },
-  --   },
-  --   config = function()
-  --     vim.o.termguicolors = true
-  --     vim.cmd.colorscheme "catppuccin"
-  --   end,
-  -- },
-  -- END CATPPUCCIN
 
   {
     "slugbyte/lackluster.nvim",
@@ -27,6 +10,16 @@ return {
       -- vim.cmd.colorscheme("lackluster-mint")
     end,
   },
+
+  -- {
+  --   "mathofprimes/nightvision-nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme "nightvision"
+  --     vim.g.nv_contrast = "soft"
+  --   end,
+  -- },
 
   -- {
   --   "olivercederborg/poimandres.nvim",
