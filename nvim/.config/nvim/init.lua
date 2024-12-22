@@ -8,6 +8,7 @@ vim.g.maplocalleader = " "
 
 local uv = vim.loop
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
 if not uv.fs_stat(lazypath) then
   vim.fn.system {
     "git",

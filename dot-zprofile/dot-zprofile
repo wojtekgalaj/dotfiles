@@ -20,8 +20,6 @@ export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export N_PREFIX=$HOME/.local
 export PATH=$N_PREFIX/bin:$PATH
 
-
-
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache

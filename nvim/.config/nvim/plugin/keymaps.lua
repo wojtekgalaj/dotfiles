@@ -49,19 +49,18 @@ which_key.add {
   { "<leader>e", vim.diagnostic.open_float, desc = "show [e]rror under cursor" },
   { "<leader>j", "<cmd>wa<cr>", desc = "[j]ust save all" },
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
-
+  --
   { "<leader>a", group = "[a]i" },
   { "<leader>aa", "<cmd>Codeium Auth<cr>", desc = "Codeium [a]uth" },
   { "<leader>ac", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
   { "<leader>at", "<cmd>Codeium Toggle<cr>", desc = "Codeium [t]oggle, enable/disable" },
-
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
   { "<leader>dw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
   { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
+  { "<leader>bz", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
   --
-
   { "<leader>g", group = "[g]it" },
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },
   { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
@@ -71,7 +70,7 @@ which_key.add {
   { "<leader>gh", group = "[h]istory" },
   { "<leader>ghb", "<cmd>DiffviewFileHistory %<cr>", desc = "[b]uffer" },
   { "<leader>ghe", "<cmd>DiffviewFileHistory<cr>", desc = "[e]verything" },
-
+  --
   { "<leader>d", group = "[d]iagnostics" },
   { "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer toggle" },
   { "<leader>df", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix toggle" },
@@ -85,15 +84,10 @@ which_key.add {
     desc = "[T]oggle on/off",
   },
   --
-  -- { "<leader>f", group = "quick[f]ix" },
-  -- { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
-  -- { "<leader>fk", "<cmd>cprex<cr>", desc = "prev [k]ob" },
-  -- { "<leader>fc", "<cmd>cclose<cr>", desc = "[c]lose" },
-  --
-  --
-  -- -- where is this defined?
-  -- -- this is an argument for leaving all the whichkey maps in the same file
-  -- { "<leader>h", group = "[h]unk" },
+  { "<leader>f", group = "quick[f]ix" },
+  { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
+  { "<leader>fk", "<cmd>cprex<cr>", desc = "prev [k]ob" },
+  { "<leader>fc", "<cmd>cclose<cr>", desc = "[c]lose" },
   --
   { "<leader>l", group = "[l]sp" },
   { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
@@ -102,14 +96,13 @@ which_key.add {
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
   { "<leader>s", group = "[s]earch" },
-  -- { "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "files by [f]recency" },
-  -- { "<leader>sb", builtin.buffers, desc = "[b]uffers" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
-  -- { "<leader>sm", multigrep.search, desc = "[m]ultigrep" },
-  -- { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
-  -- { "<leader>sn", notify.notify, desc = "[n]otifications" },
-  -- { "<leader>sr", builtin.resume, desc = "[r]esume last" },
-  -- { "<leader>ss", builtin.current_buffer_fuzzy_find, desc = "[s]tring in buffer" },
+  { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
+  { "<leader>sm", multigrep.search, desc = "[m]ultigrep" },
+  { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
+  { "<leader>sn", notify.notify, desc = "[n]otifications" },
+  { "<leader>sr", builtin.resume, desc = "[r]esume last" },
+  { "<leader>sb", builtin.current_buffer_fuzzy_find, desc = "string in [b]uffer" },
   { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
   {
     "<leader>sp",
@@ -152,7 +145,7 @@ which_key.add {
   -- { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
   -- { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
   -- { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
-  -- { "<leader>z", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
+  --
   -- { "g", group = "[g]o to..." },
   -- { "gd", vim.lsp.buf.definition, desc = "[d]efinition" },
   -- { "gi", vim.lsp.buf.implementation, desc = "[i]mplementation" },

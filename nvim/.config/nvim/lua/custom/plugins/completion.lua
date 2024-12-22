@@ -27,10 +27,7 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        completion = { "lsp", "path", "snippets", "buffer", "markdown" },
-        providers = {
-          markdown = { name = "RenderMarkdown", module = "render-markdown.integ.blink" },
-        },
+        default = { "lsp", "path" },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
@@ -46,7 +43,7 @@ return {
       },
 
       -- experimental signature help support
-      signature = { enabled = true },
+      signature = { enabled = false },
     },
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
