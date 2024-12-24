@@ -33,6 +33,11 @@ vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
 vim.keymap.set("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
 vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
+local actions = require "telescope.actions"
+vim.keymap.set({ "n", "i" }, "<C-f>", function()
+  actions.send_to_qflist()
+end, { desc = "<cmd>Telescope quickfix<cr>" })
+
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local notify = require("telescope").extensions.notify
@@ -60,6 +65,13 @@ which_key.add {
   { "<leader>dw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
   { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
   { "<leader>bz", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
+  --
+  { "<leader>r", group = "[r]epl" },
+  { "<leader>rt", "<cmd>ReplToggle<cr>", desc = "[t]oggle" },
+  { "<leader>rc", "<cmd>ReplClear<cr>", desc = "[c]lear" },
+  { "<leader>rr", "<cmd>ReplRunCell<cr>", desc = "[r]un cell" },
+  { "<leader>rn", "<cmd>ReplNewCell<cr>", desc = "[n]ew cell" },
+  { "<leader>ra", "<cmd>ReplSendArgs<cr>", desc = "send [a]rgs" },
   --
   { "<leader>g", group = "[g]it" },
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },

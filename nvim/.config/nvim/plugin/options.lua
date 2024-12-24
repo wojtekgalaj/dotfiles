@@ -11,11 +11,8 @@ opt.ignorecase = true
 
 opt.clipboard = "unnamedplus"
 
--- Case insensitive searching UNLESS /C or capital in search
-opt.ignorecase = true
-opt.smartcase = true
-
 opt.signcolumn = "yes"
+opt.hlsearch = false
 
 opt.shiftwidth = 2
 opt.tabstop = 2

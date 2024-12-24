@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = { "*" },
   callback = function()
     vim.opt_local.scrolloff = 6
   end,
