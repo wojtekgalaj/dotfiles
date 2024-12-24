@@ -1,5 +1,16 @@
 return {
   {
+    "saghen/blink.compat",
+    -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+    version = "*",
+    -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+    lazy = true,
+    -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+    opts = {
+      impersonate_nvim_cmp = true,
+    },
+  },
+  {
     "saghen/blink.cmp",
     -- use a release tag to download pre-built binaries
     version = "v0.*",
@@ -27,7 +38,17 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "lsp", "path" },
+        default = { "lsp", "codeium" },
+        providers = {
+          codeium = {
+            name = "Codeium",
+            module = "blink.compat.source",
+            score_offset = 100,
+            opts = {
+              impersonate_nvim_cmp = true,
+            },
+          },
+        },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
@@ -48,5 +69,6 @@ return {
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { "sources.default" },
+    dependencies = { "blink.compat" },
   },
 }

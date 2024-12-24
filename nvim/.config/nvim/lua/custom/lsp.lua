@@ -1,4 +1,5 @@
 local lspconfig = require "lspconfig"
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- bail if this is obsidian insert mode
 if vim.g.obsidian then
@@ -121,7 +122,7 @@ for name, config in pairs(servers) do
     config = {}
   end
   config = vim.tbl_deep_extend("force", {}, {
-    -- capabilities = capabilities,
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
   }, config)
 
   lspconfig[name].setup(config)

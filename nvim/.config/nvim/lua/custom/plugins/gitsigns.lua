@@ -41,6 +41,7 @@ return {
           end, { desc = "[r]eset visual hunk" })
           map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "[S]tage buffer" })
           map("n", "<leader>gu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
+          map("n", "<leader>tB", gitsigns.toggle_current_line_blame, { desc = "Toggle current line [B]lame" })
           map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset buffer" })
           map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
           map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this file" })
