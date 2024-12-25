@@ -24,6 +24,7 @@ alias awsl=awslocal
 alias cdkl=cdklocal
 alias cd=z
 alias v='nvim'
+alias ve='nvim -V1'
 alias vim='nvim'
 alias k='NVIM_APPNAME="kvim" nvim'
 alias t='NVIM_APPNAME="tvim" nvim'
