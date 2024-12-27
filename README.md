@@ -11,7 +11,7 @@ This is managed with GNU stow. You will need to install it on the system you are
 Once you have stow installed, clone this repository and from it's root directory issue the following command:
 
 ```sh
-stow --dotfiles *
+stow --dotfiles */
 ```
 
 This `--dotfiles` flag will preprocess everything and replace "dot-" with an actual .
