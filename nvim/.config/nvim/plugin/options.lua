@@ -5,7 +5,7 @@ local opt = vim.o
 -- You have to turn this one on :)
 opt.inccommand = "split"
 
-opt.completeopt = "menu,menuone,noselect,noinsert"
+opt.completeopt = "menu,noinsert"
 
 -- Best search settings :)
 opt.smartcase = true
