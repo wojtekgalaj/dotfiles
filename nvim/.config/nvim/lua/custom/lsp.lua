@@ -191,7 +191,10 @@ vim.keymap.set("", "<leader>le", function()
     vim.diagnostic.config { virtual_text = true, virtual_lines = false }
   end
 end, { desc = "Toggle lsp_lines" })
+
 require("typescript-tools").setup {
+  root_dir = lspconfig.util.root_pattern "tsconfig.json",
+  single_file_support = false,
   lspconfig = {
     capabilities = capabilities,
   },
