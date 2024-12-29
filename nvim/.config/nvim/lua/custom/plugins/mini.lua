@@ -11,7 +11,7 @@ return {
           find_left = "sF",
           highlight = "sh",
           replace = "sr",
-          update_n_lines = "sn",
+          update_n_lines = "",
         },
       }
       require("mini.jump").setup()
