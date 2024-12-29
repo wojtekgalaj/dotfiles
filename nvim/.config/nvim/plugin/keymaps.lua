@@ -40,9 +40,7 @@ end, { desc = "<cmd>Telescope quickfix<cr>" })
 
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
-local notify = require("telescope").extensions.notify
 local multigrep = require "private.telescope.multigrep"
-
 vim.g.miniindentscope_disable = true
 local toggle_indentscope_for_buffer = function()
   vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
@@ -112,7 +110,7 @@ which_key.add {
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
   { "<leader>sm", multigrep.search, desc = "[m]ultigrep" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
-  { "<leader>sn", notify.notify, desc = "[n]otifications" },
+  -- { "<leader>sn", notify.notify, desc = "[n]otifications" },
   { "<leader>sr", builtin.resume, desc = "[r]esume last" },
   { "<leader>sb", builtin.current_buffer_fuzzy_find, desc = "string in [b]uffer" },
   { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
