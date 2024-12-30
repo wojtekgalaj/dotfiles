@@ -1,7 +1,21 @@
 return {
+  {
+    "rockerBOO/boo-colorscheme-nvim",
+    enabled = false,
 
+    lazy = false,
+    priority = 1000,
+    init = function()
+      require("boo-colorscheme").use {
+        italic = false,
+        theme = "sunset_cloud",
+      }
+    end,
+  },
   {
     "slugbyte/lackluster.nvim",
+    enabled = true,
+
     lazy = false,
     priority = 1000,
     init = function()

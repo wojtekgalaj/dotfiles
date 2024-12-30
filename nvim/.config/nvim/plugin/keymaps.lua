@@ -33,11 +33,6 @@ vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
 vim.keymap.set("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
 vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
-local actions = require "telescope.actions"
-vim.keymap.set({ "n", "i" }, "<C-f>", function()
-  actions.send_to_qflist()
-end, { desc = "<cmd>Telescope quickfix<cr>" })
-
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local multigrep = require "private.telescope.multigrep"
@@ -93,6 +88,65 @@ which_key.add {
     end,
     desc = "[T]oggle on/off",
   },
+  --
+  { "<leader>c", group = "debug [c]ode" },
+  {
+    "<leader>cb",
+    function()
+      require("dap").toggle_breakpoint()
+    end,
+    desc = "toggle [b]reakpoint",
+  },
+  {
+    "<leader>cx",
+    function()
+      require("dap").clear_breakpoints()
+    end,
+    desc = "[x]lear breakpoints",
+  },
+  {
+    "<leader>cc",
+    function()
+      require("dap").continue()
+    end,
+    desc = "start or [c]ontinue debug session",
+  },
+  {
+    "<leader>cr",
+    function()
+      require("dap").restart()
+    end,
+    desc = "[r]estart debug session",
+  },
+  {
+    "<leader>ct",
+    function()
+      require("dap").terminate()
+    end,
+    desc = "[t]erminate debug session",
+  },
+  {
+    "<leader>cl",
+    function()
+      require("dap").list_breakpoints()
+    end,
+    desc = "[l]ist breakpoints",
+  },
+  {
+    "<leader>cs",
+    function()
+      require("dap").step_over()
+    end,
+    desc = "[s]tep over",
+  },
+  {
+    "<leader>ci",
+    function()
+      require("dap").step_into()
+    end,
+    desc = "step [i]nto",
+  },
+
   --
   { "<leader>f", group = "quick[f]ix" },
   { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },

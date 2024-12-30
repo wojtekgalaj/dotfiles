@@ -14,6 +14,13 @@ local servers = {
   dockerls = true,
   denols = {
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+    single_file_support = false,
+    settings = {
+      enable = true,
+      lint = true,
+      unstable = true,
+      enableTsPlugin = true,
+    },
   },
   bashls = true,
   html = {
@@ -182,7 +189,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 require("lsp_lines").setup()
-vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+
+vim.diagnostic.config {
+  virtual_text = true,
+  virtual_lines = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+    },
+  },
+}
+
 vim.keymap.set("", "<leader>le", function()
   local config = vim.diagnostic.config() or {}
   if config.virtual_text then
