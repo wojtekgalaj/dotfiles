@@ -56,8 +56,10 @@ bindkey '^e' edit-command-line
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH=$GOPATH/bin:$PATH
+export PATH=$HOME/go/bin/:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=$HOME/dev/scripts/bin/:$PATH
+export PATH=$HOME/.local/share/nvim/mason/bin/:$PATH
 
 export ANDROID_SDK=$HOME/Library/Android/sdk
 export GOPATH=/$HOME/golib
