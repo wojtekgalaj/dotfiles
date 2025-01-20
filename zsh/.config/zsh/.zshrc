@@ -87,6 +87,19 @@ eval "$(zoxide init zsh)"
 [ -s "/Users/wojtek/.bun/_bun" ] && source "/Users/wojtek/.bun/_bun"
 
 
+# This function is copied from the yazi documentation. It makes it so that
+# leaving yazi by pressign 'q' will change the cwd to the folder you were in.
+# To envoke the function just type 'y'.
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/wojtek/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
