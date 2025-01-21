@@ -26,3 +26,10 @@ vim.api.nvim_create_autocmd("FileType", {
     }
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = { "gitcommit" },
+  callback = function()
+    vim.cmd "SmearCursorToggle"
+  end,
+})

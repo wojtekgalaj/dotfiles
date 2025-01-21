@@ -14,7 +14,9 @@ opt.ignorecase = true
 opt.clipboard = "unnamedplus"
 
 opt.signcolumn = "yes"
-opt.hlsearch = false
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 opt.shiftwidth = 2
 opt.tabstop = 2

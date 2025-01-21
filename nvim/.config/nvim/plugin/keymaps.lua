@@ -75,6 +75,8 @@ which_key.add {
   { "<leader>gh", group = "[h]istory" },
   { "<leader>ghb", "<cmd>DiffviewFileHistory %<cr>", desc = "[b]uffer" },
   { "<leader>ghe", "<cmd>DiffviewFileHistory<cr>", desc = "[e]verything" },
+  { "<leader>ghq", "<cmd>DiffviewClose<cr>", desc = "[q]uit" },
+  { "<leader>ghr", "<cmd>DiffviewRefresh<cr>", desc = "[r]efresh" },
   --
   { "<leader>d", group = "[d]iagnostics" },
   { "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer toggle" },
@@ -162,7 +164,8 @@ which_key.add {
   { "<leader>s", group = "[s]earch" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
-  { "<leader>sm", multigrep.search, desc = "[m]ultigrep" },
+  { "<leader>sr", multigrep.search, desc = "[r]egex" },
+  { "<leader>sm", "<cmd>Noice<cr>", desc = "[m]essages" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
   -- { "<leader>sn", notify.notify, desc = "[n]otifications" },
   { "<leader>sr", builtin.resume, desc = "[r]esume last" },
@@ -192,10 +195,10 @@ which_key.add {
   { "<leader>ss", "<cmd>Telescope buffers<cr>", desc = "[s]ee buffers" },
 
   --
-  -- { "<leader>u", group = "[u]nit Tests" },
-  -- { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
-  -- { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
-  -- { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
+  { "<leader>u", group = "[u]nit Tests" },
+  { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
+  { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
+  { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
   --
   -- { "<leader>x", group = "[x]ecute" },
   -- { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },

@@ -38,7 +38,7 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "lsp", "codeium" },
+        default = { "lsp", "codeium", "path", "buffer" },
         providers = {
           codeium = {
             name = "Codeium",
@@ -58,13 +58,12 @@ return {
           auto_show = true,
         },
         list = {
-          selection = "manual",
           max_items = 50,
         },
       },
 
       -- experimental signature help support
-      signature = { enabled = false },
+      signature = { enabled = true },
     },
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it

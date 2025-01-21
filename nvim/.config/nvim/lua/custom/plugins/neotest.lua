@@ -7,14 +7,29 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-jest",
-      "marilari88/neotest-vitest",
     },
     config = function()
       require("neotest").setup {
+        discovery = {
+          enabled = true,
+          extension = { "ts", "tsx", "js", "jsx", "json", "css", "scss", "html" },
+        },
         adapters = {
-          require "neotest-vitest" {
-            filter_dir = function(dir)
-              return dir ~= "node_modules"
+          require "neotest-jest" {
+            discovery = {
+              enabled = true,
+            },
+            jestCommand = "yarn test --",
+            jestConfigFile = function(file)
+              if string.find(file, "/packages/") then
+                return string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
+              end
+
+              return vim.fn.getcwd() .. "/jest.config.ts"
+            end,
+            env = { CI = true },
+            cwd = function(path)
+              return vim.fn.getcwd()
             end,
           },
         },

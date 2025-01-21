@@ -12,6 +12,7 @@ local servers = {
   pyright = true,
   rescriptls = true,
   dockerls = true,
+  jinja_lsp = true,
   denols = {
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
     single_file_support = false,
@@ -44,11 +45,13 @@ local servers = {
   },
   lua_ls = {
     workspace = {
-      library = vim.api.nvim_get_runtime_file("", true),
-      checkThirdParty = true,
+      library = {
+        vim.env.VIMRUNTIME,
+        "${3rd}/love2d/love/src",
+      },
     },
     diagnostics = {
-      globals = { "vim", "require" },
+      globals = { "vim", "require", "describe", "it", "before_each", "after_each", "love" },
     },
 
     telemetry = { enable = false },
@@ -94,6 +97,7 @@ local servers = {
       "typescript",
       "typescriptreact",
       "svelte",
+      "jinja",
     },
   },
   graphql = true,

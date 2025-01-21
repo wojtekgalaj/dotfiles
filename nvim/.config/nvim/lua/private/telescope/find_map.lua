@@ -6,3 +6,5 @@ M.search = function()
     cwd = vim.fn.expand "%:p:h",
   }
 end
+
+return M
