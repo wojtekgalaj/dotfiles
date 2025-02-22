@@ -25,6 +25,7 @@ conform.setup {
     javascript = use_these_if_prettierrc_found(),
     svelte = use_these_if_prettierrc_found(),
     json = use_these_if_prettierrc_found(),
+    markdown = use_these_if_prettierrc_found(),
   },
   format_on_save = {
     lsp_format = "fallback",

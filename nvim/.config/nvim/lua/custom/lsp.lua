@@ -47,7 +47,6 @@ local servers = {
     workspace = {
       library = {
         vim.env.VIMRUNTIME,
-        "${3rd}/love2d/love/src",
       },
     },
     diagnostics = {
