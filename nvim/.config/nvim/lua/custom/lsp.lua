@@ -216,7 +216,7 @@ vim.keymap.set("", "<leader>le", function()
 end, { desc = "Toggle lsp_lines" })
 
 require("typescript-tools").setup {
-  root_dir = lspconfig.util.root_pattern "tsconfig.json",
+  root_dir = lspconfig.util.root_pattern("tsconfig.json", "tsconfig.dev.json"),
   single_file_support = false,
   lspconfig = {
     capabilities = capabilities,
