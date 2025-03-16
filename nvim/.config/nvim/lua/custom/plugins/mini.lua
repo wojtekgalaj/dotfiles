@@ -38,6 +38,7 @@ return {
           end,
         },
       }
+      require("mini.pairs").setup {}
       require("custom.statusline").setup {}
     end,
   },
