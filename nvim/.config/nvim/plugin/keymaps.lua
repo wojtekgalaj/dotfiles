@@ -41,6 +41,8 @@ local toggle_indentscope_for_buffer = function()
   vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
 end
 
+vim.cmd [[cab cc CodeCompanion]]
+
 which_key.add {
   { "<leader>", group = "[ ]" },
   { "<leader><space>", builtin.find_files, desc = "[ ] List files in project" },
@@ -49,9 +51,9 @@ which_key.add {
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
   --
   { "<leader>a", group = "[a]i" },
-  { "<leader>aa", "<cmd>Codeium Auth<cr>", desc = "Codeium [a]uth" },
-  { "<leader>ac", "<cmd>Codeium Chat<cr>", desc = "Codeium [c]hat" },
-  { "<leader>at", "<cmd>Codeium Toggle<cr>", desc = "Codeium [t]oggle, enable/disable" },
+  { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
+  { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion [a]ctions" },
+  { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion add [v]isual", mode = "v" },
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
@@ -159,6 +161,9 @@ which_key.add {
   { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
   { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
   { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
+  { "<leader>ls", "<cmd>LspStop<cr>", desc = "[s]top" },
+  { "<leader>lt", "<cmd>LspStop<cr>", desc = "s[t]art" },
+  { "<leader>li", "<cmd>LspInfo<cr>", desc = "[i]nfo" },
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
   { "<leader>s", group = "[s]earch" },
@@ -167,7 +172,6 @@ which_key.add {
   { "<leader>sr", multigrep.search, desc = "[r]egex" },
   { "<leader>sm", "<cmd>Noice<cr>", desc = "[m]essages" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
-  -- { "<leader>sn", notify.notify, desc = "[n]otifications" },
   { "<leader>sr", builtin.resume, desc = "[r]esume last" },
   { "<leader>sb", builtin.current_buffer_fuzzy_find, desc = "string in [b]uffer" },
   { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
@@ -195,23 +199,27 @@ which_key.add {
   { "<leader>ss", "<cmd>Telescope buffers<cr>", desc = "[s]ee buffers" },
 
   --
+  { "<leader>t", group = "[t]oggle" },
+  { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
+  --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
   { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
   { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
   --
-  -- { "<leader>x", group = "[x]ecute" },
-  -- { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
-  -- { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
-  -- { "<leader>xh", group = "[h]url" },
-  -- { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
-  -- { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
-  -- { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
-  -- { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
-  -- { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
-  -- { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
-  -- { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
-  -- { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
+  { "<leader>x", group = "[x]ecute" },
+  { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
+  { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
+
+  { "<leader>xh", group = "[h]url" },
+  { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
+  { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
+  { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
+  { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
+  { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
+  { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+  { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
+  { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
   --
   -- { "g", group = "[g]o to..." },
   -- { "gd", vim.lsp.buf.definition, desc = "[d]efinition" },

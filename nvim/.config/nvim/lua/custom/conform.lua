@@ -3,7 +3,7 @@ local conform = require "conform"
 -- This method checks for if a config file for your formatter exists before
 -- returning the formatters table or nil
 ---@param formatters? table
----@return table?
+---@return table
 local use_these_if_prettierrc_found = function(formatters)
   if not formatters then
     formatters = { "prettierd", "prettier" }
@@ -13,7 +13,7 @@ local use_these_if_prettierrc_found = function(formatters)
   if prettierrc_exists or prettierrc_json_exists then
     return formatters
   else
-    return nil
+    return {}
   end
 end
 

@@ -50,6 +50,7 @@ local servers = {
       },
     },
     diagnostics = {
+      disable = "lowercase-global",
       globals = { "vim", "require", "describe", "it", "before_each", "after_each", "love" },
     },
 
@@ -84,7 +85,6 @@ local servers = {
   tailwindcss = {
     root_dir = lspconfig.util.root_pattern "tailwind.config.*",
   },
-  eslint = true,
   cssls = true,
   emmet_language_server = {
     filetypes = {
@@ -93,8 +93,6 @@ local servers = {
       "scss",
       "javascript",
       "javascriptreact",
-      "typescript",
-      "typescriptreact",
       "svelte",
       "jinja",
     },
@@ -219,11 +217,37 @@ require("typescript-tools").setup {
   root_dir = lspconfig.util.root_pattern("tsconfig.json", "tsconfig.dev.json"),
   single_file_support = false,
   lspconfig = {
-    capabilities = capabilities,
+    capabilities = vim.tbl_deep_extend("force", capabilities, {
+      textDocument = {
+        positionEncodings = { "utf-16" },
+      },
+    }),
   },
+  on_attach = function(client, bufnr)
+    -- Force encoding on the client
+    client.offset_encoding = "utf-16"
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+    vim.keymap.set("n", "gs", function()
+      local ts_utils = require "typescript-tools.api"
+      local clients = vim.lsp.get_clients { name = "typescript-tools" }
+      if #clients == 0 then
+        print "TypeScript LSP not attached"
+        return
+      end
+
+      -- Use correct arguments for make_position_params
+      local params = vim.lsp.util.make_position_params(0, "utf-16")
+      print("Position params: " .. vim.inspect(params))
+
+      local _, err = pcall(ts_utils.go_to_source_definition, true)
+      if err then
+        print(err)
+      end
+    end, { buffer = bufnr, desc = "Go to source definition" })
+  end,
   settings = {
-    tsserver_plugins = {
-      "@styled/typescript-styled-plugin",
-    },
+    separate_diagnostic_server = true,
+    code_lens = "all",
   },
 }
