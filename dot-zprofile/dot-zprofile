@@ -1,5 +1,10 @@
 export ZDOTDIR=$HOME/.config/zsh
-export NODE_TLS_REJECT_UNAUTHORIZED="0"
+# I have added this originally because updateing mason and lazy deps 
+# would quite often but still randomly fail on certificate update.
+#
+# I get warnings in projen projects with this on however so I will look
+# for a better solution, just no time right now...... riiiight?
+# export NODE_TLS_REJECT_UNAUTHORIZED="0"
 
 export EDITOR=nvim
 
