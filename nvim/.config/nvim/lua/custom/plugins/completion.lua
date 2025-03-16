@@ -38,17 +38,7 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "lsp", "codeium", "path", "buffer" },
-        providers = {
-          codeium = {
-            name = "Codeium",
-            module = "blink.compat.source",
-            score_offset = 100,
-            opts = {
-              impersonate_nvim_cmp = true,
-            },
-          },
-        },
+        default = { "codecompanion", "lsp", "path", "buffer" },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
