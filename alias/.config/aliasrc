@@ -31,3 +31,4 @@ alias t='NVIM_APPNAME="tvim" nvim'
 alias l='NVIM_APPNAME="lvim" nvim'
 alias g='lazygit'
 alias path="echo $PATH | tr ':' '\n'"
+alias lazynpm='TERM=xterm lazynpm'

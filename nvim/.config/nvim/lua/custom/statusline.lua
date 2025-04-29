@@ -1,5 +1,4 @@
 local M = {}
-local codeium = require "codeium"
 
 function M.setup(opts)
   require("mini.statusline").setup {
@@ -21,7 +20,6 @@ function M.setup(opts)
           "%<", -- Mark general truncate point
           { hl = "MiniStatuslineFilename", strings = { filename } },
           "%=", -- End left alignment
-          { strings = { "󱚟:" .. require("codeium.virtual_text").status_string() } },
           { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
           { hl = mode_hl, strings = { search, location } },
         }

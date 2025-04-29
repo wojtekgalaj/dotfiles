@@ -11,6 +11,7 @@ end
 local servers = {
   pyright = true,
   rescriptls = true,
+  vacuum = true,
   dockerls = true,
   jinja_lsp = true,
   denols = {
@@ -82,9 +83,7 @@ local servers = {
       },
     },
   },
-  tailwindcss = {
-    root_dir = lspconfig.util.root_pattern "tailwind.config.*",
-  },
+  tailwindcss = true,
   cssls = true,
   emmet_language_server = {
     filetypes = {

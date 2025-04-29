@@ -1,3 +1,4 @@
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":/Users/wojtek/.config/zsh/completions:"* ]]; then export FPATH="/Users/wojtek/.config/zsh/completions:$FPATH"; fi
 # Copied from Luke's config for the Zoomer Shell
@@ -61,7 +62,7 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/go/bin/:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-export PATH=$HOME/dev/scripts/bin/:$PATH
+export PATH=$HOME/tui/dev/scripts/bin/:$PATH
 export PATH=$HOME/.local/share/nvim/mason/bin/:$PATH
 
 export ANDROID_SDK=$HOME/Library/Android/sdk

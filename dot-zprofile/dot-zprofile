@@ -31,3 +31,5 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 export PYTHON=/opt/homebrew/bin/python3
 export MANWIDTH=80
+
+source $HOME/api_keys.sh

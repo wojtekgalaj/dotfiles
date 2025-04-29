@@ -41,8 +41,6 @@ local toggle_indentscope_for_buffer = function()
   vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
 end
 
-vim.cmd [[cab cc CodeCompanion]]
-
 which_key.add {
   { "<leader>", group = "[ ]" },
   { "<leader><space>", builtin.find_files, desc = "[ ] List files in project" },
@@ -57,7 +55,6 @@ which_key.add {
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
-  { "<leader>dw", "<cmd>set invwrap<cr>", desc = "Word [w]rap" },
   { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
   { "<leader>bz", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
   --
@@ -83,7 +80,6 @@ which_key.add {
   { "<leader>d", group = "[d]iagnostics" },
   { "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer toggle" },
   { "<leader>df", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix toggle" },
-  { "<leader>dr", "<cmd>ReplToggle<cr>", desc = "[r]epl" },
   { "<leader>dt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
   {
     "<leader>dT",
@@ -150,7 +146,10 @@ which_key.add {
     end,
     desc = "step [i]nto",
   },
+  ---
 
+  { "<leader>w", group = "[w]rite... docs" },
+  { "<leader>wd", group = "[d]ocumenation for function" },
   --
   { "<leader>f", group = "quick[f]ix" },
   { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
@@ -201,6 +200,7 @@ which_key.add {
   --
   { "<leader>t", group = "[t]oggle" },
   { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
+  { "<leader>tm", "<cmd>Markview<cr>", desc = "[m]arkdown view" },
   --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },

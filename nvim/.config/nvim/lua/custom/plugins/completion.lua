@@ -38,7 +38,16 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "codecompanion", "lsp", "path", "buffer" },
+        default = { "avante", "lsp", "path" },
+        providers = {
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+            opts = {
+              -- options for blink-cmp-avante
+            },
+          },
+        },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
@@ -58,6 +67,6 @@ return {
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { "sources.default" },
-    dependencies = { "blink.compat" },
+    dependencies = { "blink.compat", "Kaiser-Yang/blink-cmp-avante" },
   },
 }
