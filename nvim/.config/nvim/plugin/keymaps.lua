@@ -200,7 +200,7 @@ which_key.add {
   --
   { "<leader>t", group = "[t]oggle" },
   { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
-  { "<leader>tm", "<cmd>Markview<cr>", desc = "[m]arkdown view" },
+  { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "[m]arkdown view" },
   --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
