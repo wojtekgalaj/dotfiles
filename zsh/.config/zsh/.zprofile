@@ -1,1 +1,40 @@
-dotfiles/dot-zprofile/dot-zprofile
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh"
+export ZDOTDIR=$HOME/.config/zsh
+# I have added this originally because updateing mason and lazy deps 
+# would quite often but still randomly fail on certificate update.
+#
+# I get warnings in projen projects with this on however so I will look
+# for a better solution, just no time right now...... riiiight?
+# export NODE_TLS_REJECT_UNAUTHORIZED="0"
+
+export EDITOR=nvim
+
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
+export PATH=./:$PATH
+
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/.local/npm-global/bin:$PATH
+export PATH=$HOME/.emacs.d/bin:$PATH
+export PATH=$HOME/Games/DwarfFortress:$PATH
+export PATH=/usr/local/Cellar/emacs-plus@28/28.0.50/bin:$PATH
+export PATH=$HOME/.config/composer/vendor/bin:$PATH
+
+
+export NPM_PACKAGES=$HOME/.local/npm-global
+export NPM_CONFIG_USERCONFIG=$HOME/.config/npmrc
+export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
+export N_PREFIX=$HOME/.local
+export PATH=$N_PREFIX/bin:$PATH
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+export PYTHON=/opt/homebrew/bin/python3
+export MANWIDTH=80
+
+source $HOME/api_keys.sh
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh"
