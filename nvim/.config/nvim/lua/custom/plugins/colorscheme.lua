@@ -24,7 +24,29 @@ return {
       -- vim.cmd.colorscheme("lackluster-mint")
     end,
   },
-
+  {
+    "everviolet/nvim",
+    name = "evergarden",
+    priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+    enabled = false,
+    opts = {
+      theme = {
+        variant = "fall", -- 'winter'|'fall'|'spring'|'summer'
+        accent = "green",
+      },
+      editor = {
+        transparent_background = false,
+        sign = { color = "none" },
+        float = {
+          color = "mantle",
+          invert_border = false,
+        },
+        completion = {
+          color = "surface0",
+        },
+      },
+    },
+  },
   -- {
   --   "mathofprimes/nightvision-nvim",
   --   lazy = false,
