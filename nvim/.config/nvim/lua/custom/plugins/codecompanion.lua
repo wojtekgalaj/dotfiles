@@ -1,10 +1,11 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    config = false,
+    config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "zbirenbaum/copilot.lua",
     },
   },
 }

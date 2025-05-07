@@ -1,6 +1,10 @@
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- !!!!  THIS IS DISABLED. I AM BACK TO CODECOMPANION   !!!!
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 return {
   {
     "yetone/avante.nvim",
+    enabled = false,
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -49,6 +53,10 @@ return {
           latex = {
             enable = false,
           },
+          heading = {
+            enabled = false,
+          },
+          render_modes = { "n" },
           file_types = { "markdown", "Avante" },
         },
         ft = { "markdown", "Avante" },
