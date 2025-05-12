@@ -247,6 +247,6 @@ require("typescript-tools").setup {
   end,
   settings = {
     separate_diagnostic_server = true,
-    code_lens = "all",
+    code_lens = "off",
   },
 }
