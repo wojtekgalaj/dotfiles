@@ -1,20 +1,5 @@
 local set = vim.keymap.set
 
-set("n", "<Left>", "<c-w>5<")
-set("n", "<Right>", "<c-w>5>")
-set("n", "<Up>", "<C-W>+")
-set("n", "<Down>", "<C-W>-")
-
-set("n", "<C-J>", "<C-W><C-J>")
-set("n", "<C-L>", "<C-W><C-L>")
-set("n", "<C-K>", "<C-W><C-K>")
-set("n", "<C-H>", "<C-W><C-H>")
-vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
-vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
-vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
-vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
-vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
-vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNext<CR>", { silent = true })
 -- Remap for dealing with word wrap
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
