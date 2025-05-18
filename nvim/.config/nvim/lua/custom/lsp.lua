@@ -113,7 +113,9 @@ local servers_to_install = vim.tbl_filter(function(key)
   end
 end, vim.tbl_keys(servers))
 
-require("mason").setup()
+require("mason").setup {
+  automatic_enabled = false,
+}
 
 --- These are servers not covered in the servers list
 local ensure_installed = {}
