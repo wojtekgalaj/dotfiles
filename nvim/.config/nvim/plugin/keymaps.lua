@@ -9,7 +9,10 @@ set("i", "jk", "<Esc>")
 
 set("n", "<esc>", "<cmd>noh<cr>")
 
--- TODO: This is not the right place for this. Find a better one.
+set("n", "<M-h>", "<c-w>5<")
+set("n", "<M-l>", "<c-w>5>")
+set("n", "<M-k>", "<C-W>+")
+set("n", "<M-j>", "<C-W>-")
 
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
