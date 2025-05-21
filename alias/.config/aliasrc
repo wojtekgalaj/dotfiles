@@ -33,3 +33,4 @@ alias g='lazygit'
 alias path="echo $PATH | tr ':' '\n'"
 alias lazynpm='TERM=xterm lazynpm'
 alias pj='npx projen'
+alias charm='ssh git.charm.sh'
