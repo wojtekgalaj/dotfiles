@@ -27,7 +27,6 @@ c.setup {
   ignore_install = { "javascript" },
   auto_install = true,
   highlight = { enable = true },
-  indent = { enable = true, disable = { "python" } },
   incremental_selection = {
     enable = true,
   },
@@ -37,10 +36,6 @@ c.setup {
 }
 
 local opt = vim.opt
-
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 5
 
 local parsers_config = require("nvim-treesitter.parsers").get_parser_configs()
 -- Register this parser manually to nvim-treesitter's parser directory
