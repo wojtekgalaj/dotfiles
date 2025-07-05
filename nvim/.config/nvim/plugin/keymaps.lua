@@ -26,7 +26,13 @@ end
 
 which_key.add {
   { "<leader>", group = "[ ]" },
-  { "<leader><space>", builtin.find_files, desc = "[ ] List files in project" },
+  {
+    "<leader><space>",
+    function()
+      builtin.find_files { hidden = true }
+    end,
+    desc = "[ ] List files in project",
+  },
   { "<leader>e", vim.diagnostic.open_float, desc = "show [e]rror under cursor" },
   { "<leader>j", "<cmd>wa<cr>", desc = "[j]ust save all" },
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
