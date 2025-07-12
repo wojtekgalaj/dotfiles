@@ -7,12 +7,9 @@ local M = {}
 function M.is_in_target_folder(filepath, target_folder)
   local Path = require "plenary.path"
   local path = Path:new(filepath):parent()
-  while path.filename ~= "/" do
-    local basename = vim.fn.fnamemodify(path.filename, ":t")
-    if path:make_relative "/" == target_folder or basename == target_folder then
-      return true
-    end
-    path = path:parent()
+  local basename = vim.fn.fnamemodify(path.filename, ":t")
+  if path:make_relative "/" == target_folder or basename == target_folder then
+    return true
   end
   return false
 end
