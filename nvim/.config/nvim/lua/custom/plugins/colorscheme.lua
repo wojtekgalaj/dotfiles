@@ -1,7 +1,7 @@
 return {
   {
     "rockerBOO/boo-colorscheme-nvim",
-    enabled = false,
+    enabled = true,
 
     lazy = false,
     priority = 1000,
@@ -14,7 +14,7 @@ return {
   },
   {
     "slugbyte/lackluster.nvim",
-    enabled = true,
+    enabled = false,
 
     lazy = false,
     priority = 1000,
