@@ -72,3 +72,6 @@ function y() {
 eval "$(atuin init zsh)"
 . "/Users/wojtek/.deno/env"
 
+
+# opencode
+export PATH=/Users/wojtek/.opencode/bin:$PATH
