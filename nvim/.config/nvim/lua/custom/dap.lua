@@ -3,44 +3,9 @@ local ui = require "dapui"
 
 require("dapui").setup()
 
-require("dap").adapters["pwa-node"] = {
-  type = "server",
-  host = "localhost",
-  port = "${port}",
-  executable = {
-    command = "node",
-    -- 💀 Make sure to update this path to point to your installation
-    args = {
-      "/Users/wojtek/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-      "${port}",
-    },
-  },
-}
-
-dap.configurations.typescript = {
-  {
-    type = "pwa-node",
-    request = "launch",
-    name = "Launch file",
-    runtimeExecutable = "deno",
-    runtimeArgs = {
-      "run",
-      "--inspect-wait",
-      "--allow-all",
-    },
-    program = "${file}",
-    args = function()
-      local args = {}
-      vim.ui.input({
-        prompt = "Args:",
-      }, function(input)
-        args = input
-      end)
-      return args
-    end,
-    cwd = "${workspaceFolder}",
-    attachSimplePort = 9229,
-  },
+require("mason-nvim-dap").setup {
+  ensure_installed = { "pwa-node" },
+  handlers = {},
 }
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })

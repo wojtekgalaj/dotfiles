@@ -7,9 +7,10 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
+      "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
-      require "custom.dap"
+      require "custom/dap"
     end,
   },
 }
