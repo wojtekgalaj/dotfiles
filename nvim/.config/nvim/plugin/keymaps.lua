@@ -154,6 +154,11 @@ which_key.add {
   { "<leader>li", "<cmd>LspInfo<cr>", desc = "[i]nfo" },
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
+  { "<leader>o", group = "[o]bsidian" },
+  { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "quick switchero[o]" },
+  { "<leader>oa", "<cmd>ObsidianOpen<cr>", desc = "open in [app]" },
+  { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "[s]earch" },
+  --
   { "<leader>s", group = "[s]earch" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
