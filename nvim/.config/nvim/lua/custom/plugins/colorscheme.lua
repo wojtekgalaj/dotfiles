@@ -1,7 +1,27 @@
 return {
+  -- Lua
+  {
+    "f-person/auto-dark-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      -- {
+      --   set_dark_mode = function()
+      --     vim.cmd.colorscheme "evergarden"
+      --   end,
+      --   set_light_mode = function()
+      --     vim.cmd.colorscheme "morning"
+      --   end,
+      --   update_interval = 3000,
+      --   fallback = "dark",
+      -- },
+    },
+  },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     "rockerBOO/boo-colorscheme-nvim",
-    enabled = true,
+    enabled = false,
 
     lazy = false,
     priority = 1000,
@@ -28,7 +48,6 @@ return {
     "everviolet/nvim",
     name = "evergarden",
     priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
-    enabled = false,
     opts = {
       theme = {
         variant = "fall", -- 'winter'|'fall'|'spring'|'summer'

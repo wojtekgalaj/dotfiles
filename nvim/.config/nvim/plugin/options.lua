@@ -1,7 +1,7 @@
 local opt = vim.o
 
 ----- Interesting Options -----
-
+vim.cmd.colorscheme "catppuccin"
 -- You have to turn this one on :)
 opt.inccommand = "split"
 
