@@ -195,6 +195,14 @@ which_key.add {
   { "<leader>t", group = "[t]oggle" },
   { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
   { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "[m]arkdown view" },
+  {
+    "<leader>tt",
+    function()
+      local current = vim.diagnostic.config().virtual_lines
+      vim.diagnostic.config { virtual_lines = not current }
+    end,
+    desc = "[t]ypescript lines",
+  },
   --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
