@@ -3,7 +3,7 @@ wk.setup {
   preset = "helix",
   notify = true,
   plugins = {
-    marks = false,
+    marks = true,
     presets = {
       operators = true,
       motions = true,

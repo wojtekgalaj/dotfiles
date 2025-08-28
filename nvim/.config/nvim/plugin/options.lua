@@ -22,6 +22,7 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.conceallevel = 2
+opt.tm = 200
 
 opt.scrolloff = 6
 

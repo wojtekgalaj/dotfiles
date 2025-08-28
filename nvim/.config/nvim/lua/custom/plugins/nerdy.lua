@@ -1,5 +1,5 @@
+-- This plugin is the one to use when searching for nerdfont glyphs
 return {
-
   -- Lazy
   {
     "2kabhishek/nerdy.nvim",

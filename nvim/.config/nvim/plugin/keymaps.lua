@@ -17,6 +17,7 @@ set("n", "<down>", "<C-W>-")
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local multigrep = require "private.telescope.multigrep"
+local gitsigns = require "gitsigns"
 
 vim.g.miniindentscope_disable = true
 
@@ -25,17 +26,18 @@ local toggle_indentscope_for_buffer = function()
 end
 
 which_key.add {
-  { "<leader>", group = "[ ]" },
+  { "<leader>", group = "[keymaps]" },
   {
     "<leader><space>",
     function()
       builtin.find_files { hidden = true }
     end,
-    desc = "[ ] List files in project",
+    desc = "[space] List files in project",
   },
   { "<leader>e", vim.diagnostic.open_float, desc = "show [e]rror under cursor" },
   { "<leader>j", "<cmd>wa<cr>", desc = "[j]ust save all" },
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
+  { "<leader>qq", "<cmd>qa!<cr>", desc = "[qq]uit!" },
   --
   { "<leader>a", group = "[a]i" },
   { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
@@ -45,7 +47,7 @@ which_key.add {
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
   { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
-  { "<leader>bz", "<cmd>:tabnew %<cr>", desc = "[z]oom current buffer" },
+  { "<leader>bo", "<cmd>:tabnew %<cr>", desc = "[o]nly in a new tab" },
   --
   { "<leader>r", group = "[r]epl" },
   { "<leader>rt", "<cmd>ReplToggle<cr>", desc = "[t]oggle" },
@@ -55,6 +57,26 @@ which_key.add {
   { "<leader>ra", "<cmd>ReplSendArgs<cr>", desc = "send [a]rgs" },
   --
   { "<leader>g", group = "[g]it" },
+  {
+    "<leader>gs",
+    gitsigns.stage_hunk,
+    desc = "[s]tage hunk",
+  },
+  {
+    "<leader>gd",
+    gitsigns.diffthis,
+    desc = "[d]iff",
+  },
+  {
+    "<leader>gp",
+    gitsigns.preview_hunk,
+    desc = "[p]review hunk",
+  },
+  {
+    "<leader>gx",
+    gitsigns.preview_hunk_inline,
+    desc = "show [x]ed lines",
+  },
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },
   { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
   { "<leader>gc", group = "[c]ommits" },
@@ -66,7 +88,7 @@ which_key.add {
   { "<leader>ghq", "<cmd>DiffviewClose<cr>", desc = "[q]uit" },
   { "<leader>ghr", "<cmd>DiffviewRefresh<cr>", desc = "[r]efresh" },
   --
-  { "<leader>d", group = "[d]iagnostics" },
+  { "<leader>d", group = "[d]iagnostics with trouble" },
   { "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer toggle" },
   { "<leader>df", "<cmd>Trouble qflist toggle<cr>", desc = "Quick[f]ix toggle" },
   { "<leader>dt", "<cmd>Trouble diagnostics toggle<cr>", desc = "[t]rouble" },
@@ -78,7 +100,8 @@ which_key.add {
     desc = "[T]oggle on/off",
   },
   --
-  { "<leader>c", group = "debug [c]ode" },
+  { "<leader>c", group = "[c]ode" },
+  { "<leader>ca", vim.lsp.buf.code_action, desc = "Code [a]ction" },
   {
     "<leader>cb",
     function()
@@ -136,17 +159,22 @@ which_key.add {
     desc = "step [i]nto",
   },
   ---
-
-  { "<leader>w", group = "[w]rite... docs" },
-  { "<leader>wd", group = "[d]ocumenation for function" },
-  --
-  { "<leader>f", group = "quick[f]ix" },
-  { "<leader>fj", "<cmd>cnext<cr>", desc = "next [j]ob" },
-  { "<leader>fk", "<cmd>cprex<cr>", desc = "prev [k]ob" },
-  { "<leader>fc", "<cmd>cclose<cr>", desc = "[c]lose" },
+  {
+    "<leader>f",
+    group = "[f]iletype specific",
+    mode = { "n", "v" },
+    cond = function()
+      return vim.bo.filetype == "hurl"
+    end,
+    { "<leader>fA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
+    { "<leader>fa", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
+    { "<leader>fe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
+    { "<leader>fm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
+    { "<leader>fs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
+    { "<leader>fv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+  },
   --
   { "<leader>l", group = "[l]sp" },
-  { "<leader>la", vim.lsp.buf.code_action, desc = "Code [a]ction" },
   { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
   { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
   { "<leader>ls", "<cmd>LspStop<cr>", desc = "[s]top" },
@@ -154,10 +182,21 @@ which_key.add {
   { "<leader>li", "<cmd>LspInfo<cr>", desc = "[i]nfo" },
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
-  { "<leader>o", group = "[o]bsidian" },
+  { "<leadej>o", group = "[o]bsidian" },
   { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "quick switchero[o]" },
   { "<leader>oa", "<cmd>ObsidianOpen<cr>", desc = "open in [app]" },
   { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "[s]earch" },
+  --
+  { "<leader>i", group = "[i]nsert", mode = { "n", "v" } },
+  {
+    "<leader>ie",
+    function()
+      require("nvim-emmet").wrap_with_abbreviation()
+    end,
+    mode = { "n", "v" },
+    desc = "[e]mmet surround",
+  },
+  { "<leader>ii", "<cmd>Nerdy<cr>", desc = "nerd [icon]" },
   --
   { "<leader>s", group = "[s]earch" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
@@ -212,27 +251,5 @@ which_key.add {
   { "<leader>x", group = "[x]ecute" },
   { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
   { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
-
-  { "<leader>xh", group = "[h]url" },
-  { "<leader>xhA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
-  { "<leader>xha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
-  { "<leader>xhe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
-  { "<leader>xhm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
-  { "<leader>xhs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
-  { "<leader>xhv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
   { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
-  { "<leader>xs", "<cmd>source ../lua/custom/snippets/all.lua<cr>", desc = "Reload [s]nippets" },
-  --
-  -- { "g", group = "[g]o to..." },
-  -- { "gd", vim.lsp.buf.definition, desc = "[d]efinition" },
-  -- { "gi", vim.lsp.buf.implementation, desc = "[i]mplementation" },
-  -- { "gk", vim.lsp.buf.declaration, desc = "de[k]laration" },
-  -- { "gr", builtin.lsp_references, desc = "[r]eferences" },
-  -- { "gs", group = "[s]ymbols..." },
-  -- { "gsd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
-  -- { "gsw", builtin.lsp_workspace_symbols, desc = "[w]orkspace symbols" },
-  -- { "gt", vim.lsp.buf.type_definition, desc = "[t]ype definition" },
-  -- -- These are here just to add a label to a group which actual keybindings are
-  -- -- set up in different files.
-  -- { "<leader>r", group = "[r]epl" },
 }

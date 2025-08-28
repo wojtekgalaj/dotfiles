@@ -90,6 +90,7 @@ local servers = {
       "html",
       "css",
       "scss",
+      "javascript",
       "javascriptreact",
       "svelte",
       "jinja",
@@ -112,9 +113,7 @@ local servers_to_install = vim.tbl_filter(function(key)
   end
 end, vim.tbl_keys(servers))
 
-require("mason").setup {
-  automatic_enabled = false,
-}
+require("mason").setup()
 
 --- These are servers not covered in the servers list
 local ensure_installed = {}
@@ -189,10 +188,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+require("lspconfig").gdscript.setup(capabilities)
+
 require("lsp_lines").setup()
 
 vim.diagnostic.config {
-  virtual_text = false,
+  virtual_text = true,
   virtual_lines = false,
   signs = {
     text = {
@@ -214,8 +215,7 @@ vim.keymap.set("", "<leader>le", function()
 end, { desc = "Toggle lsp_lines" })
 
 require("typescript-tools").setup {
-  root_dir = lspconfig.util.root_pattern("tsconfig.json", "tsconfig.dev.json")
-    and not lspconfig.util.root_pattern "svelte.config.js",
+  root_dir = lspconfig.util.root_pattern("tsconfig.json", "tsconfig.dev.json"),
   single_file_support = false,
   lspconfig = {
     capabilities = vim.tbl_deep_extend("force", capabilities, {
@@ -252,3 +252,10 @@ require("typescript-tools").setup {
     code_lens = "off",
   },
 }
+
+-- local is_godot_project = vim.fn.getcwd() .. "/project.godot"
+-- print(is_godot_project)
+--
+-- if is_godot_project then
+--   vim.fn.serverstart "~/.config/godothost"
+-- end
