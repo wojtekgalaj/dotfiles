@@ -235,6 +235,14 @@ which_key.add {
   { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
   { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "[m]arkdown view" },
   {
+    "<leader>tg",
+    function()
+      local home = vim.fn.getenv "HOME"
+      vim.fn.serverstart(home .. "/.config/godothost")
+    end,
+    desc = "[g]odot server",
+  },
+  {
     "<leader>tt",
     function()
       local current = vim.diagnostic.config().virtual_lines
