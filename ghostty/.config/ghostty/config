@@ -7,7 +7,7 @@ window-padding-color = background
 
 confirm-close-surface = false
 
-theme = dark:catppuccin-frappe,light:catppuccin-latte
+theme = dark:catppuccin frappe,light:catppuccin latte
 
 keybind = global:super+j=toggle_quick_terminal
 
