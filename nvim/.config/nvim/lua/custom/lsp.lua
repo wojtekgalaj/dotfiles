@@ -1,5 +1,16 @@
-local lspconfig = require "lspconfig"
+local lsp_util = require "vim.lsp.util"
 local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+local function root_pattern(...)
+  local patterns = { ... }
+  return function(startpath)
+    local found = vim.fs.find(patterns, { upward = true, path = startpath or vim.api.nvim_buf_get_name(0) })
+    if found and found[1] then
+      return vim.fs.dirname(found[1])
+    end
+    return nil
+  end
+end
 
 -- bail if this is obsidian insert mode
 if vim.g.obsidian then
@@ -14,16 +25,16 @@ local servers = {
   vacuum = true,
   dockerls = true,
   jinja_lsp = true,
-  denols = {
-    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-    single_file_support = false,
-    settings = {
-      enable = true,
-      lint = true,
-      unstable = true,
-      enableTsPlugin = true,
-    },
-  },
+  -- denols = {
+  --   root_dir = root_pattern("deno.json", "deno.jsonc"),
+  --   single_file_support = false,
+  --   settings = {
+  --     enable = true,
+  --     lint = true,
+  --     unstable = true,
+  --     enableTsPlugin = true,
+  --   },
+  -- },
   bashls = true,
   html = {
     filetypes = { "html" },
@@ -77,6 +88,7 @@ local servers = {
     },
   },
   svelte = {
+    root_dir = root_pattern("package.json", "svelte.config.js", "svelte.config.cjs"),
     settings = {
       svelte = {
         enableTsPlugin = true,
@@ -131,21 +143,13 @@ for name, config in pairs(servers) do
   config = vim.tbl_deep_extend("force", {}, {
     capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
   }, config)
-
-  lspconfig[name].setup(config)
+  vim.lsp.enable(name)
 end
 
 -- Lua Setup
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
--- I am pretty sure that this this repeated.
-for _, lsp in ipairs(servers) do
-  require("lspconfig")[lsp].setup {
-    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
-  }
-end
 
 --- Disable semantic tokens for these filetypes
 local disable_semantic_tokens = { "lua" }
@@ -188,8 +192,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-require("lspconfig").gdscript.setup(capabilities)
-
 require("lsp_lines").setup()
 
 vim.diagnostic.config {
@@ -215,7 +217,7 @@ vim.keymap.set("", "<leader>le", function()
 end, { desc = "Toggle lsp_lines" })
 
 require("typescript-tools").setup {
-  root_dir = lspconfig.util.root_pattern("tsconfig.json", "tsconfig.dev.json"),
+  root_dir = root_pattern("tsconfig.json", "tsconfig.dev.json"),
   single_file_support = false,
   lspconfig = {
     capabilities = vim.tbl_deep_extend("force", capabilities, {
@@ -238,7 +240,7 @@ require("typescript-tools").setup {
       end
 
       -- Use correct arguments for make_position_params
-      local params = vim.lsp.util.make_position_params(0, "utf-16")
+      local params = lsp_util.make_position_params(0, "utf-16")
       print("Position params: " .. vim.inspect(params))
 
       local _, err = pcall(ts_utils.go_to_source_definition, true)
