@@ -4,8 +4,19 @@ local make_entry = require "telescope.make_entry"
 local pickers = require "telescope.pickers"
 local themes = require "telescope.themes"
 
-local flatten = vim.tbl_flatten
-
+local function flatten(tbl)
+  local result = {}
+  for _, v in ipairs(tbl) do
+    if type(v) == "table" then
+      for _, item in ipairs(v) do
+        table.insert(result, item)
+      end
+    else
+      table.insert(result, v)
+    end
+  end
+  return result
+end
 local M = {}
 M.search = function(opts)
   opts = opts or {}
