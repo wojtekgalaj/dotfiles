@@ -1,21 +1,22 @@
-local lsp_util = require "vim.lsp.util"
-local capabilities = require("blink.cmp").get_lsp_capabilities()
+ local lsp_util = require "vim.lsp.util"
+ local capabilities = require("blink.cmp").get_lsp_capabilities()
+ -- bail if this is obsidian insert mode
+ if vim.g.obsidian then
+   return
+ end
 
-local function root_pattern(...)
-  local patterns = { ... }
-  return function(startpath)
-    local found = vim.fs.find(patterns, { upward = true, path = startpath or vim.api.nvim_buf_get_name(0) })
-    if found and found[1] then
-      return vim.fs.dirname(found[1])
-    end
-    return nil
-  end
-end
-
--- bail if this is obsidian insert mode
-if vim.g.obsidian then
-  return
-end
+ local function deep_extend_force(target, ...)
+   for _, source in ipairs({...}) do
+     for k, v in pairs(source) do
+       if type(v) == "table" and type(target[k]) == "table" then
+         deep_extend_force(target[k], v)
+       else
+         target[k] = v
+       end
+     end
+   end
+   return target
+ end
 
 -- → svelte.ask-to-enable-ts-plugin                                 default: true
 -- → svelte.enable-ts-plugin                                        default: false
@@ -87,14 +88,13 @@ local servers = {
       },
     },
   },
-  svelte = {
-    root_dir = root_pattern("package.json", "svelte.config.js", "svelte.config.cjs"),
-    settings = {
-      svelte = {
-        enableTsPlugin = true,
-      },
-    },
-  },
+   svelte = {
+     settings = {
+       svelte = {
+         enableTsPlugin = true,
+       },
+     },
+   },
   tailwindcss = true,
   cssls = true,
   emmet_language_server = {
@@ -116,14 +116,18 @@ local servers = {
 }
 
 --- List of keys of the servers table that need to be installed manually
-local servers_to_install = vim.tbl_filter(function(key)
-  local t = servers[key]
-  if type(t) == "table" then
-    return not t.manual_install
+local servers_to_install = {}
+for key, value in pairs(servers) do
+  if type(value) == "table" then
+    if not value.manual_install then
+      table.insert(servers_to_install, key)
+    end
   else
-    return t
+    if value then
+      table.insert(servers_to_install, key)
+    end
   end
-end, vim.tbl_keys(servers))
+end
 
 require("mason").setup()
 
@@ -140,9 +144,10 @@ for name, config in pairs(servers) do
   if config == true then
     config = {}
   end
-  config = vim.tbl_deep_extend("force", {}, {
-    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
+  config = deep_extend_force({}, {
+    capabilities = capabilities,
   }, config)
+  vim.lsp.config[name] = config
   vim.lsp.enable(name)
 end
 
@@ -217,10 +222,19 @@ vim.keymap.set("", "<leader>le", function()
 end, { desc = "Toggle lsp_lines" })
 
 require("typescript-tools").setup {
-  root_dir = root_pattern("tsconfig.json", "tsconfig.dev.json"),
+  root_dir = function(startpath)
+    startpath = startpath or vim.fn.getcwd()
+    local patterns = {"tsconfig.json", "tsconfig.dev.json"}
+    for _, pattern in ipairs(patterns) do
+      local found = vim.fs.find(pattern, {path = startpath, upward = true})[1]
+      if found then
+        return vim.fs.dirname(found)
+      end
+    end
+  end,
   single_file_support = false,
   lspconfig = {
-    capabilities = vim.tbl_deep_extend("force", capabilities, {
+    capabilities = deep_extend_force(capabilities, {
       textDocument = {
         positionEncodings = { "utf-16" },
       },
