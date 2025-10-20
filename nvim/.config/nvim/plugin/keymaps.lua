@@ -252,7 +252,21 @@ which_key.add {
   },
   --
   { "<leader>u", group = "[u]nit Tests" },
-  { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un" },
+  { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un all" },
+  {
+    "<leader>un",
+    function()
+      require("neotest").run.run()
+    end,
+    desc = "run [n]earest",
+  },
+  {
+    "<leader>uf",
+    function()
+      require("neotest").run.run(vim.fn.expand "%")
+    end,
+    desc = "run [f]ile",
+  },
   { "<leader>us", "<cmd>Neotest summary<cr>", desc = "[s]ummary" },
   { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
   --
