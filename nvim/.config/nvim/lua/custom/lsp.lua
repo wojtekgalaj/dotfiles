@@ -1,22 +1,22 @@
- local lsp_util = require "vim.lsp.util"
- local capabilities = require("blink.cmp").get_lsp_capabilities()
- -- bail if this is obsidian insert mode
- if vim.g.obsidian then
-   return
- end
+local lsp_util = require "vim.lsp.util"
+local capabilities = require("blink.cmp").get_lsp_capabilities()
+-- bail if this is obsidian insert mode
+if vim.g.obsidian then
+  return
+end
 
- local function deep_extend_force(target, ...)
-   for _, source in ipairs({...}) do
-     for k, v in pairs(source) do
-       if type(v) == "table" and type(target[k]) == "table" then
-         deep_extend_force(target[k], v)
-       else
-         target[k] = v
-       end
-     end
-   end
-   return target
- end
+local function deep_extend_force(target, ...)
+  for _, source in ipairs { ... } do
+    for k, v in pairs(source) do
+      if type(v) == "table" and type(target[k]) == "table" then
+        deep_extend_force(target[k], v)
+      else
+        target[k] = v
+      end
+    end
+  end
+  return target
+end
 
 -- → svelte.ask-to-enable-ts-plugin                                 default: true
 -- → svelte.enable-ts-plugin                                        default: false
@@ -88,13 +88,13 @@ local servers = {
       },
     },
   },
-   svelte = {
-     settings = {
-       svelte = {
-         enableTsPlugin = true,
-       },
-     },
-   },
+  svelte = {
+    settings = {
+      svelte = {
+        enableTsPlugin = true,
+      },
+    },
+  },
   tailwindcss = true,
   cssls = true,
   emmet_language_server = {
@@ -224,9 +224,9 @@ end, { desc = "Toggle lsp_lines" })
 require("typescript-tools").setup {
   root_dir = function(startpath)
     startpath = startpath or vim.fn.getcwd()
-    local patterns = {"tsconfig.json", "tsconfig.dev.json"}
+    local patterns = { "tsconfig.json", "tsconfig.dev.json" }
     for _, pattern in ipairs(patterns) do
-      local found = vim.fs.find(pattern, {path = startpath, upward = true})[1]
+      local found = vim.fs.find(pattern, { path = startpath, upward = true })[1]
       if found then
         return vim.fs.dirname(found)
       end
