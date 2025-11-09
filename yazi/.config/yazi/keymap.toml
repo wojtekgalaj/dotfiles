@@ -2,7 +2,7 @@
 prepend_keymap = [
 	{ on = [
 		"g",
-		"g",
+		"i",
 	], run = "cd ~/tui/illustrations", desc = "go to tui illustrations" },
 	{ on = [
 		"g",
