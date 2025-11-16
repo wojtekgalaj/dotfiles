@@ -75,3 +75,8 @@ eval "$(atuin init zsh)"
 
 # opencode
 export PATH=/Users/wojtek/.opencode/bin:$PATH
+
+ # SDKMAN
+ export SDKMAN_DIR="$HOME/.sdkman"
+ [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
