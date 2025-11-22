@@ -3,3 +3,4 @@
 @tui:registry=https://bin.source.tui/artifactory/api/npm/tui-npm/
 prefix=/Users/wojtek/.local/npm-global
 //localhost:4873/:_authToken=N2VhYWE5NmQ5NGZiYTUyYjU4YmY0ZTAxYTdlMGY0MzE6MjVhMjBjZmQ3MTVlMWQ4MDllOWRjNDU3YzlmN2Ez
+@test:registry=http://localhost:4873
