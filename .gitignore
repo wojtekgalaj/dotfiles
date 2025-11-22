@@ -4,3 +4,4 @@
 .zsh_history
 packer_compiled.lua
 completions/
+plugins/
