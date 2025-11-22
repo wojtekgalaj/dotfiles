@@ -2,8 +2,9 @@
 prepend_keymap = [
 	{ on = [
 		"g",
+		"t",
 		"i",
-	], run = "cd ~/tui/illustrations", desc = "go to tui illustrations" },
+	], run = "cd ~/tui/illustrations", desc = "[g]o to [t]ui [i]llustrations" },
 	{ on = [
 		"g",
 		"d",
@@ -13,5 +14,22 @@ prepend_keymap = [
 		"b",
 	], run = "back", desc = "go back" },
 
-	{ on = "d", run = "remove --permanently", desc = "Permanently delete" },
+	{ on = "d", run = "remove --permanently", desc = "permanently [d]elete" },
+	{ on = [
+		"b",
+		"s",
+	], run = "plugin bookmarks save", desc = "[b]ookmark [s]ave" },
+	{ on = [
+		"b",
+		"j",
+	], run = "plugin bookmarks jump", desc = "[b]ookmark [j]ump" },
+	{ on = [
+		"b",
+		"d",
+	], run = "plugin bookmarks delete", desc = "[b]ookmark [d]elete" },
+	{ on = [
+		"b",
+		"D",
+	], run = "plugin bookmarks delete_all", desc = "[b]ookmark [D]elete all" },
+
 ]

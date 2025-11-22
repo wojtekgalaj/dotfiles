@@ -4,3 +4,8 @@ scrolloff = 5
 
 [preview]
 wrap = "yes"
+image = true
+image_filter = "lanczos3"
+image_quality = 90
+max_width = 800
+max_height = 600
