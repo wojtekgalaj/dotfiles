@@ -21,9 +21,9 @@ end
 -- → svelte.ask-to-enable-ts-plugin                                 default: true
 -- → svelte.enable-ts-plugin                                        default: false
 local servers = {
-  pyright = true,
-  rescriptls = true,
-  vacuum = true,
+  -- pyright = true,
+  -- rescriptls = true,
+  -- vacuum = true,
   dockerls = true,
   jinja_lsp = true,
   -- denols = {
@@ -100,11 +100,11 @@ local servers = {
   emmet_language_server = {
     filetypes = {
       "html",
-      "css",
-      "scss",
-      "javascript",
-      "javascriptreact",
-      "svelte",
+      -- "css",
+      -- "scss",
+      -- "javascript",
+      -- "javascriptreact",
+      -- "svelte",
       "jinja",
     },
   },
@@ -175,7 +175,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0, desc = "Go to [d]efinition" })
     vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0, desc = "Go to [r]eferences" })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, desc = "Go to [D]eclaration" })
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 }, { desc = "Go to [t]ype definition" })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0, desc = "Go to [t]ype definition" })
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 
     local filetype = vim.bo[bufnr].filetype
@@ -222,16 +222,16 @@ vim.keymap.set("", "<leader>le", function()
 end, { desc = "Toggle lsp_lines" })
 
 require("typescript-tools").setup {
-  root_dir = function(startpath)
-    startpath = startpath or vim.fn.getcwd()
-    local patterns = { "tsconfig.json", "tsconfig.dev.json" }
-    for _, pattern in ipairs(patterns) do
-      local found = vim.fs.find(pattern, { path = startpath, upward = true })[1]
-      if found then
-        return vim.fs.dirname(found)
-      end
-    end
-  end,
+  -- root_dir = function(startpath)
+  --   startpath = startpath or vim.fn.getcwd()
+  --   local patterns = { "tsconfig.json", "tsconfig.dev.json" }
+  --   for _, pattern in ipairs(patterns) do
+  --     local found = vim.fs.find(pattern, { path = startpath, upward = true })[1]
+  --     if found then
+  --       return vim.fs.dirname(found)
+  --     end
+  --   end
+  -- end,
   single_file_support = false,
   lspconfig = {
     capabilities = deep_extend_force(capabilities, {
