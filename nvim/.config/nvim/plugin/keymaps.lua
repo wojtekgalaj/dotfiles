@@ -26,7 +26,7 @@ local toggle_indentscope_for_buffer = function()
 end
 
 which_key.add {
-  { "<leader>", group = "[keymaps]" },
+  { "<leader>", group = "which key" },
   {
     "<leader><space>",
     function()
@@ -40,6 +40,27 @@ which_key.add {
   { "<leader>qq", "<cmd>qa!<cr>", desc = "[qq]uit!" },
   --
   { "<leader>a", group = "[a]i" },
+  {
+    "<leader>aa",
+    function()
+      require("opencode").ask("@this: ", { submit = true })
+    end,
+    desc = "[a]sk opencode",
+  },
+  {
+    "<leader>ax",
+    function()
+      require("opencode").select()
+    end,
+    desc = "e[x]ecute opencode action",
+  },
+  {
+    "<leader>at",
+    function()
+      require("opencode").toggle()
+    end,
+    desc = "[t]oggle opencode",
+  },
   -- { "<leader>ac", "<cmd>AvanteChat<cr>", desc = "Avante [c]hat" },
   -- { "<leader>an", "<cmd>AvanteChatNew<cr>", desc = "Avante [n]ew chat" },
   -- { "<leader>ah", "<cmd>AvanteHistory<cr>", desc = "Avante [h]istory" },
@@ -47,9 +68,9 @@ which_key.add {
   -- { "<leader>as", "<cmd>AvanteStop<cr>", desc = "Avante [s]top current request" },
   -- { "<leader>am", "<cmd>AvanteModels<cr>", desc = "Avante [m]odels list" },
   -- { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "Avante [x]lear chat" },
-  { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
-  { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion [a]ctions" },
-  { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion add [v]isual", mode = "v" },
+  -- { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
+  -- { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion [a]ctions" },
+  -- { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion add [v]isual", mode = "v" },
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
@@ -166,20 +187,7 @@ which_key.add {
     desc = "step [i]nto",
   },
   ---
-  {
-    "<leader>f",
-    group = "[f]iletype specific",
-    mode = { "n", "v" },
-    cond = function()
-      return vim.bo.filetype == "hurl"
-    end,
-    { "<leader>fA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
-    { "<leader>fa", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
-    { "<leader>fe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
-    { "<leader>fm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
-    { "<leader>fs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
-    { "<leader>fv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
-  },
+
   --
   { "<leader>l", group = "[l]sp" },
   { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
@@ -189,7 +197,7 @@ which_key.add {
   { "<leader>li", "<cmd>LspInfo<cr>", desc = "[i]nfo" },
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
-  { "<leadej>o", group = "[o]bsidian" },
+  { "<leader>o", group = "[o]bsidian", desc = "[o]bsidian" },
   { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "quick switchero[o]" },
   { "<leader>oa", "<cmd>ObsidianOpen<cr>", desc = "open in [app]" },
   { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "[s]earch" },
@@ -257,6 +265,7 @@ which_key.add {
     end,
     desc = "[t]ypescript lines",
   },
+  { "<leader>td", "<cmd>DBUI<cr>", desc = "[d]atabase ui" },
   --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un all" },
@@ -280,5 +289,20 @@ which_key.add {
   { "<leader>x", group = "[x]ecute" },
   { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
   { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
-  { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
+   { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "hurl",
+  callback = function()
+    which_key.add {
+      { "<leader>f", group = "[f]iletype specific", mode = { "n", "v" } },
+      { "<leader>fA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
+      { "<leader>fa", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
+      { "<leader>fe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
+      { "<leader>fm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
+      { "<leader>fs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
+      { "<leader>fv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+    }
+  end,
+})
