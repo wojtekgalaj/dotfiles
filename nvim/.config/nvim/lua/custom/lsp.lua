@@ -26,16 +26,6 @@ local servers = {
   -- vacuum = true,
   dockerls = true,
   jinja_lsp = true,
-  -- denols = {
-  --   root_dir = root_pattern("deno.json", "deno.jsonc"),
-  --   single_file_support = false,
-  --   settings = {
-  --     enable = true,
-  --     lint = true,
-  --     unstable = true,
-  --     enableTsPlugin = true,
-  --   },
-  -- },
   bashls = true,
   html = {
     filetypes = { "html" },
@@ -114,6 +104,19 @@ local servers = {
   intelephense = true,
   clangd = true,
 }
+
+-- Conditionally enable denols if deno.json or deno.jsonc is found
+if vim.fn.filereadable(vim.fn.getcwd() .. "/deno.json") == 1 or vim.fn.filereadable(vim.fn.getcwd() .. "/deno.jsonc") == 1 then
+  servers.denols = {
+    single_file_support = false,
+    settings = {
+      enable = true,
+      lint = true,
+      unstable = true,
+      enableTsPlugin = true,
+    },
+  }
+end
 
 --- List of keys of the servers table that need to be installed manually
 local servers_to_install = {}
@@ -221,53 +224,55 @@ vim.keymap.set("", "<leader>le", function()
   end
 end, { desc = "Toggle lsp_lines" })
 
-require("typescript-tools").setup {
-  -- root_dir = function(startpath)
-  --   startpath = startpath or vim.fn.getcwd()
-  --   local patterns = { "tsconfig.json", "tsconfig.dev.json" }
-  --   for _, pattern in ipairs(patterns) do
-  --     local found = vim.fs.find(pattern, { path = startpath, upward = true })[1]
-  --     if found then
-  --       return vim.fs.dirname(found)
-  --     end
-  --   end
-  -- end,
-  single_file_support = false,
-  lspconfig = {
-    capabilities = deep_extend_force(capabilities, {
-      textDocument = {
-        positionEncodings = { "utf-16" },
-      },
-    }),
-  },
-  on_attach = function(client, bufnr)
-    -- Force encoding on the client
-    client.offset_encoding = "utf-16"
+if vim.fn.filereadable(vim.fn.getcwd() .. "/tsconfig.json") == 1 then
+  require("typescript-tools").setup {
+    -- root_dir = function(startpath)
+    --   startpath = startpath or vim.fn.getcwd()
+    --   local patterns = { "tsconfig.json", "tsconfig.dev.json" }
+    --   for _, pattern in ipairs(patterns) do
+    --     local found = vim.fs.find(pattern, { path = startpath, upward = true })[1]
+    --     if found then
+    --       return vim.fs.dirname(found)
+    --     end
+    --   end
+    -- end,
+    single_file_support = false,
+    lspconfig = {
+      capabilities = deep_extend_force(capabilities, {
+        textDocument = {
+          positionEncodings = { "utf-16" },
+        },
+      }),
+    },
+    on_attach = function(client, bufnr)
+      -- Force encoding on the client
+      client.offset_encoding = "utf-16"
 
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
-    vim.keymap.set("n", "gs", function()
-      local ts_utils = require "typescript-tools.api"
-      local clients = vim.lsp.get_clients { name = "typescript-tools" }
-      if #clients == 0 then
-        print "TypeScript LSP not attached"
-        return
-      end
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+      vim.keymap.set("n", "gs", function()
+        local ts_utils = require "typescript-tools.api"
+        local clients = vim.lsp.get_clients { name = "typescript-tools" }
+        if #clients == 0 then
+          print "TypeScript LSP not attached"
+          return
+        end
 
-      -- Use correct arguments for make_position_params
-      local params = lsp_util.make_position_params(0, "utf-16")
-      print("Position params: " .. vim.inspect(params))
+        -- Use correct arguments for make_position_params
+        local params = lsp_util.make_position_params(0, "utf-16")
+        print("Position params: " .. vim.inspect(params))
 
-      local _, err = pcall(ts_utils.go_to_source_definition, true)
-      if err then
-        print(err)
-      end
-    end, { buffer = bufnr, desc = "Go to source definition" })
-  end,
-  settings = {
-    separate_diagnostic_server = true,
-    code_lens = "off",
-  },
-}
+        local _, err = pcall(ts_utils.go_to_source_definition, true)
+        if err then
+          print(err)
+        end
+      end, { buffer = bufnr, desc = "Go to source definition" })
+    end,
+    settings = {
+      separate_diagnostic_server = true,
+      code_lens = "off",
+    },
+  }
+end
 
 -- local is_godot_project = vim.fn.getcwd() .. "/project.godot"
 -- print(is_godot_project)
