@@ -4,7 +4,7 @@ local ui = require "dapui"
 require("dapui").setup()
 
 require("mason-nvim-dap").setup {
-  ensure_installed = { "pwa-node" },
+  ensure_installed = { "js-debug-adapter" },
   handlers = {},
 }
 
