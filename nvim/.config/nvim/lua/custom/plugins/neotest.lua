@@ -23,7 +23,6 @@ return {
               return name ~= "node_modules"
             end,
           },
-          require "neotest-bun",
           require("neotest-playwright").adapter {
             options = {
               persist_project_selection = true,
