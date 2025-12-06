@@ -7,8 +7,11 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-jest",
       "marilari88/neotest-vitest",
+      "arthur944/neotest-bun",
+      "thenbe/neotest-playwright",
     },
     config = function()
+      ---@diagnostic disable-next-line:missing-fields
       require("neotest").setup {
         adapters = {
           require "neotest-jest" {
@@ -19,6 +22,13 @@ return {
             filter_dir = function(name)
               return name ~= "node_modules"
             end,
+          },
+          require "neotest-bun",
+          require("neotest-playwright").adapter {
+            options = {
+              persist_project_selection = true,
+              enable_dynamic_test_discovery = true,
+            },
           },
         },
       }
