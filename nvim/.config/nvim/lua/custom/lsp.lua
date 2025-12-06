@@ -90,6 +90,7 @@ local servers = {
   emmet_language_server = {
     filetypes = {
       "html",
+      "typescriptreact",
       -- "css",
       -- "scss",
       -- "javascript",
@@ -106,7 +107,10 @@ local servers = {
 }
 
 -- Conditionally enable denols if deno.json or deno.jsonc is found
-if vim.fn.filereadable(vim.fn.getcwd() .. "/deno.json") == 1 or vim.fn.filereadable(vim.fn.getcwd() .. "/deno.jsonc") == 1 then
+if
+  vim.fn.filereadable(vim.fn.getcwd() .. "/deno.json") == 1
+  or vim.fn.filereadable(vim.fn.getcwd() .. "/deno.jsonc") == 1
+then
   servers.denols = {
     single_file_support = false,
     settings = {
