@@ -5,6 +5,7 @@ return {
       require("mini.ai").setup {}
       require("mini.jump2d").setup()
       require("mini.icons").setup {}
+      require("mini.pairs").setup {}
       require("mini.indentscope").setup {
         lazy = true,
         options = {

@@ -1,6 +1,7 @@
-@tui-boilerplate:registry=https://bin.source.tui/artifactory/api/npm/tui-npm/
+@tui-boilerplate:registry=http://localhost:4873
 @tui-mwa:registry=https://bin.source.tui/artifactory/api/npm/tui-npm/
 @tui:registry=https://bin.source.tui/artifactory/api/npm/tui-npm/
 prefix=/Users/wojtek/.local/npm-global
-//localhost:4873/:_authToken=N2VhYWE5NmQ5NGZiYTUyYjU4YmY0ZTAxYTdlMGY0MzE6MjVhMjBjZmQ3MTVlMWQ4MDllOWRjNDU3YzlmN2Ez
+//localhost:4873/:_authToken="NDQ5NzBlZTM2OGJjODYxMWFkODg4OTk3Njc1YTkzMDA6MGI5YTg1YTI0YzU0NDEyZmMyNTU="
 @test:registry=http://localhost:4873
+registry=http://localhost:4873

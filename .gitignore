@@ -5,3 +5,4 @@
 packer_compiled.lua
 completions/
 plugins/
+!nvim/.config/nvim/lua/custom/plugins/

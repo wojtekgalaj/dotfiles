@@ -17,7 +17,6 @@ set("n", "<down>", "<C-W>-")
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local multigrep = require "private.telescope.multigrep"
-local gitsigns = require "gitsigns"
 
 vim.g.miniindentscope_disable = true
 
@@ -85,26 +84,6 @@ which_key.add {
   { "<leader>ra", "<cmd>ReplSendArgs<cr>", desc = "send [a]rgs" },
   --
   { "<leader>g", group = "[g]it" },
-  {
-    "<leader>gs",
-    gitsigns.stage_hunk,
-    desc = "[s]tage hunk",
-  },
-  {
-    "<leader>gd",
-    gitsigns.diffthis,
-    desc = "[d]iff",
-  },
-  {
-    "<leader>gp",
-    gitsigns.preview_hunk,
-    desc = "[p]review hunk",
-  },
-  {
-    "<leader>gx",
-    gitsigns.preview_hunk_inline,
-    desc = "show [x]ed lines",
-  },
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "[b]lame" },
   { "<leader>gv", "<cmd>Neogit<cr>", desc = "[v]ersion control" },
   { "<leader>gc", group = "[c]ommits" },
@@ -289,7 +268,7 @@ which_key.add {
   { "<leader>x", group = "[x]ecute" },
   { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
   { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
-   { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
+  { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
 }
 
 vim.api.nvim_create_autocmd("FileType", {
