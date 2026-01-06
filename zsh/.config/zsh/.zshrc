@@ -82,6 +82,3 @@ export PATH=/Users/wojtek/.opencode/bin:$PATH
 
 eval "$(mise activate zsh)"
 
-source /Users/wojtek/.local/share/shunpo/shunpo_cmd
-export SHUNPO_DIR=/Users/wojtek/.local/share/shunpo
-
