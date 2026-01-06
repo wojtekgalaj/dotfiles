@@ -10,7 +10,6 @@ return {
     -- build = 'nix run .#build-plugin',
 
     ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -25,6 +24,9 @@ return {
         nerd_font_variant = "mono",
       },
 
+      snippets = {
+        preset = "luasnip",
+      },
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
@@ -33,13 +35,9 @@ return {
         -- cmdline = {},
       },
 
-      snippets = {
-        preset = "luasnip",
-      },
-
       completion = {
         documentation = {
-          auto_show = false,
+          auto_show = true,
         },
         list = {
           max_items = 10,
