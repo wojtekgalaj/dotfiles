@@ -80,3 +80,8 @@ export PATH=/Users/wojtek/.opencode/bin:$PATH
  export SDKMAN_DIR="$HOME/.sdkman"
  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+eval "$(mise activate zsh)"
+
+source /Users/wojtek/.local/share/shunpo/shunpo_cmd
+export SHUNPO_DIR=/Users/wojtek/.local/share/shunpo
+
