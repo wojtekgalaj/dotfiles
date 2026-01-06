@@ -192,7 +192,7 @@ which_key.add {
   },
   { "<leader>ii", "<cmd>Nerdy<cr>", desc = "nerd [icon]" },
   --
-  { "<leader>s", group = "[s]earch" },
+  { "<leader>s", group = "[s]earch and [s]nippets" },
   { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
   { "<leader>sr", multigrep.search, desc = "[r]egex" },
@@ -266,6 +266,8 @@ which_key.add {
   { "<leader>uu", "<cmd>Neotest output<cr>", desc = "o[u]tput" },
   --
   { "<leader>x", group = "[x]ecute" },
+  { "<leader>xs", "<cmd>source ~/.config/nvim/lua/custom/plugins/luasnip.lua <cr>", desc = "source [s]nippets" },
+  { "<leader>x.", "<cmd>source % <cr>", desc = "source [.] current file" },
   { "<leader>xc", "<cmd>ReplRunCell<cr>", desc = "nvim-repl exec [c]ell" },
   { "<leader>xf", "<cmd>source %<cr>", desc = "[f]ile" },
   { "<leader>xl", "<cmd>.lua<cr>", desc = "[l]ine" },
@@ -275,13 +277,13 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "hurl",
   callback = function()
     which_key.add {
-      { "<leader>f", group = "[f]iletype specific", mode = { "n", "v" } },
-      { "<leader>fA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
-      { "<leader>fa", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
-      { "<leader>fe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
-      { "<leader>fm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
-      { "<leader>fs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
-      { "<leader>fv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
+      { "<leader>h", group = "[h]url", mode = { "n", "v" } },
+      { "<leader>hA", "<cmd>HurlRunner<CR>", desc = "Run [A]ll requests" },
+      { "<leader>ha", "<cmd>HurlRunnerAt<CR>", desc = "Run [a]pi request" },
+      { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to [e]ntry" },
+      { "<leader>hm", "<cmd>HurlToggleMode<CR>", desc = "Hurl [m]ode" },
+      { "<leader>hs", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbo[s]e mode" },
+      { "<leader>hv", ":HurlRunner<CR>", desc = "Run Visual", mode = "v" },
     }
   end,
 })
