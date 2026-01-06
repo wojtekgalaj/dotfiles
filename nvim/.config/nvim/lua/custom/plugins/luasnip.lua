@@ -6,9 +6,21 @@ return {
     -- install jsregexp (optional!).
     build = "make install_jsregexp",
     config = function()
-      local path_to_snippets = vim.fn.stdpath "config" .. "/snippets"
-      print("loading lua snippets in the config and the path is" .. path_to_snippets)
-      require("luasnip.loaders.from_lua").load { paths = path_to_snippets }
+      local ls = require "luasnip"
+      ls.config.set_config { history = true, updateevents = "TextChanged,TextChangedI" }
+      vim.keymap.set({ "i", "s" }, "<C-j>", function()
+        if ls.expand_or_jumpable() then
+          ls.expand_or_jump()
+        end
+      end)
+      vim.keymap.set({ "i", "s" }, "<C-k>", function()
+        if ls.jumpable(-1) then
+          ls.jump(-1)
+        end
+      end)
+      require("luasnip.loaders.from_lua").lazy_load {
+        paths = { "~/.config/nvim/lua/snippets" },
+      }
     end,
   },
 }
