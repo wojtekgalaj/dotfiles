@@ -193,14 +193,26 @@ which_key.add {
   { "<leader>ii", "<cmd>Nerdy<cr>", desc = "nerd [icon]" },
   --
   { "<leader>s", group = "[s]earch and [s]nippets" },
-  { "<leader>sg", builtin.live_grep, desc = "[g]rep project" },
+  {
+    "<leader>sg",
+    function()
+      builtin.live_grep { additional_args = { "--hidden" } }
+    end,
+    desc = "[g]rep project",
+  },
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
   { "<leader>sr", multigrep.search, desc = "[r]egex" },
   { "<leader>sm", "<cmd>Noice<cr>", desc = "[m]essages" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
   { "<leader>sr", builtin.resume, desc = "[r]esume last" },
   { "<leader>sb", builtin.current_buffer_fuzzy_find, desc = "string in [b]uffer" },
-  { "<leader>su", builtin.grep_string, desc = "thing [u]nder cursor" },
+  {
+    "<leader>su",
+    function()
+      builtin.grep_string { additional_args = { "--hidden" } }
+    end,
+    desc = "thing [u]nder cursor",
+  },
   {
     "<leader>sp",
     function()
