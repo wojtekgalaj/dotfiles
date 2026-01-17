@@ -86,7 +86,6 @@ local servers = {
     },
   },
   tailwindcss = true,
-  cssls = true,
   emmet_language_server = {
     filetypes = {
       "html",
