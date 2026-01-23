@@ -257,6 +257,7 @@ which_key.add {
     desc = "[t]ypescript lines",
   },
   { "<leader>td", "<cmd>DBUI<cr>", desc = "[d]atabase ui" },
+  { "<leader>tq", "<cmd>ccl<cr>", desc = "close [q]uickfix window" },
   --
   { "<leader>u", group = "[u]nit Tests" },
   { "<leader>ur", "<cmd>Neotest run<cr>", desc = "[r]un all" },
