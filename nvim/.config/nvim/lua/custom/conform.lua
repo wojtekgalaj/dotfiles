@@ -2,16 +2,13 @@ local conform = require "conform"
 
 -- This method checks for if a config file for your formatter exists before
 -- returning the formatters table or nil
----@param formatters? table
 ---@return table
-local use_these_if_prettierrc_found = function(formatters)
-  if not formatters then
-    formatters = { "prettierd", "prettier" }
-  end
+local use_these_if_prettierrc_found = function()
   local prettierrc_exists = vim.fn.findfile(".prettierrc", ".;")
   local prettierrc_json_exists = vim.fn.findfile(".prettierrc.json", ".;")
-  if prettierrc_exists or prettierrc_json_exists then
-    return formatters
+  local prettierrc_js_exists = vim.fn.findfile(".prettierrc.js", ".;")
+  if prettierrc_exists or prettierrc_json_exists or prettierrc_js_exists then
+    return { "prettierd", "prettier" }
   else
     return {}
   end
