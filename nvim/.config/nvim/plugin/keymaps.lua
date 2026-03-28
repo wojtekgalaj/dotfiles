@@ -38,28 +38,8 @@ which_key.add {
   { "<leader>q", "<cmd>q<cr>", desc = "[q]uit" },
   { "<leader>qq", "<cmd>qa!<cr>", desc = "[qq]uit!" },
   --
-  { "<leader>a", group = "[a]i" },
-  {
-    "<leader>aa",
-    function()
-      require("opencode").ask("@this: ", { submit = true })
-    end,
-    desc = "[a]sk opencode",
-  },
-  {
-    "<leader>ax",
-    function()
-      require("opencode").select()
-    end,
-    desc = "e[x]ecute opencode action",
-  },
-  {
-    "<leader>at",
-    function()
-      require("opencode").toggle()
-    end,
-    desc = "[t]oggle opencode",
-  },
+  { "<leader>a", group = "[a]i", mode = { "n" } },
+  -- Avante stuff
   -- { "<leader>ac", "<cmd>AvanteChat<cr>", desc = "Avante [c]hat" },
   -- { "<leader>an", "<cmd>AvanteChatNew<cr>", desc = "Avante [n]ew chat" },
   -- { "<leader>ah", "<cmd>AvanteHistory<cr>", desc = "Avante [h]istory" },
@@ -67,9 +47,21 @@ which_key.add {
   -- { "<leader>as", "<cmd>AvanteStop<cr>", desc = "Avante [s]top current request" },
   -- { "<leader>am", "<cmd>AvanteModels<cr>", desc = "Avante [m]odels list" },
   -- { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "Avante [x]lear chat" },
+  -- Code companion stuff
   -- { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
   -- { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion [a]ctions" },
   -- { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion add [v]isual", mode = "v" },
+  --
+  --
+  -- Dwight Stuff
+  -- Setup
+  { "<leader>aI", "<cmd>DwightInit<cr>", desc = "Dwight [I]nit" },
+  { "<leader>aB", "<cmd>DwightBootstrap --agentic<cr>", desc = "Dwight [B]ootstrap" },
+  { "<leader>aH", "<cmd>DwightHealth<cr>", desc = "Dwight [H]ealth" },
+  -- Work
+  { "<leader>ai", "<cmd>DwightInvode<cr>", desc = "Dwight [i]nvoke" },
+  -- END Dwight Stuff
+  --
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
@@ -166,7 +158,29 @@ which_key.add {
     desc = "step [i]nto",
   },
   ---
+  { "<leader>f", group = "don't [f]orget" },
 
+  {
+    "<leader>fa",
+    function()
+      require("doing").add()
+    end,
+    desc = "[a]dd",
+  },
+  {
+    "<leader>fd",
+    function()
+      require("doing").done()
+    end,
+    desc = "[d]one",
+  },
+  {
+    "<leader>fe",
+    function()
+      require("doing").edit()
+    end,
+    desc = "[e]dit",
+  },
   --
   { "<leader>l", group = "[l]sp" },
   { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
@@ -230,6 +244,11 @@ which_key.add {
       }
     end,
     desc = "[c]onfig",
+  },
+  {
+    "<leader>si",
+    "<cmd>Telescope luasnip<cr>",
+    desc = "sn[i]ppets",
   },
   { "<leader>so", "<cmd>Telescope node_modules list<cr>", desc = "n[o]de modules" },
   { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "[h]elp tags" },

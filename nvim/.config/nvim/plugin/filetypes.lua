@@ -2,6 +2,7 @@ vim.filetype.add {
   extension = {
     ["njk"] = "jinja",
     ["svx"] = "markdown",
+    ["env"] = "dotenv",
   },
   pattern = {
     ["deno.{json,jsonc,lock}"] = "deno.typescript",

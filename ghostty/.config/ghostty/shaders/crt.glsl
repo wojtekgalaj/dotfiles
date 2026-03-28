@@ -82,7 +82,7 @@
 //  0.50 = fused scanlines
 //  0.70 = recommended default
 //  1.00 = thinner scanlines (too thin)
-#define INPUT_THIN 0.80 
+#define INPUT_THIN 0.70 
 
 // Horizonal scan blur
 //  -3.0 = pixely

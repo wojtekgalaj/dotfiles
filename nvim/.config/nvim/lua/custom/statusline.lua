@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup(opts)
+function M.setup()
   require("mini.statusline").setup {
     use_icons = true,
     content = {

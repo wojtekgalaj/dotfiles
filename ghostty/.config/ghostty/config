@@ -15,5 +15,5 @@ keybind = global:super+j=toggle_quick_terminal
 # to make the terminal look like a CRT screen.
 # -----------------------------------------------
 # font-size = 18
-# custom-shader = ./crt.glsl
+# custom-shader = ./shaders/retro.glsl
 # -----------------------------------------------

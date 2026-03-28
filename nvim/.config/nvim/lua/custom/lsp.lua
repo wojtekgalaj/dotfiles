@@ -26,6 +26,7 @@ local servers = {
   -- vacuum = true,
   dockerls = true,
   jinja_lsp = true,
+  tsgo = true,
   bashls = true,
   html = {
     filetypes = { "html" },
@@ -93,7 +94,7 @@ local servers = {
       -- "css",
       -- "scss",
       -- "javascript",
-      -- "javascriptreact",
+      "javascriptreact",
       -- "svelte",
       "jinja",
     },
@@ -227,7 +228,7 @@ vim.keymap.set("", "<leader>le", function()
   end
 end, { desc = "Toggle lsp_lines" })
 
-if vim.fn.filereadable(vim.fn.getcwd() .. "/tsconfig.json") == 1 then
+if false and vim.fn.filereadable(vim.fn.getcwd() .. "/tsconfig.json") == 1 then
   require("typescript-tools").setup {
     -- root_dir = function(startpath)
     --   startpath = startpath or vim.fn.getcwd()

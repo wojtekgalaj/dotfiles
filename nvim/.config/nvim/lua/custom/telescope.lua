@@ -2,6 +2,7 @@ pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "media_files")
 pcall(require("telescope").load_extension, "frecency")
 pcall(require("telescope").load_extension, "node_modules")
+pcall(require("telescope").load_extension, "luasnip")
 vim.api.nvim_set_hl(0, "TelescopeBorder", { ctermbg = 220 })
 
 -- [[ Configure Telescope ]]

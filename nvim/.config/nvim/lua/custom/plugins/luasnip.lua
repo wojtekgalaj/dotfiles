@@ -7,7 +7,7 @@ return {
     build = "make install_jsregexp",
     config = function()
       local ls = require "luasnip"
-      ls.config.set_config { history = true, updateevents = "TextChanged,TextChangedI" }
+      ls.config.set_config { history = true, updateevents = "InsertLeave" }
       vim.keymap.set({ "i", "s" }, "<C-j>", function()
         if ls.expand_or_jumpable() then
           ls.expand_or_jump()
@@ -22,5 +22,9 @@ return {
         paths = { "~/.config/nvim/lua/snippets" },
       }
     end,
+  },
+  {
+    "benfowler/telescope-luasnip.nvim",
+    module = "telescope._extensions.luasnip", -- if you wish to lazy-load
   },
 }
