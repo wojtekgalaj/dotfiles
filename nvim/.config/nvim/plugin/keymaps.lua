@@ -59,7 +59,7 @@ which_key.add {
   { "<leader>aB", "<cmd>DwightBootstrap --agentic<cr>", desc = "Dwight [B]ootstrap" },
   { "<leader>aH", "<cmd>DwightHealth<cr>", desc = "Dwight [H]ealth" },
   -- Work
-  { "<leader>ai", "<cmd>DwightInvode<cr>", desc = "Dwight [i]nvoke" },
+  { "<leader>ai", "<cmd>DwightInvoke<cr>", desc = "Dwight [i]nvoke" },
   -- END Dwight Stuff
   --
   --
