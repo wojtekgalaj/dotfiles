@@ -39,27 +39,26 @@ which_key.add {
   { "<leader>qq", "<cmd>qa!<cr>", desc = "[qq]uit!" },
   --
   { "<leader>a", group = "[a]i", mode = { "n" } },
-  -- Avante stuff
-  -- { "<leader>ac", "<cmd>AvanteChat<cr>", desc = "Avante [c]hat" },
-  -- { "<leader>an", "<cmd>AvanteChatNew<cr>", desc = "Avante [n]ew chat" },
-  -- { "<leader>ah", "<cmd>AvanteHistory<cr>", desc = "Avante [h]istory" },
-  -- { "<leader>af", "<cmd>AvanteFocus<cr>", desc = "Avante [f]ocus" },
-  -- { "<leader>as", "<cmd>AvanteStop<cr>", desc = "Avante [s]top current request" },
-  -- { "<leader>am", "<cmd>AvanteModels<cr>", desc = "Avante [m]odels list" },
-  -- { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "Avante [x]lear chat" },
-  -- Code companion stuff
-  -- { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion [c]hat toggle" },
-  -- { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion [a]ctions" },
-  -- { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion add [v]isual", mode = "v" },
-  --
-  --
-  -- Dwight Stuff
   -- Setup
   { "<leader>aI", "<cmd>DwightInit<cr>", desc = "Dwight [I]nit" },
   { "<leader>aB", "<cmd>DwightBootstrap --agentic<cr>", desc = "Dwight [B]ootstrap" },
   { "<leader>aH", "<cmd>DwightHealth<cr>", desc = "Dwight [H]ealth" },
-  -- Work
+  { "<leader>as", group = "[s]kills", mode = { "n" } },
+  { "<leader>asb", "<cmd>DwightSkills<cr>", desc = "[b]rowse" },
+  { "<leader>asg", "<cmd>DwightGenSkill<cr>", desc = "[g]enerate" },
+  { "<leader>asi", "<cmd>DwightInstallSkills<cr>", desc = "[i]install" },
+  { "<leader>aa", group = "[a]utonomous", mode = { "n" } },
+  { "<leader>aaa", "<cmd>DwightAuto<cr>", desc = "[a]uto plan and exec" },
+  { "<leader>aas", "<cmd>DwightAutoStatus<cr>", desc = "[s]tatus" },
+  { "<leader>aac", "<cmd>DwightAutoCancel<cr>", desc = "[c]ancel" },
+  { "<leader>aar", "<cmd>DwightAutoRetry<cr>", desc = "[r]etry" },
+  { "<leader>aae", "<cmd>DwightAutoResume<cr>", desc = "r[e]sume" },
+  { "<leader>ac", group = "[c]ode", mode = { "n" } },
+  { "<leader>acc", "<cmd>DwightCommit<cr>", desc = "[c]omit" },
+  { "<leader>acr", "<cmd>DwightRefactor<cr>", desc = "[r]efactor" },
+
   { "<leader>ai", "<cmd>DwightInvoke<cr>", desc = "Dwight [i]nvoke" },
+  { "<leader>at", "<cmd>DwightTDD<cr>", desc = "Dwight [t]DD" },
   -- END Dwight Stuff
   --
   --
