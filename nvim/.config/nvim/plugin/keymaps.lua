@@ -64,7 +64,6 @@ which_key.add {
   --
   { "<leader>b", group = "[b]uffer" },
   { "<leader>bc", "<cmd>VenterToggle<cr>", desc = "[c]enter" },
-  { "<leader>bi", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
   { "<leader>bo", "<cmd>:tabnew %<cr>", desc = "[o]nly in a new tab" },
   --
   { "<leader>r", group = "[r]epl" },
@@ -214,7 +213,7 @@ which_key.add {
     desc = "[g]rep project",
   },
   { "<leader>sd", builtin.lsp_document_symbols, desc = "[d]ocument symbols" },
-  { "<leader>sr", multigrep.search, desc = "[r]egex" },
+  { "<leader>sx", multigrep.search, desc = "[r]egex" },
   { "<leader>sm", "<cmd>Noice<cr>", desc = "[m]essages" },
   { "<leader>sj", builtin.jumplist, desc = "[j]umplist" },
   { "<leader>sr", builtin.resume, desc = "[r]esume last" },
@@ -257,6 +256,7 @@ which_key.add {
   --
   { "<leader>t", group = "[t]oggle" },
   { "<leader>tw", "<cmd>ToggleWrapMode<cr>", desc = "[w]rap mode" },
+  { "<leader>ti", toggle_indentscope_for_buffer, desc = "mini[i]ndent for buffer" },
   { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "[m]arkdown view" },
   {
     "<leader>tg",

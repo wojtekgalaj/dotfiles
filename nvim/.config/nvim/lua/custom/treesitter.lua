@@ -24,7 +24,6 @@ c.setup {
   },
 
   sync_install = true,
-  ignore_install = { "javascript" },
   auto_install = true,
   highlight = { enable = true },
   incremental_selection = {
