@@ -8,7 +8,7 @@ local use_these_if_prettierrc_found = function()
   local prettierrc_json_exists = vim.fn.findfile(".prettierrc.json", ".;")
   local prettierrc_js_exists = vim.fn.findfile(".prettierrc.js", ".;")
   if prettierrc_exists ~= "" or prettierrc_json_exists ~= "" or prettierrc_js_exists ~= "" then
-    return { "prettierd", "prettier" }
+    return { "prettierd" }
   else
     return {}
   end
