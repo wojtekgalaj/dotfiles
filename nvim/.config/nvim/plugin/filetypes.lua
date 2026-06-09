@@ -7,6 +7,7 @@ vim.filetype.add {
   pattern = {
     ["deno.{json,jsonc,lock}"] = "deno.typescript",
     ["*.gitlab-ci*.{yml,yaml}"] = "yaml.gitlab",
+    [".env.example"] = "dotenv",
   },
 }
 -- --- Holds a collection of filetype patterns and filetypes that should be set for each of them.
