@@ -44,6 +44,7 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 #
 source ~/.zprofile
+source "$HOME/.cargo/env"
 
 
 eval "$(zoxide init zsh)"
