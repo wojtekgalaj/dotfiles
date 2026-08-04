@@ -5,28 +5,39 @@ prepend_keymap = [
 		"t",
 		"i",
 	], run = "cd ~/tui/illustrations", desc = "[g]o to [t]ui [i]llustrations" },
+
 	{ on = [
 		"g",
 		"d",
 	], run = "cd ~/Downloads", desc = "go to downloads" },
+
+	{ on = [
+		"g",
+		".",
+	], run = "cd ~/dotfiles", desc = "go to dotfiles" },
+
 	{ on = [
 		"g",
 		"b",
 	], run = "back", desc = "go back" },
 
 	{ on = "d", run = "remove --permanently", desc = "permanently [d]elete" },
+
 	{ on = [
 		"b",
 		"s",
 	], run = "plugin bookmarks save", desc = "[b]ookmark [s]ave" },
+
 	{ on = [
 		"b",
 		"j",
 	], run = "plugin bookmarks jump", desc = "[b]ookmark [j]ump" },
+
 	{ on = [
 		"b",
 		"d",
 	], run = "plugin bookmarks delete", desc = "[b]ookmark [d]elete" },
+
 	{ on = [
 		"b",
 		"D",
