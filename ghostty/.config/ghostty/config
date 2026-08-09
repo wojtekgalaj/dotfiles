@@ -14,16 +14,22 @@ unfocused-split-opacity=0.5
 theme = dark:catppuccin frappe,light:catppuccin latte
 
 keybind = global:super+j=toggle_quick_terminal
+
+# SPLITS
 keybind = ctrl+s>l=new_split:right
 keybind = ctrl+s>j=new_split:down
 keybind = ctrl+s>h=new_split:left
 keybind = ctrl+s>k=new_split:up
+keybind = ctrl+s>n=new_split:auto
 keybind = ctrl+s>f=toggle_split_zoom
 keybind = ctrl+l=goto_split:right
 keybind = ctrl+j=goto_split:down
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+k=goto_split:up
+
+# TABS
 keybind = ctrl+t>n=new_tab
+keybind = ctrl+t>r=prompt_tab_title
 
 # This is here for fun. Uncomment these lines
 # to make the terminal look like a CRT screen.
