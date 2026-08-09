@@ -19,10 +19,10 @@ keybind = ctrl+s>j=new_split:down
 keybind = ctrl+s>h=new_split:left
 keybind = ctrl+s>k=new_split:up
 keybind = ctrl+s>f=toggle_split_zoom
-keybind = ctrl+m>l=goto_split:right
-keybind = ctrl+m>j=goto_split:down
-keybind = ctrl+m>h=goto_split:left
-keybind = ctrl+m>k=goto_split:up
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+k=goto_split:up
 keybind = ctrl+t>n=new_tab
 
 # This is here for fun. Uncomment these lines
