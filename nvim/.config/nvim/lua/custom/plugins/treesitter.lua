@@ -1,15 +1,9 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false,
-    enabled = true,
-    dependencies = {
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-    },
-    build = ":TSUpdate",
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
     config = function()
-      -- require "custom.treesitter"
+      require("tree-sitter-manager").setup()
     end,
   },
 }
