@@ -4,7 +4,6 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
     },
     ft = "hurl",
     opts = {

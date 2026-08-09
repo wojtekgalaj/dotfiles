@@ -4,6 +4,9 @@ vim.filetype.add {
     ["svx"] = "markdown",
     ["env"] = "dotenv",
   },
+  filename = {
+    ["/Users/wojtek/dotfiles/ghostty/.config/ghostty/config"] = "ghostty",
+  },
   pattern = {
     ["deno.{json,jsonc,lock}"] = "deno.typescript",
     ["*.gitlab-ci*.{yml,yaml}"] = "yaml.gitlab",
