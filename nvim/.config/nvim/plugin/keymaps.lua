@@ -14,6 +14,11 @@ set("n", "<right>", "<c-w>5>")
 set("n", "<up>", "<C-W>+")
 set("n", "<down>", "<C-W>-")
 
+set("n", "<a-j>", "<c-w>j")
+set("n", "<a-k>", "<c-w>k")
+set("n", "<a-h>", "<c-w>h")
+set("n", "<a-l>", "<c-w>l")
+
 local which_key = require "which-key"
 local builtin = require "telescope.builtin"
 local multigrep = require "private.telescope.multigrep"
