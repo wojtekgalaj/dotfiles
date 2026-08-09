@@ -3,9 +3,7 @@ vim.filetype.add {
     ["njk"] = "jinja",
     ["svx"] = "markdown",
     ["env"] = "dotenv",
-  },
-  filename = {
-    ["/Users/wojtek/dotfiles/ghostty/.config/ghostty/config"] = "ghostty",
+    ["ghostty"] = "ghostty",
   },
   pattern = {
     ["deno.{json,jsonc,lock}"] = "deno.typescript",
