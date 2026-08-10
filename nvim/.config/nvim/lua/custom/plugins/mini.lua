@@ -12,21 +12,7 @@ return {
           indent_at_cursor = false,
         },
       }
-      require("mini.comment").setup {
-        options = {
-          custom_commentstring = function()
-            -- disabling default autocmd so treesitter can figure out the
-            -- correct comment.
-            -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#plugins-with-a-pre-comment-hook
-            local tcc = require "ts_context_commentstring"
-            tcc.setup {
-              enable_autocmd = false,
-            }
-            -- return the commentstring that nvim-treesitter is using
-            return tcc.calculate_commentstring() or vim.bo.commentstring
-          end,
-        },
-      }
+      require("mini.comment").setup {}
       require("custom.statusline").setup {}
     end,
   },
