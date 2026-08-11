@@ -14,6 +14,7 @@ unfocused-split-opacity=0.5
 theme = dark:catppuccin frappe,light:catppuccin latte
 
 keybind = global:super+j=toggle_quick_terminal
+keybind = ctrl+f=toggle_fullscreen
 
 # SPLITS
 keybind = ctrl+s>l=new_split:right
