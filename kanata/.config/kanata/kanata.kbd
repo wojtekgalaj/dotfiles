@@ -1,0 +1,39 @@
+;; Kanata configuration - MacBook internal keyboard only
+;; Left-hand home row mods (GAC on a/s/d) + arrow layer on f
+;;
+;; Only intercepts the Apple Internal Keyboard / Trackpad.
+;; When your Moonlander is connected it is untouched.
+
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+)
+
+;; Physical keys we care about
+(defsrc
+  a    s    d    f    h    j    k    l
+)
+
+;; Default layer:
+;;   a/s/d = home row mods (Cmd, Alt, Ctrl)
+;;   f     = tap f, hold activates arrow layer
+;;   h/j/k/l = normal keys (overridden in arrows layer)
+
+(deflayer default
+  @a   @s   @d   @f   h    j    k    l
+)
+
+;; Arrow layer (active while f is held):
+;;   h = left, j = down, k = up, l = right
+;;   a/s/d keep their home row mod behavior so you can do Cmd+Arrow etc.
+
+(deflayer arrows
+  @a   @s   @d   _    left down up   right
+)
+
+(defalias
+  a (tap-hold-press 200 150 a lmet)
+  s (tap-hold-press 200 150 s lalt)
+  d (tap-hold-press 200 150 d lctl)
+  f (tap-hold-press 200 150 f (layer-toggle arrows))
+)
