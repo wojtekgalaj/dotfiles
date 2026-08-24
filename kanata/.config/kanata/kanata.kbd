@@ -32,9 +32,9 @@
 )
 
 (defalias
-  hyper (multi lctl lalt lsft lmet)
-  a (tap-hold-press 200 150 a lmet)
-  s (tap-hold-press 200 150 s lalt)
-  d (tap-hold-press 200 150 d lctl)
-  f (tap-hold-press 200 150 f (layer-toggle arrows))
+  hyper (tap-hold-press 100 150 esc (multi lctl lalt lsft lmet))
+  a (tap-hold-press 100 150 a lmet)
+  s (tap-hold-press 100 150 s lalt)
+  d (tap-hold-press 100 150 d lctl)
+  f (tap-hold-press 100 150 f (layer-toggle arrows))
 )
