@@ -1,15 +1,14 @@
 font-size = 16
 
 window-decoration = true
-window-padding-x = 0
-window-padding-y = 0
+window-padding-x = 8
+window-padding-y = 8
 window-padding-color = extend
 
 fullscreen = true
-
 confirm-close-surface = false
-
 unfocused-split-opacity=0.5
+quick-terminal-position = bottom
 
 theme = dark:catppuccin frappe,light:catppuccin latte
 
