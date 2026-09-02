@@ -187,10 +187,34 @@ which_key.add {
   --
   { "<leader>l", group = "[l]sp" },
   { "<leader>lh", vim.lsp.buf.signature_help, desc = "[h]elp" },
-  { "<leader>ll", "<cmd>LspRestart<cr>", desc = "[l]estart" },
-  { "<leader>ls", "<cmd>LspStop<cr>", desc = "[s]top" },
-  { "<leader>lt", "<cmd>LspStop<cr>", desc = "s[t]art" },
-  { "<leader>li", "<cmd>LspInfo<cr>", desc = "[i]nfo" },
+  {
+    "<leader>ll",
+    function()
+      for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
+        vim.lsp.enable(client.name, false)
+        vim.lsp.enable(client.name, true)
+      end
+      vim.cmd.edit()
+    end,
+    desc = "[l]estart",
+  },
+  {
+    "<leader>ls",
+    function()
+      for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
+        client:stop()
+      end
+    end,
+    desc = "[s]top",
+  },
+  {
+    "<leader>lt",
+    function()
+      vim.cmd.edit()
+    end,
+    desc = "s[t]art (reattach)",
+  },
+  { "<leader>li", "<cmd>checkhealth vim.lsp<cr>", desc = "[i]nfo" },
   { "<leader>lr", vim.lsp.buf.rename, desc = "[r]ename" },
   --
   { "<leader>o", group = "[o]bsidian", desc = "[o]bsidian" },
