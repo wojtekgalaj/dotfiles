@@ -35,6 +35,28 @@ local servers = {
   gopls = {
     settings = {
       gopls = {
+        -- Full stdlib / package docs on hover (K), with pkg.go.dev links
+        hoverKind = "FullDocumentation",
+        linkTarget = "pkg.go.dev",
+        linksInHover = true,
+        usePlaceholders = true,
+        completeUnimported = true,
+        staticcheck = true,
+        gofumpt = true,
+        analyses = {
+          unusedparams = true,
+          shadow = true,
+          nilness = true,
+          unusedwrite = true,
+          useany = true,
+        },
+        codelenses = {
+          generate = true,
+          test = true,
+          tidy = true,
+          vendor = true,
+          regenerate_cgo = true,
+        },
         hints = {
           assignVariableTypes = true,
           compositeLiteralFields = true,
@@ -183,7 +205,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0, desc = "Go to [r]eferences" })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, desc = "Go to [D]eclaration" })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0, desc = "Go to [t]ype definition" })
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    -- Go: keywords have no gopls hover; use keyword manuals + go doc fallback
+    vim.keymap.set("n", "K", function()
+      if vim.bo[bufnr].filetype == "go" then
+        require("custom.go_hover").hover()
+      else
+        vim.lsp.buf.hover()
+      end
+    end, { buffer = bufnr, desc = "Hover documentation" })
 
     local filetype = vim.bo[bufnr].filetype
     if disable_semantic_tokens[filetype] then
