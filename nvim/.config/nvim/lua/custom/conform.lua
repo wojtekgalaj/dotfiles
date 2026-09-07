@@ -7,6 +7,7 @@ local conform = require "conform"
 conform.setup {
   formatters_by_ft = {
     lua = { "stylua" },
+    go = { "goimports", "gofumpt" },
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
     javascript = { "prettierd" },
@@ -18,6 +19,9 @@ conform.setup {
   formatters = {
     prettierd = {
       require_cwd = true,
+    },
+    gofumpt = {
+      prepend_args = { "-extra" },
     },
   },
 

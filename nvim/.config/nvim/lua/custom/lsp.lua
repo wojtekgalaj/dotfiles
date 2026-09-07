@@ -161,7 +161,10 @@ end
 require("mason").setup()
 
 --- These are servers not covered in the servers list
-local ensure_installed = {}
+local ensure_installed = {
+  "gofumpt",
+  "goimports",
+}
 
 vim.list_extend(ensure_installed, servers_to_install)
 
