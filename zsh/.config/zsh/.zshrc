@@ -43,7 +43,7 @@ export PNPM_HOME="/Users/wgalaj/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 #
-source ~/.zprofile
+# source ~/.zprofile
 source "$HOME/.cargo/env"
 
 
