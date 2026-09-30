@@ -31,10 +31,11 @@
   @hyper a   @s   @d   _    left down up   right
 )
 
+
 (defalias
   hyper (tap-hold-press 100 150 esc (multi lctl lalt lsft lmet))
-  a (tap-hold-press 100 150 a lmet)
-  s (tap-hold-press 100 150 s lalt)
-  d (tap-hold-press 100 150 d lctl)
-  f (tap-hold-press 100 150 f (layer-toggle arrows))
+  a (tap-hold 100 100 a lmet)
+  s (tap-hold 100 100 s lalt)
+  d (tap-hold 100 100 d lctl)
+  f (tap-hold 100 100 f (layer-toggle arrows))
 )
