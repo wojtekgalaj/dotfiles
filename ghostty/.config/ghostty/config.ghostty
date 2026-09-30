@@ -31,6 +31,10 @@ keybind = ctrl+k=goto_split:up
 keybind = ctrl+t>n=new_tab
 keybind = ctrl+t>r=prompt_tab_title
 
+# SCROLL
+keybind = ctrl+u=scroll_page_up
+keybind = ctrl+i=scroll_page_down
+
 # This is here for fun. Uncomment these lines
 # to make the terminal look like a CRT screen.
 # -----------------------------------------------
