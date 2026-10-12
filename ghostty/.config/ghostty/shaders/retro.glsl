@@ -2,7 +2,7 @@
 // Licensed under Shadertoy's default since the original creator didn't provide any license. (CC BY NC SA 3.0)
 // Slight modifications were made to give a green-ish effect.
 
-float warp = 0.25; // simulate curvature of CRT monitor
+float warp = 0; // simulate curvature of CRT monitor
 float scan = 0.50; // simulate darkness between scanlines
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
